@@ -1,0 +1,15 @@
+ <h1 mat-dialog-title >{{data.title}}</h1>
+    <div mat-dialog-content class="md-dialog-content" role="document" tabindex="-1" id="dialogContent_3">
+       
+        <div  class="md-dialog-content-body">
+            <p class="ng-binding">{{data.textContent}}</p>
+        </div><!-- end ngIf: ::!dialog.mdHtmlContent -->
+        <!-- ngIf: ::dialog.$type == 'prompt' -->
+    </div>
+    <div mat-dialog-actions fxLayoutAlign="end">
+        <button mat-raised-button color="primary" type="button" [mat-dialog-close]="true">
+            <span class="ng-binding">{{data.ok}}
+            </span>
+        </button>
+    </div>
+

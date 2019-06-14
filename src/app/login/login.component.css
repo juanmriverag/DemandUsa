@@ -1,0 +1,51 @@
+
+.LoginContent{
+    /* background-image: url('https://fthmb.tqn.com/8CwEFJU6JfgGQuXVfGoORjLhnlI=/3888x2592/filters:fill(auto,1)/crackers-lg-56b95af83df78c0b1367e023.jpg'); */
+   background-image: url(../../media/FLogin.jpg);
+   background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 0;
+    height:100%;
+    width: 100%;
+    filter: brightness(0.60);
+}
+#subLoginContent{
+    background-color: white;
+    border-radius: 20px;
+    width: 28vw;
+    height: 95%;
+    box-shadow: -5px 5px 8px 0 rgba(0, 0, 0, 0.57);
+    position: absolute;
+}
+
+.BTNLogin {
+    border-radius: 20px;
+    color: #f2f2f2;
+    height: 7vh;
+    width: 19vw;
+    border: 1px solid #596e79;
+    box-shadow: #2223236b -3px 3px 8px 0px !important;
+}
+.BTNLogin:hover {
+    background-color: #f2f2f2ab !important;
+    color: #596e79 !important;
+    border-color: #596e79 !important;
+}
+.text-Login-top{
+    text-align: center;
+    background-color: #ffffff8c;
+    padding: 0 20px;
+    border-radius: 20px 20px 0 0;
+}
+.text-Login-top span:first-child {
+    font-size: 22px;
+    color: rgb(47,67,77);
+}
+.text-Login-top span:nth-child(2) {
+    font-weight: 300;
+    font-size: 15px;
+    color: rgb(47,67,77);
+}
+.formLogin div:nth-child(2), .formLogin div:nth-child(3)  {
+    margin-top: 5vh
+}

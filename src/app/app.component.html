@@ -1,21 +1,237 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<div [hidden]="!Mostrar">
+  <div class="menu">
+    <ul>
+      <li>
+        <div fxLayout="row" fxFlex="100%">
+          <div fxLayout="column"><i class="IcoDefault material-icons"
+              style="font-size: 53px;margin-right: 2px;color: #586D78">account_circle</i></div>
+          <div fxLayout="column" class="InfoUser">
+            <span style="color: #ffc001;">
+              {{NombreUsuario}}
+            </span>
+            <span style="font-weight: 300;"> {{EmailG}}</span></div>
+        </div>
+      </li>
+      <!-- Programación -->
+      <li>
+        <div>
+          <span class="icon-stack"></span>
+          <span>Programación</span>
+        </div>
+        <ul class="menu-ul-efect">
+          <li>
+            <span>Crackers 1</span>
+            <ul class="sub-options">
+              <li (click)="IrMTSH1()">Horno 1</li>
+              <li (click)="IrMTSH4()">Horno 4</li>
+              <li (click)="IrMTSH12()">Horno 12</li>
+            </ul>
+          </li>
+          <li (click)="IrMTSC2()">
+            <span>Crakers 2</span>
+          </li>
+          <li>
+            <span>Dulces</span>
+            <ul class="sub-options">
+              <li (click)="IrMTSH8()">Horno 8</li>
+              <li (click)="IrMTSDS()">Dulces simples</li>
+              <li (click)="IrMTSRE()">RCH & SIM </li>
+            </ul>
+          </li>
+          <li (click)="IrMTSWF()">
+            <span>Wafer</span>
+          </li>
+          <li (click)="IrMTSCM()">
+            <span>Cremadas</span>
+          </li>
+          <li>
+            <span>Maquilas</span>
+          </li>
+          <li (click)="IrMTSNav()">
+            <span>Navidad</span>
+          </li>
+        </ul>
+      </li>
 
-<router-outlet></router-outlet>
+      <li>
+        <div>
+          <span class="icon-equalizer"></span>
+          <span>Configuración</span>
+        </div>
+        <ul>
+          <li (click)="IrConfigDH()">
+            <span>Días Hábiles</span>
+          </li>
+          <li (click)="IrMateriales()">
+            <span>Materiales</span>
+          </li>
+          <li (click)="IrUxT()">
+            <span>Unidades por turno</span>
+          </li>
+          <li (click)="IrUxTVs()">
+            <span>Unidades por turno Version</span>
+          </li>
+          <li (click)="IrPromos()">
+            <span>Matrícula promociones</span>
+          </li>
+          <li (click)="IrFestivos()">
+            <span>Festivos</span>
+          </li>
+          <li (click)="IrViewUser()" *ngIf="rol == 4">
+            <span>User Manager</span>
+          </li>
+          <li (click)="IrCargue()" *ngIf="rol == 4">
+            <span>Cargar Info</span>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <div>
+          <span class="icon-stats-dots"></span>
+          <span>Reportes</span>
+        </div>
+        <ul>
+          <li (click)="IrAllTables() "><span>Tablas</span></li>
+          <li (click)="IrDataQuality()"><span>Log de errores </span></li>
+          <li (click)="IrPr8Sem()"><span>Programación 8 sem</span></li>
+          <li (click)="IrRPCoberturas()"><span>Coberturas</span></li>
+          <li (click)="IrRPCedi()"><span>Ocupación Cedi</span></li>
+          <li (click)="IrRPDown()"><span>Descargas</span></li>
+          <li><span>Otros</span></li>
+        </ul>
+      </li>
+    </ul>
+    <ul>
+      <div class="LogoNutresa">
+
+      </div>
+    </ul>
+  </div>
+
+</div>
+<main [ngClass]="{'MainPadding': Mostrar == true,'MainHeight': Mostrar == false }">
+  <div fxLayout="row" fxLayoutAlign="center center" class="header" *ngIf="Mostrar">
+    <div class="icono-menu" fxLayout="row" fxLayoutAlign="start center" fxFlex="55%">
+      <div fxLayout="column" fxLayoutAlign="center start" style="height: 100%">
+        <div class="icono-menu" fxLayout="row" fxLayoutAlign="start end" fxFlex="65%">
+          <div>
+            <div class="nav-var" style="padding-bottom: 2px;">
+              <div class="bar1"></div>
+              <div class="bar2"></div>
+              <div class="bar3"></div>
+            </div>
+          </div>
+          <div>
+            <div fxLayout="column" fxLayoutAlign="center center">
+              <span>MENU </span>
+              <!-- <span>{{vWAUlUpdate}} </span> -->
+            </div>
+          </div>
+          <div>
+            <span> {{NombreTitulo}} </span>
+          </div>
+        </div>
+        <div class="DateUp" fxLayout="row" fxLayoutAlign="start end" fxFlex="35%">
+          <span> Última Actualización </span><span> {{vWAUlUpdate}} </span>
+        </div>
+      </div>
+    </div>
+    <div fxfxLayout="row" fxfxLayoutAlign="end center" class="Logo" fxFlex="45%">
+      <!-- <img (click)="IrHome()" src="static/img/LogoN.png" alt="Noel" style="width: 33px;height: auto;margin-left: 10px;"> -->
+    </div>
+  </div>
+  <div fxLayout="row" class="nav" *ngIf="Mostrar">
+    <div fxLayout="row" fxLayoutAlign="start center" fxFlex="70%" class="DirectAccess1" *ngIf="ABC || widthMax <= 960">
+
+      <button mat-button (click)="IrMTS()" [hidden]="UrlMTS != ''" [ngClass]="{'NivelSelect': Nivel1 == 1}">
+        <span [ngClass]="{'icon-office': UrlMTO != '', 'icon-svg': UrlMTO == '' && UrlPromo == '' }"></span>
+        <label> {{nameMTs}} </label>
+
+      </button>
+      <button mat-button (click)="IrMTO()" *ngIf="UrlMTS != '' && UrlMTO != ''"
+        [ngClass]="{'NivelSelect': Nivel2 == 1}">
+        <span class="icon-briefcase"></span>
+        <label> MTO </label>
+      </button>
+      <button mat-button (click)="IrPromo()" *ngIf="UrlMTS != '' && UrlPromo != ''"
+        [ngClass]="{'NivelSelect': Nivel3 == 1}">
+        <span class="icon-price-tag"></span>
+        <label> Promociones </label>
+      </button>
+      <button mat-button (click)="IrPrDetallada()" *ngIf="UrlMTS != ''" [ngClass]="{'NivelSelect': Nivel4 == 1}">
+        <span class="icon-sort-amount-asc"></span>
+        <label> Secuenciación </label>
+      </button>
+      <button mat-button (click)="IrConfigH12()" *ngIf="UrlMTS == '/ProgramacionH12/'"
+        [ngClass]="{'NivelSelect': Nivel5 == 1}">
+        <span class="icon-equalizer"></span>
+        <label> Configuración </label>
+      </button>
+      <button mat-button (click)="descargaReport()" *ngIf="UrlMTS != ''">
+        <span class="icon-download2"></span>
+        <label> Descargar </label>
+      </button>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="start center" fxFlex="70%" class="DirectAccess1" *ngIf="!ABC  && widthMax > 960">
+      <button mat-button (click)="IrDataQuality()" [ngClass]="{'NivelSelect': Nivel1 == 1}">
+        <span class="icon-warning"></span>
+        <label> Log de errores </label>
+
+      </button>
+      <!-- <div></div> <div></div> -->
+      <button mat-button (click)="IrPr8Sem()" [ngClass]="{'NivelSelect': Nivel2 == 1}">
+        <span class="icon-file-excel"></span>
+        <label> Programación 8 sem </label>
+      </button>
+      <button mat-button (click)="IrRPCoberturas()" [ngClass]="{'NivelSelect': Nivel3 == 1}">
+        <span class="icon-file-excel"></span>
+        <label> Coberturas </label>
+      </button>
+      <button mat-button (click)="IrAllTables() " [ngClass]="{'NivelSelect': Nivel4 == 1}">
+        <span class="icon-table2"></span>
+        <label> Tablas </label>
+      </button>
+      <button mat-button (click)="IrRPDown()" [ngClass]="{'NivelSelect': Nivel5 == 1}">
+        <span class="icon-cloud-download"></span>
+        <label> Descargas </label>
+      </button>
+      <button mat-button>
+        <span class="icon-diamonds"></span>
+        <label> otros </label>
+      </button>
+    </div>
+    <div fxFlex fxLayout="row" fxLayoutAlign="end center" fxFlex="30%" class="DirectAccess2">
+      <button mat-button class="enlarge" *ngIf="widthMax > 960">
+          <mat-icon>fullscreen</mat-icon>
+        <label> Full screen </label>
+      </button>
+      <button mat-button class="enlarge2" *ngIf="widthMax > 960">
+        <mat-icon>fullscreen_exit</mat-icon>
+        <label> Min screen </label>
+      </button>
+      <button mat-button routerLink="/home" class="notEnlarge" *ngIf="widthMax > 960">
+        <span class="icon-home"></span>
+        <label> Home </label>
+      </button>
+      <button mat-icon-button class="moreMenu" [matMenuTriggerFor]="menu">
+        <mat-icon>keyboard_arrow_down</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>
+          <mat-icon>home</mat-icon>
+          <span>Home</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>fullscreen</mat-icon>
+          <span>Full screen</span>
+        </button>
+        <button mat-menu-item routerLink="/login">
+          <mat-icon>directions_run</mat-icon>
+          <span>Cerrar Sesion</span>
+        </button>
+      </mat-menu>
+    </div>
+
+  </div>
+  <router-outlet></router-outlet>
+</main>

@@ -1,1 +1,107 @@
 /* You can add global styles to this file, and also import other style files */
+html {
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+html, body {
+    height: 100%;
+    position: relative;
+}
+body {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    overflow-x:hidden !important;
+    background-color: #ffffff;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+main {
+    background-color: white;
+    margin: auto;
+    min-width: 900px;
+    transform: matrix(1, 0, 0, 1, 0, 0);
+    -webkit-transform: matrix(1, 0, 0, 1, 0, 0);
+    -moz-transform: matrix(1, 0, 0, 1, 0, 0);
+    -ms-transform: matrix(1, 0, 0, 1, 0, 0);
+    -o-transform: matrix(1, 0, 0, 1, 0, 0);
+
+    display: flex;
+    flex-direction: column;
+    -ms-flex-direction: column;
+
+    transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+    -webkit-transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+    -moz-transition-timing-function:cubic-bezier(0.19, 1, 0.22, 1);
+    -o-transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+
+    transition-duration: .7s;
+    -webkit-transition-duration: .7s;
+    -moz-transition-duration: .7s;
+    -o-transition-duration: .7s;    
+}
+
+app-login.ng-star-inserted, app-home.ng-star-inserted , app-colaboracion-v.ng-star-inserted {
+    width: 100%;
+    height: 100vh;
+    
+  }
+
+app-root {
+    height: 100%;
+}
+/* [ Scroll bar ] */
+.js-pscroll {
+    position: relative;
+    overflow: hidden;
+}
+#ContentCentral {
+    background-color: white;
+    transition: all linear 0.5s;
+}
+.ContentCentralTop {
+    padding-top: 0 !important;
+}
+.Mdcontent{
+    display: block;
+    position: relative;
+    overflow: auto;
+    color: rgba(0,0,0,0.87);
+    background-color: rgb(250,250,250);
+  }
+.LayoutMargin{
+    margin: 20px 8px 8px 8px;
+}
+.LogoNoelSmall {
+    background-image: url(./media/LogoNoel.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 63px;
+    width: 5%;
+    height: 10%;
+    z-index: 1;
+    top: auto;
+    right: auto;
+    bottom: 20px;
+    left: 20px;
+    position: absolute;
+}
+
+.LogoAB {
+    background-image: url(./media/LogoAbacoN.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size:200px;     
+}
+.Img-Lobin {
+    background-image: url(./media/gtalogin.jpg);
+    background-position: center -54px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+     /* box-shadow: inset white 0 20px 20px 0px; */
+    border-radius: 0 0 20px 20px;
+}

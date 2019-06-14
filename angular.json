@@ -23,9 +23,13 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+               "src/ThemeAB.scss",
+              "src/styles.css",
+              "src/assets/vendor/perfect-scrollbar/perfect-scrollbar.css"
             ],
-            "scripts": []
+            "scripts": ["node_modules/jquery/dist/jquery.js",
+              "src/assets/vendor/perfect-scrollbar/perfect-scrollbar.min.js"
+                       ]
           },
           "configurations": {
             "production": {

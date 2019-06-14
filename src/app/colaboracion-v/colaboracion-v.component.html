@@ -1,0 +1,171 @@
+<div>
+  <div fxLayout="row" id="ContentCentral" [ngClass]="{'ContentCentralTop': Mostrar == false}" style="height:auto"
+    fxLayoutAlign="center center" fxFlex>
+    <div fxLayout="column" fxFlex>
+      <!-- //row -->
+      <div fxLayout="row" fxFlex="100%" fxLayoutAlign="center center" class="LayoutMargin">
+        <div fxLayout="column" fxFlex>
+
+          <table mat-table [dataSource]="ListColaboracion" multiTemplateDataRows>
+
+            <!-- Canal Column -->
+            <ng-container matColumnDef="canal">
+              <th mat-header-cell *matHeaderCellDef> Canal </th>
+              <td class="Tcenter" mat-cell *matCellDef="let element"> {{element.Codigo}} </td>
+            </ng-container>
+
+            <!-- Marca Column -->
+            <ng-container matColumnDef="marca">
+              <th mat-header-cell *matHeaderCellDef> Marca </th>
+              <td class="Tcenter" mat-cell *matCellDef="let element"> {{element.Marca}} </td>
+            </ng-container>
+
+            <!-- Material Column -->
+            <ng-container matColumnDef="material">
+              <th mat-header-cell *matHeaderCellDef >
+                 <span *ngIf="!R" (click)="SysFiltering('R')">Material</span> 
+                 <input *ngIf="R" placeholder="Material" matInput (keyup)="applyFilter()" [(ngModel)]="Bus.Material" style="max-width:60px;" autofocus>
+              </th>
+              <td class="Tcenter" mat-cell *matCellDef="let element"> {{element.Material}} </td>
+            </ng-container>
+
+            <!-- Descripcion Column -->
+            <ng-container matColumnDef="descripcion">
+              <th mat-header-cell *matHeaderCellDef> Descripcion </th>
+              <td mat-cell *matCellDef="let element"> {{element.Descripcion | slice:0:40}} </td>
+            </ng-container>
+
+
+            <!-- Mes_Anterior_1 Column -->
+            <ng-container matColumnDef="H1">
+              <th class="Bleft " mat-header-cell *matHeaderCellDef> {{obtenerMes(EncabColab?.Mes_7)}} </th>
+              <td class="Tcenter" mat-cell *matCellDef="let element"> {{element.H1 | number : '1.0-2'}} </td>
+            </ng-container>
+
+            <!-- Mes_Anterior_2 Column -->
+            <ng-container matColumnDef="H2">
+              <th mat-header-cell *matHeaderCellDef> {{obtenerMes(EncabColab?.Mes_8)}} </th>
+              <td class="Tcenter" mat-cell *matCellDef="let element"> {{element.H2 | number : '1.0-2'}} </td>
+            </ng-container>
+
+            <!-- Mes_Anterior_3 Column -->
+            <ng-container matColumnDef="H3">
+              <th mat-header-cell *matHeaderCellDef> {{obtenerMes(EncabColab?.Mes_9)}} </th>
+              <td class="Tcenter" mat-cell *matCellDef="let element"> {{element.H3 | number : '1.0-2'}} </td>
+            </ng-container>
+
+            <!-- mes1 Column -->
+            <ng-container matColumnDef="mes_1">
+              <th class="Mactual" mat-header-cell *matHeaderCellDef> {{obtenerMes(EncabColab?.Mes_1)}} </th>
+              <td class="Tcenter" mat-cell *matCellDef="let p">
+                <input id="inp{{idx}}_1" matInput [value]="p.N1|number : '1.0-2'"
+                  (keydown)="onRowClick($event, p,p.Id,'N1',idx,1)" style="max-width:45px;">
+              </td>
+            </ng-container>
+            <!-- mes2 Column -->
+            <ng-container matColumnDef="mes_2">
+              <th class="Mactual" mat-header-cell *matHeaderCellDef> {{obtenerMes(EncabColab?.Mes_2)}} </th>
+              <td class="Tcenter" mat-cell *matCellDef="let p">
+                <input id="inp{{idx}}_2" matInput [value]="p.N2|number : '1.0-2'"
+                  (keydown)="onRowClick($event, p,p.Id,'N2',idx,1)" style="max-width:45px;">
+              </td>
+            </ng-container>
+            <!-- mes3 Column -->
+            <ng-container matColumnDef="mes_3">
+              <th  class="Bright Mactual" mat-header-cell *matHeaderCellDef> {{obtenerMes(EncabColab?.Mes_3)}} </th>
+              <td class="Tcenter" mat-cell *matCellDef="let p">
+                <input id="inp{{idx}}_3" matInput [value]="p.N3|number : '1.0-2'"
+                  (keydown)="onRowClick($event, p,p.Id,'N3',idx,1)" style="max-width:45px;">
+              </td>
+            </ng-container>
+
+
+
+            <!-- Promedio Column -->
+            <ng-container matColumnDef="promedio">
+              <th mat-header-cell *matHeaderCellDef> Promedio </th>
+              <td class="Tcenter" mat-cell *matCellDef="let element">
+                {{((element.A1+element.A2+element.A3)/3) | currencydecimal :'0'|number : '1.0-2'}} </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="space1">
+              <th class="NoBbottom colornone" mat-header-cell *matHeaderCellDef colspan="4"> </th>
+            </ng-container>
+            <!-- Item año 1 -->
+            <ng-container matColumnDef="HaderYear1">
+              <th class="NoBbottom Btop Bleft Bright Tcenter Bdtop" mat-header-cell 
+              *matHeaderCellDef colspan="6"> {{obtenerYear(EncabColab?.Mes_1)}}
+              </th>
+            </ng-container>
+
+            <ng-container matColumnDef="expandedDetail1">
+              <!-- <td mat-cell >0</td> -->
+              <td mat-cell *matCellDef="let element" colspan="7">
+                <div class="table-element-detail Tend"
+                  [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+                  Ventas del año anterior ({{obtenerYear(EncabColab?.Mes_4)}}) :
+                </div>
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="expandedDetail2">
+              <!-- <td mat-cell >0</td> -->
+              <td mat-cell *matCellDef="let element">
+                <div class="table-element-detail "
+                  [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+
+                </div>
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="expandedA1">
+
+              <td mat-cell *matCellDef="let element">
+                <div class="table-element-detail Tcenter"
+                  [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+                  {{element.A1}}
+                </div>
+              </td>
+            </ng-container>
+
+            <!-- Mes_Anterior_2 Column -->
+            <ng-container matColumnDef="expandedA2">
+
+              <td class="Tcenter" mat-cell *matCellDef="let element">
+                <div class="table-element-detail Tcenter"
+                  [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+                  {{element.A2}}
+                </div>
+              </td>
+            </ng-container>
+
+            <!-- Mes_Anterior_3 Column -->
+            <ng-container matColumnDef="expandedA3">
+
+              <td class="Tcenter" mat-cell *matCellDef="let element">
+                <div class="table-element-detail Tcenter"
+                  [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+                  {{element.A3}}
+                </div>
+              </td>
+            </ng-container>
+
+
+            <tr mat-header-row *matHeaderRowDef="['space1','HaderYear1']">
+            </tr>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns;" class="Thcenter"></tr>
+            <tr mat-row *matRowDef="let element; columns: displayedColumns;"
+              class="table-element-row"
+              [class.table-expanded-row]="expandedElement === element"
+              (click)="expandedElement = expandedElement === element ? null : element"></tr>
+            <tr mat-row
+              *matRowDef="let row; columns: ['expandedDetail1','expandedA1','expandedA2','expandedA3','expandedDetail2']"
+              class="table-detail-row">
+            </tr>
+
+          </table>
+          <mat-paginator [pageSizeOptions]="[7, 10, 20]" showFirstLastButtons></mat-paginator>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

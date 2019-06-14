@@ -1,0 +1,79 @@
+/* .FiltrPanel .mat-form-field{
+  margin : 5px;
+} */
+
+.colornone { background-color: white !important;}
+.Tcenter {
+   text-align: center;
+}
+.Tend {
+  text-align: end;
+  margin-right:  12em !important;
+}
+.Thcenter th {
+  text-align: center;
+}
+.Bleft {
+  border-left: solid 1px #a99075;
+}
+.Bright {
+  border-right: solid 1px #a99075;
+}
+.Btop {
+  border-top: solid 1px #a99075;
+}
+.NoBbottom {
+   border-bottom: none;
+}
+.Bdtop {
+  border-radius: 10px 10px 0 0;
+}
+
+table td {
+  color: #808080;
+  line-height: 1.4;
+}
+
+table tr th {
+  font-size: 15px;
+  line-height: 1.4;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  background-color: #f0ece2;
+  color: #a99075;
+  cursor: default;
+}
+table tr th.Mactual{
+   background-color: #E1E5F0;
+  color: #7984A3;
+}
+tr.mat-row{
+  cursor: pointer;
+}
+tr.mat-row:nth-child(even) {
+  background-color: #f8f6ff;
+}
+
+tr.table-detail-row {
+  height: 0;
+}
+
+tr.table-element-row:not(.table-expanded-row):hover td {
+  background-color: #A5B9C4 !important;
+  color: #596E79 !important;
+}
+
+tr.table-element-row.table-expanded-row td {
+  background-color: #B0C5D1 !important;
+  color: #596E79 !important;
+}
+
+
+
+.table-element-row td {
+  border-bottom-width: 0;
+}
+.table-element-detail {
+  overflow: hidden;
+  /* display: flex; */
+}
