@@ -188,6 +188,12 @@ table td.SubrColumn, .SubrColumn input {
   background-color: #EDF1FC;
   color : #696B70;
 }
+
+table td.SubrColumnDif, .SubrColumnDif input {
+  background-color: #d6ffe1;
+  color : #458054;
+}
+
 /* 
 .T3  tr:nth-child(7) td, .T3  tr:nth-child(8) td {
   color: #239250;

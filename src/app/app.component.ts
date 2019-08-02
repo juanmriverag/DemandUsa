@@ -162,6 +162,7 @@ export class AppComponent implements OnInit {
   }
 
   private getMenu() {
+    this.ListaMenus = [];
     var menus = this.ListaMenus;
     this._appService.getMenuxRol(this.rol).subscribe(data => {
       var dataList = data['ListMenuxRol'];
