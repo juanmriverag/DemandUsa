@@ -10,26 +10,31 @@ import { Alert_modal } from '../popups/Alert/Alert';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
+  Mostrar;
   modelUser: string;
   modelPass: string;
   UsuRegistrado: any;
   UsuNORegistrado: any;
   EstadoUsu: number;
   Token: string;
-
-  constructor(private appComponent: AppComponent, private cookies: CookieService, private _appService: AppService, public dialog: MatDialog) { }
+  mensajeError :string = null;
+  constructor(private appComponent: AppComponent, private cookies: CookieService, private _appService: AppService, public dialog: MatDialog) { 
+    this.cookies.delete("CLB");
+    this.appComponent.CambioM(false);
+    this.appComponent.buildTogglerOff();
+    this.appComponent.NomTitle("");
+  }
 
 
   //enter 
-  private PressEn(E: any) {
+  public PressEn(E: any) {
     if (E.which === 13) {
       this.realizarAutenticacion();
     }
 
   }
 
-  private realizarAutenticacion() {
+  public realizarAutenticacion() {
 
     ///Verificar datos
     if (this.modelUser != undefined && this.modelPass != undefined) {
@@ -123,9 +128,7 @@ export class LoginComponent implements OnInit {
 
 
   ngOnInit() {
-    this.cookies.delete("CLB");
-    this.appComponent.CambioM(false);
-    this.appComponent.buildTogglerOff();
+    this.Mostrar = this.appComponent.Mostrar;
   }
 
 }

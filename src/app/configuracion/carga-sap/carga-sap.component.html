@@ -1,0 +1,55 @@
+<div>
+  <div fxLayout="row" id="ContentCentral" [ngClass]="{'ContentCentralTop': Mostrar == false}" style="height:auto"
+    fxLayoutAlign="center center" fxFlex>
+    <div fxLayout="column" fxFlex>
+      <div fxLayout="row" fxFlex="100%" fxLayoutAlign="end center" class="LayoutMargin" fxLayoutGap="15px">
+        <button mat-raised-button color="warn" *ngIf="dataSource.data" (click)="Publicar()">
+          <mat-icon>send</mat-icon> Publicar
+        </button>
+
+        <div>
+
+          <form fxLayout="row" fxFlex="100%" >
+            <input type="file" id="file" accept=".xlsx" (change)="FileToData($event)" [hidden]="true" />
+            <label class="mat-raised-button mat-primary LbBt" for="file" *ngIf="selectedValue >= 0" >
+              <mat-icon>backup</mat-icon> Subir archivo
+            </label>
+          </form>
+
+        </div>
+        <mat-form-field>
+          <mat-label>Tipo archivo</mat-label>
+          <mat-select [(ngModel)]="selectedValue" name="food" required>
+            <mat-option *ngFor="let doc of TypesDocs" [value]="doc.value">
+              {{doc.key}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxFlex="100%" fxLayoutAlign="center center" class="LayoutMargin">
+        <div fxLayout="column" fxFlex>
+          <div class="carga-container" [hidden]="!dataSource.data">
+            <table mat-table [dataSource]="dataSource">
+              <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay">
+                <th mat-header-cell *matHeaderCellDef> {{column}} </th>
+                <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
+              </ng-container>
+
+              <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+              <tr mat-row *matRowDef="let row; columns: columnsToDisplay;" class="F10"></tr>
+            </table>
+            <mat-paginator [pageSizeOptions]="[7, 10, 20]" showFirstLastButtons></mat-paginator>
+
+          </div>
+
+          <div fxLayout="row" fxFlex="100%" fxLayoutAlign="center center" *ngIf="!dataSource.data">
+            <div fxLayout="column" fxFlex fxLayoutAlign="center center">
+              <h1>No hay un archivo cargado.!</h1>
+              <p>Da click en el en el boton de <span style="color: #546e7a">subir archivo</span> para iniciar.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

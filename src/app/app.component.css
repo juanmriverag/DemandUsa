@@ -97,13 +97,19 @@
   padding-right: 9px;
   font-size: 10px;
 }
-.icono-menu > div:nth-child(2) span:nth-child(1), .icono-menu > div:nth-child(3) span{
+.icono-menu > div:nth-child(2) span:nth-child(1){
   padding-left: 10px;
   font-family: 'Krub', sans-serif;
   font-weight: 600;
   color: #c0bdbf;
-  
 }
+ .icono-menu > div:nth-child(3) span{
+  padding-left: 10px;
+  font-family: 'Krub', sans-serif;
+  font-weight: 600;
+  color: #0477BA;
+}
+
 
   .options > div:nth-child(2) span{
       font-family: 'Krub', sans-serif;
@@ -178,8 +184,8 @@
   -moz-transition-duration: .7s;
   -o-transition-duration: .7s;   
 
-  display: grid;
-  grid-template-rows: 6fr 2fr;
+  /* display: grid;
+  grid-template-rows: 6fr 2fr; */
 }
 .menu div i {
   font-size: 41px;
@@ -242,7 +248,7 @@ transition: .6s cubic-bezier(0.19, 1, 0.22, 1);
 overflow: hidden;
 opacity: 0;
 height: 0px;
-max-height: 330px;
+/* max-height: 330px; */
 transition: .5s cubic-bezier(0.19, 1, 0.22, 1) !important;
 -webkit-transition: .5s cubic-bezier(0.19, 1, 0.22, 1) !important;
 -moz-transition: .5s cubic-bezier(0.19, 1, 0.22, 1) !important;
@@ -317,7 +323,7 @@ color:#e57373;
   border: none;
 }
 .menu-ul-efect {
-  height: 290px !important; 
+  height: auto !important; 
   opacity: 1 !important;
 }
 .menu-ul-efect-sub {
@@ -398,10 +404,10 @@ color:#e57373;
 }
 .nav div button span {margin-right: 7px;cursor: pointer;}
 .Logo {
-  background-image: url(../media/LogoAbaco.png);
+  background-image: url(../media/LogoForeCast.png);
   background-position: right center;
   background-repeat: no-repeat;
-  background-size: 175px;     
+  background-size: 275px;     
   height: 100%;
   }
  /* -------------------------Menu Options-------------------- */

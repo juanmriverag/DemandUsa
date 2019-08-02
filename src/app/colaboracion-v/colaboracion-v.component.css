@@ -1,14 +1,32 @@
 /* .FiltrPanel .mat-form-field{
   margin : 5px;
 } */
+@keyframes bounceright {
+  0% {
+      transform: translateX(4px);
+  }
 
+  100% {
+      transform: translateX(-4px);
+  }
+}
+
+td {
+  border-bottom-color: rgba(154, 154, 154, 0.35);
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+}
+
+div .Cblue {
+  color: #0376bb;
+}
 .colornone { background-color: white !important;}
 .Tcenter {
    text-align: center;
 }
 .Tend {
   text-align: end;
-  margin-right:  12em !important;
+  /* margin-right:  12em !important; */
 }
 .Thcenter th {
   text-align: center;
@@ -32,13 +50,28 @@
 table td {
   color: #808080;
   line-height: 1.4;
+  font-size: 12px;
+  background: white;
+}
+.T2 td {
+  color: #808080;
+  line-height: 1.4;
+  font-size: 11.5px;
 }
 
+table th.HeaderTop {
+  font-weight: 600;
+}
+
+
+.T1 tr.mat-header-row:not(.Thcenter),.T2 tr.mat-header-row:not(.Thcenter), .T3 tr.mat-header-row:not(.Thcenter) { 
+  height: 23px;
+}
 table tr th {
-  font-size: 15px;
+  font-size: 13px;
   line-height: 1.4;
-  padding-top: 5px;
-  padding-bottom: 5px;
+  padding-top: 2px;
+  padding-bottom: 2px;
   background-color: #f0ece2;
   color: #a99075;
   cursor: default;
@@ -50,21 +83,18 @@ table tr th.Mactual{
 tr.mat-row{
   cursor: pointer;
 }
-tr.mat-row:nth-child(even) {
-  background-color: #f8f6ff;
-}
 
 tr.table-detail-row {
   height: 0;
 }
 
 tr.table-element-row:not(.table-expanded-row):hover td {
-  background-color: #A5B9C4 !important;
+  background-color: #B0C5D1 !important;
   color: #596E79 !important;
 }
 
 tr.table-element-row.table-expanded-row td {
-  background-color: #B0C5D1 !important;
+  background-color: #c4dae6 !important;
   color: #596E79 !important;
 }
 
@@ -76,4 +106,303 @@ tr.table-element-row.table-expanded-row td {
 .table-element-detail {
   overflow: hidden;
   /* display: flex; */
+}
+
+
+.FiltrElement, .FiltrElement span, .FiltrElement input  {
+  background-color: #333F45 !important;
+  color: #569EC4 !important;
+}
+
+.ShowSecuence {
+  cursor: pointer;
+  margin: 0px;
+  color: #596e79;
+  animation: bounceright .5s linear alternate infinite;
+  padding: 0 14px;
+  vertical-align: middle !important; 
+  font-size: 20px;
+  height: 20px;
+  width: 20px;
+}
+.icoN{
+  vertical-align: middle !important; 
+  transition: all .35s ease-in-out;
+
+  font-size: 20px;
+  height: 20px;
+  width: 20px;
+  cursor: pointer;
+}
+.FloLeft{
+  float: left;
+}
+.Floright{
+  float: right;
+}
+.ptop10 {
+  padding-top: 10px !important;
+}
+.icoN.UpIcon {
+  transform:rotate(180deg);
+}
+
+.filtrLabel {
+  padding-right: 0px !important;
+}
+
+
+
+mat-form-field {
+  margin-right: 12px;
+}
+
+.T1 tr.mat-footer-row,.T1 tr.mat-row, .T3 tr.mat-footer-row,.T3 tr.mat-row {
+  height: 20px;
+  font-size: 10px;
+}
+.T1 tr.mat-header-row, .T2 tr.mat-header-row, .T3 tr.mat-header-row {
+  height: 30px;
+  font-size: 20px;
+}
+.T2 tr.mat-row:not(.table-detail-row) {
+  height: 30px;
+  font-size: 11.5px;
+}
+.T1 tr.mat-row.ng-tns-c4-1.ng-trigger.ng-trigger-detailExpand2.ng-star-inserted:hover td, .T3 tr.mat-row.ng-tns-c4-1.ng-star-inserted:hover td {
+  background-color: #B0C5D1 !important;
+  color: #596E79 !important;
+  text-shadow: none;
+}
+.T1 tr th:first-child span {
+  margin-left: -10%;
+}
+
+tr.mat-footer-row.ng-star-inserted td {
+  background-color: #E1E5F0;
+  color: #7984A3;
+  font-weight: 500;
+}
+
+table td.SubrColumn, .SubrColumn input {
+  background-color: #EDF1FC;
+  color : #696B70;
+}
+/* 
+.T3  tr:nth-child(7) td, .T3  tr:nth-child(8) td {
+  color: #239250;
+}
+
+.T3  tr:nth-child(3) td, .T3  tr:nth-child(4) td {
+  color: #0477BA;
+} */
+
+.T3  tr td.colorGreen {
+  color: #239250 ;
+}
+.T3  tr td.colorBlue{
+  color: #0477BA;
+}
+
+
+th.mat-sort-header-sorted {
+  color: black;
+}
+/* prueba */
+.FirstFiltr{
+  padding-top: 10px;
+}
+.LastFiltr{
+  padding-bottom: 5px;
+}
+/* Custom dropdown */
+.custom-dropdown {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 4px;
+}
+
+span.custom-dropdown{
+  width: 95%;
+}
+span.custom-dropdown mat-select {
+  width: 95%;
+}
+.custom-dropdown select, .custom-dropdown mat-select {
+  color: #7984A3;
+  background-color: #E1E5F0;
+  font-size: inherit;
+  /* padding: .5em; */
+  padding: .5em 0 .5em .5em;
+  /* padding-right: 2.5em;  */
+  border: 0;
+  margin: 0;
+  border-radius: 3px;
+  text-indent: 0.01px;
+  text-overflow: '';
+  /* -webkit-appearance: button; hide default arrow in chrome OSX */
+}
+
+option:hover { background-color: blue; }
+
+.custom-dropdown::before,
+.custom-dropdown::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+
+.custom-dropdown::after { /*  Custom dropdown arrow */
+  /* content: "\25BC"; */
+  height: 1em;
+  font-size: .625em;
+  line-height: 1;
+  right: 1.2em;
+  top: 50%;
+  margin-top: -.5em;
+}
+
+.custom-dropdown::before { /*  Custom dropdown arrow cover */
+  width: 1.6em;
+  right: 1px;
+  top: 0;
+  bottom: 0;
+  border-radius: 0 3px 3px 0;
+}
+.custom-dropdown::before {
+  background-color: rgba(0,0,0,.15);
+}
+
+.custom-dropdown::after {
+  color: rgba(0,0,0,.4);
+}
+
+
+.zui-wrapper {
+  position: relative;
+}
+.zui-scroller {
+  /* margin-left: 173px; */
+  overflow-x: scroll;
+  overflow-y: visible;
+  padding-bottom: 5px;
+  /* width: 300px; */
+}
+.T3 .zui-sticky-col {
+  left: 0;
+  position: sticky;
+  top: auto;
+  /* width: 140px; */
+}
+
+.cdk-overlay-dark-backdrop {
+  background: none;
+}
+.Acumulados-Dialog {
+  width: auto;
+  height: auto;
+  border: solid 1px #ccc;
+  color: rgba(0, 0, 0, 0.87);
+  cursor: move;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+  border-radius: 4px;
+  transition: box-shadow 200ms cubic-bezier(0, 0, 0.2, 1);
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2),
+              0 2px 2px 0 rgba(0, 0, 0, 0.14),
+              0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+
+.Acumulados-Dialog:active {
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+              0 8px 10px 1px rgba(0, 0, 0, 0.14),
+              0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+mwlResizable {
+  box-sizing: border-box; 
+}
+
+.FiltrIcon {
+  margin-top: 5px;
+  margin-left: 8px;
+}
+.FiltrIcon .mat-icon {
+  font-size: 20px;
+}
+.closeIcon {
+  padding-top: 5px;
+  padding-right: 8px;
+  color: #ccc;
+  width: 100%;
+  height: 24px;
+}
+.mat-icon {
+  cursor: pointer;
+}
+
+.closeIcon .mat-icon:hover {
+ color : #C86369;
+}
+
+div.plMenuCSS { 
+  min-width: 200px;
+  max-width:500px;
+  line-height: inherit;
+  display: flex;
+  flex-direction: column;
+  padding: 5px 0;
+  margin-left: 5px;
+}
+
+.BTNAcum {
+  margin-top: 50%;
+}
+
+.NS-checkbox-group .NS-checkbox {
+  background-color: #f0ece2;
+  color: #a99075;
+  cursor: pointer;
+  margin:4px;
+  border-radius:4px;
+  /* border:1px solid #D0D0D0; */
+  overflow:auto;
+  float:left;
+  font-size: 0.9em
+}
+
+.NS-checkbox-group .NS-checkbox label input[type="checkbox"] {
+  margin-right:100px;
+}
+
+.NS-checkbox-group .NS-checkbox:hover {
+  background-color: #c7b198;
+  color: white ;
+}
+
+.NS-checkbox-group .NS-checkbox label {
+   float: left;
+   width: 4.0em;
+   cursor: pointer;
+}
+
+.NS-checkbox-group .NS-checkbox label span {
+   text-align: center;
+   padding: 3px 0px;
+   display: block;
+}
+
+.NS-checkbox-group .NS-checkbox label input[type="checkbox"] {
+   position: absolute;
+   display: none;
+}
+
+.NS-checkbox-group .NS-checkbox input[type="checkbox"]:checked + span {
+  background-color: #c7b198;
+  color: white ;
+}
+.LayoutMargin12{
+  margin: 12px 8px 8px 8px;
 }

@@ -12,12 +12,14 @@ import {
   MatExpansionModule,
   MatSelectModule,
   MatTableModule,
-  MatPaginatorModule
+  MatPaginatorModule,
+  MatProgressSpinnerModule,
+  MatSortModule
 } from '@angular/material';
 
 
 @NgModule({
-  imports: [MatButtonModule, MatCheckboxModule, MatToolbarModule, MatIconModule, MatMenuModule,MatInputModule,MatDialogModule,MatSidenavModule,MatExpansionModule,MatSelectModule,MatTableModule,MatPaginatorModule ],
-  exports: [MatButtonModule, MatCheckboxModule, MatToolbarModule, MatIconModule, MatMenuModule,MatInputModule,MatDialogModule,MatSidenavModule,MatExpansionModule,MatSelectModule,MatTableModule,MatPaginatorModule ],
+  imports: [MatButtonModule, MatCheckboxModule, MatToolbarModule, MatIconModule, MatMenuModule,MatInputModule,MatDialogModule,MatSidenavModule,MatExpansionModule,MatSelectModule,MatTableModule,MatPaginatorModule,MatProgressSpinnerModule,MatSortModule ],
+  exports: [MatButtonModule, MatCheckboxModule, MatToolbarModule, MatIconModule, MatMenuModule,MatInputModule,MatDialogModule,MatSidenavModule,MatExpansionModule,MatSelectModule,MatTableModule,MatPaginatorModule,MatProgressSpinnerModule,MatSortModule ],
 })
 export class AMaterialModule { }

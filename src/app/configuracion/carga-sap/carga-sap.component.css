@@ -1,0 +1,41 @@
+.F10 td, .F10 th{
+    font-size: 10px;
+}
+table td {
+    color: #808080;
+    line-height: 1.4;
+}
+  
+table tr th {
+    font-size: 12px;
+    line-height: 1.4;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: #f0ece2;
+    color: #a99075;
+    cursor: default;
+}
+tr.mat-row:nth-child(even) {
+    background-color: #f8f6ff;
+  }
+tr:hover td {
+    background-color: #B0C5D1 !important;
+    color: #596E79 !important;
+  }
+
+table {
+    width: 100%;
+}
+.carga-container {
+    /* height: 400px;
+    width: 550px; */
+    overflow: auto;
+}
+
+.LbBt{
+    align-items: center;
+    display: inherit;
+}
+.LbBt .mat-icon {
+margin-right: 10px;
+}

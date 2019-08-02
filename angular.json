@@ -27,9 +27,11 @@
               "src/styles.css",
               "src/assets/vendor/perfect-scrollbar/perfect-scrollbar.css"
             ],
-            "scripts": ["node_modules/jquery/dist/jquery.js",
-              "src/assets/vendor/perfect-scrollbar/perfect-scrollbar.min.js"
-                       ]
+            "scripts": [
+              "node_modules/jquery/dist/jquery.js",
+              "src/assets/vendor/perfect-scrollbar/perfect-scrollbar.min.js",
+              "src/assets/js/Menu.js"
+            ]
           },
           "configurations": {
             "production": {

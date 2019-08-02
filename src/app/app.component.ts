@@ -40,11 +40,13 @@ export class AppComponent implements OnInit {
   NR = 1;
   nameMTs = '';
   ABC = true;
-  menu: any;
+  ListaMenus: Array<any> = [];
   rol: number;
   EmailG: string;
   Username: string;
   widthMax: number;
+  NombreTitulo: string;
+  MarcaSelect: string = "";
 
   public NombreUsuario: string;
   IDUsu: any;
@@ -53,6 +55,21 @@ export class AppComponent implements OnInit {
     this.Mostrar = M;
 
   }
+
+  NomTitle(M: string) {
+    this.NombreTitulo = M;
+    var title = 'DemandForecast ';
+    if (M != "") {
+      title = 'DemandForecast - ' + M;
+      document.title = title;
+      localStorage.setItem('TitleDocument', JSON.stringify(M));
+    } else {
+      document.title = title;
+      localStorage.setItem('TitleDocument', JSON.stringify(title));
+    }
+  }
+
+
   buildTogglerOff() {
     this.LockedSnav = false;
   }
@@ -145,18 +162,29 @@ export class AppComponent implements OnInit {
   }
 
   private getMenu() {
+    var menus = this.ListaMenus;
     this._appService.getMenuxRol(this.rol).subscribe(data => {
-      this.menu = data['ListMenuxRol'];
-
+      var dataList = data['ListMenuxRol'];
+      dataList.forEach(function (menu) {
+        if (menu.PadreID == "0") {
+          menu['Submenus'] = [];
+          dataList.forEach(function (submenu) {
+            if (menu.MenuId == submenu.PadreID) {
+              menu['Submenus'].push(submenu);
+            }
+          });
+          menus.push(menu);
+        }
+      });
     });
   }
+
   ngAfterViewChecked() {
     this.cdRef.detectChanges();
   }
 
   onResize(event) {
     this.widthMax = screen.width;
-    console.log(this.widthMax );
   }
   public ngOnInit() {
     this.widthMax = screen.width;

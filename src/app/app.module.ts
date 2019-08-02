@@ -8,6 +8,7 @@ import * as $ from 'jquery';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
+import { CargaSapComponent } from './configuracion/carga-sap/carga-sap.component';
 
 //Cookie
 import { CookieService } from 'ngx-cookie-service';
@@ -17,6 +18,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 //Angular Material
 import { AMaterialModule } from './AMaterialImports';
+import { CDKModule } from './CDKImports';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 //route
@@ -30,17 +32,22 @@ import { AppService } from './app.service';
 //popusps
 import { Bienvenido_modal } from './popups/Bienvenida/Bienvenido';
 import { Alert_modal } from './popups/Alert/Alert';
+import { Load_modal } from './popups/Load/Load';
 import { ColaboracionVComponent } from './colaboracion-v/colaboracion-v.component';
+import { ResizableModule } from 'angular-resizable-element';
 
 //pipes
 import {CurrencyDecimalPipe} from './pipes/currencydecimal.pipe';
+import {FilterUniquePipe} from './pipes/FilterUnique.pipe';
+import { from } from 'rxjs';
 
 //rutas 
 const rutas: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'colaboracion', component: ColaboracionVComponent}
+  { path: 'DemandForecast', component: ColaboracionVComponent},
+  { path: 'configuracion/cargaSap', component: CargaSapComponent}
 ];
 
 @NgModule({
@@ -51,8 +58,11 @@ const rutas: Routes = [
     LoginComponent,
     Bienvenido_modal,
     Alert_modal,
+    Load_modal,
     ColaboracionVComponent,
-    CurrencyDecimalPipe
+    CurrencyDecimalPipe,
+    FilterUniquePipe,
+    CargaSapComponent
   ],
   // Modulo
   imports: [
@@ -61,11 +71,13 @@ const rutas: Routes = [
     FormsModule,
     BrowserAnimationsModule,
     AMaterialModule,
+    CDKModule,
     FlexLayoutModule,
     RouterModule.forRoot(rutas),
-    HttpClientModule
+    HttpClientModule,
+    ResizableModule
   ],
-  entryComponents: [Bienvenido_modal, Alert_modal],
+  entryComponents: [Bienvenido_modal, Alert_modal,Load_modal],
   providers: [AppService, BDUrl, CookieService],
   bootstrap: [AppComponent]
 })
