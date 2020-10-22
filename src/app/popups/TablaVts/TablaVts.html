@@ -1,0 +1,96 @@
+<ng-template>
+	<div class="Custom-Dialog" cdkDrag cdkDragRootElement=".cdk-overlay-pane">
+		<div fxLayout="column" fxFlex="100%">
+			<div class="BartopPop" fxLayout="row" fxFlex="100%">
+				<div fxLayout="column" fxFlex="50%" fxLayoutAlign="center start">
+					<mat-menu #appMenu="matMenu">
+						<div mat-menu-item class="plMenuCSS" (click)="$event.stopPropagation();">
+							<mat-label>Years</mat-label>
+							<div class="NS-checkbox-group">
+								<div class="NS-checkbox" *ngFor="let obj of _Ctrl.ListYears">
+									<label>
+										<input type="checkbox" [(ngModel)]="obj.checked" (change)="_Ctrl.applyFilter4()" />
+										<span>{{obj.year}}</span>
+									</label>
+								</div>
+							</div>
+						</div>
+
+						<div mat-menu-item class="plMenuCSS" (click)="$event.stopPropagation();">
+							<mat-label>Division</mat-label>
+							<span class="custom-dropdown">
+								<mat-select [(ngModel)]="_Ctrl.Filtr.Category" (selectionChange)="_Ctrl.applyFilter3()">
+									<mat-option [value]="''">All</mat-option>
+									<mat-option *ngFor="let Category  of _Ctrl.ListFiltrs.Categories" [value]="Category ">
+										{{Category }}
+									</mat-option>
+								</mat-select>
+							</span>
+						</div>
+						<div mat-menu-item class="plMenuCSS" (click)="$event.stopPropagation();">
+							<mat-label>Company</mat-label>
+							<span class="custom-dropdown">
+								<mat-select [(ngModel)]="_Ctrl.Filtr.Company" (selectionChange)="_Ctrl.applyFilter3()">
+									<mat-option [value]="''">All</mat-option>
+									<mat-option *ngFor="let Company  of _Ctrl.ListFiltrs.Companies" [value]="Company ">
+										{{Company }}
+									</mat-option>
+								</mat-select> </span
+							>hbn
+						</div>
+						<div mat-menu-item class="plMenuCSS" (click)="$event.stopPropagation();">
+							<mat-label>Brand</mat-label>
+							<span class="custom-dropdown">
+								<mat-select [(ngModel)]="_Ctrl.Filtr.Brand" (selectionChange)="_Ctrl.applyFilter3()">
+									<mat-option [value]="''">All</mat-option>
+									<mat-option *ngFor="let Brand  of _Ctrl.ListFiltrs.Brands" [value]="Brand ">
+										{{Brand }}
+									</mat-option>
+								</mat-select>
+							</span>
+						</div>
+					</mat-menu>
+					<button color="primary" class="FiltrIcon" [matMenuTriggerFor]="appMenu" mat-button aria-label="filters">
+						Filters <mat-icon>filter_list</mat-icon>
+					</button>
+				</div>
+				<div class="closeIcon" fxLayout="column" fxFlex="50%" fxLayoutAlign="center end">
+					<mat-icon aria-label="Close" (click)="closeDialog()">close</mat-icon>
+				</div>
+			</div>
+			<div fxLayout="row" fxFlex="100%" fxLayoutAlign="center center" class="LayoutMargin12">
+				<div fxLayout="column" fxFlex="100%">
+					<table
+						class="T3"
+						mat-table
+						[dataSource]="_Ctrl.ListBudget"
+						multiTemplateDataRows
+						matSort
+						(matSortChange)="_Ctrl.sortData($event)"
+					>
+						<ng-container [matColumnDef]="column" *ngFor="let column of _Ctrl.Headerdis1; let i = index">
+							<th mat-header-cell *matHeaderCellDef mat-sort-header>{{column}}</th>
+							<td mat-cell *matCellDef="let element" [ngClass]="{'colorBlue': element.Id == 2 , 'colorGreen' : element.Id == 4}">
+								{{ element[column] }}
+							</td>
+						</ng-container>
+
+						<ng-container [matColumnDef]="column" *ngFor="let column of _Ctrl.Headerdis2; let i = index">
+							<th mat-header-cell *matHeaderCellDef>{{_Ctrl.obtenerMesO(i)}}</th>
+							<td
+								mat-cell
+								*matCellDef="let element"
+								[ngClass]="{'colorBlue': element.Id == 2 , 'colorGreen' : element.Id == 4, 'SubrColumn' : ((_Ctrl.mesActual+4) > i && i > _Ctrl.mesActual)  }"
+							>
+								{{(element.Id < 3) ? '$' : ''}} {{ element[column] | formatNumber }} {{(element.Id > 2) ? '%' : ''}}
+							</td>
+						</ng-container>
+
+						<tr mat-header-row *matHeaderRowDef="_Ctrl.displayedColumns3"></tr>
+						<tr mat-row *matRowDef="let row; columns: _Ctrl.displayedColumns3;"></tr>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</ng-template>

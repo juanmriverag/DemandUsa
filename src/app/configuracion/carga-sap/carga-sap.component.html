@@ -19,7 +19,7 @@
         </div>
         <mat-form-field>
           <mat-label>Tipo archivo</mat-label>
-          <mat-select [(ngModel)]="selectedValue" name="food" required>
+          <mat-select [(ngModel)]="selectedValue" required>
             <mat-option *ngFor="let doc of TypesDocs" [value]="doc.value">
               {{doc.key}}
             </mat-option>
@@ -38,7 +38,7 @@
               <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
               <tr mat-row *matRowDef="let row; columns: columnsToDisplay;" class="F10"></tr>
             </table>
-            <mat-paginator [pageSizeOptions]="[7, 10, 20]" showFirstLastButtons></mat-paginator>
+            <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
 
           </div>
 

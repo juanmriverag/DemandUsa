@@ -10,12 +10,12 @@ $mat-PrimaryPalette: (
   50: #e3f2fd,
   100: #819ca9,
   200: #819ca9,
-  300: #64b5f6,
-  400: #42a5f5,
-  500: #546e7a,
-  600: #546e7a,
-  700: #29434e,
-  800: #29434e,
+  300: #819ca9,
+  400: #819ca9,
+  500: #819ca9,
+  600: #4A6572,
+  700: #344955,
+  800: #232F34,
   900: #0d47a1,
   A100: #82b1ff,
   A200: #448aff,
@@ -41,26 +41,26 @@ $mat-PrimaryPalette: (
 // este es el accent palette.
 $mat-SecondaryPalette: (
   50: #e3f2fd,
-  100: #819ca9,
-  200: #fae3c9,
-  300: #64b5f6,
-  400: #42a5f5,
-  500: #c7b198,
-  600: #546e7a,
-  700: #96826a,
-  800: #29434e,
-  900: #0d47a1,
-  A100: #82b1ff,
-  A200: #448aff,
-  A400: #2979ff,
-  A700: #2962ff,
+  100: #FFDD54,
+  200: #FFDD54,
+  300: #FFDD54,
+  400: #FFDD54,
+  500: #F9AA33,
+  600: #FAAB1A,
+  700: #C27C00,
+  800: #C27C00,
+  900: #C27C00,
+  A100: #FFDD54,
+  A200: #FFDD54,
+  A400: #FAAB1A,
+  A700: #C27C00,
   contrast: (
     50: $dark-primary-text,
     100: $dark-primary-text,
     200: $dark-primary-text,
     300: $dark-primary-text,
     400: $dark-primary-text,
-    500: $light-primary-text,
+    500: #232F34,
     600: $light-primary-text,
     700: $light-primary-text,
     800: $light-primary-text,
@@ -74,12 +74,12 @@ $mat-SecondaryPalette: (
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$candy-app-primary: mat-palette($mat-PrimaryPalette,500,200,700);
-$candy-app-secondary:  mat-palette($mat-SecondaryPalette, 500,200,700);
+$candy-app-primary: mat-palette($mat-PrimaryPalette,700,800,600);
+$candy-app-secondary:  mat-palette($mat-SecondaryPalette, 500);
 
 
 // The warn palette is optional (defaults to red).
-$candy-app-warn:   mat-palette($mat-red);
+$candy-app-warn:   mat-palette($mat-red,500);
 
 // Create the theme object (a Sass map containing all of the palettes).
 $candy-app-theme: mat-light-theme($candy-app-primary, $candy-app-secondary, $candy-app-warn);

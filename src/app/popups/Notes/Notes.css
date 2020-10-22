@@ -1,0 +1,69 @@
+.CampFormN > div:nth-child(2) {
+	margin-left: 5px;
+}
+h2 {
+	font-family: 'Krub', sans-serif;
+}
+button {
+	margin-right: 5px;
+}
+
+.ImgNnovedad {
+	width: 120%;
+	height: 130%;
+	background-image: url(../../../media/wallhaven-01k5d3.jpg);
+	background-position: 45% center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	border-radius: 50%;
+	position: absolute;
+	top: -60px;
+	left: -29px;
+}
+
+.ContNnovedad .ContImgNov {
+	position: relative;
+	overflow: hidden;
+}
+
+.ContFormN {
+	padding: 30px;
+}
+.ContFormN > div {
+	width: 100%;
+}
+.ContNnovedad {
+	width: 100%;
+}
+
+mat-list {
+	width: 100%;
+}
+.mat-list-base .mat-list-item .mat-line:nth-child(1) {
+	font-weight: 700;
+}
+.mat-list-base .mat-list-item .mat-line:nth-child(2) {
+	color: rgba(0, 0, 0, 0.54);
+}
+.mat-list-base .mat-list-item p.mat-line {
+	font-size: inherit;
+	margin-top: 0.2em;
+}
+
+.Note {
+	cursor: pointer;
+}
+.Note p {
+	white-space: normal;
+}
+.Note:hover {
+	background: rgba(0, 0, 0, 0.04);
+}
+.clearIcon {
+	cursor: pointer;
+	color: rgba(0, 0, 0, 0.54);
+}
+
+.clearIcon:hover {
+	color: #f52e2e;
+}

@@ -1,0 +1,25 @@
+<div fxLayout="column" fxLayoutAlign="start center" mat-dialog-content style="height: 400px;">
+	<div fxLayout="row" fxFlex="100%" class="ContNnovedad">
+		<div fxLayout="column" fxFlex="20%" class="ContImgNov">
+			<div class="ImgNnovedad"></div>
+		</div>
+		<div fxLayout="column" fxLayoutAlign="center center" fxFlex="80%" class="ContFormN">
+			<div fxLayout="row" fxFlex fxLayoutAlign="start center">
+				<mat-icon>comment</mat-icon>
+				<h2>Notes</h2>
+			</div>
+			<mat-list fxLayout="column" fxFlex="100%">
+				<mat-list-item *ngFor="let note of List_Notes" fxLayout="column" fxFlex="100%" class="Note">
+					<mat-icon mat-list-icon>note</mat-icon>
+					<div mat-line>{{note.Title}} - {{note.CreationDate.substring(0,10) }}</div>
+					<div mat-line>{{note.Territory}} - {{note.Item}} | by : {{note.Creator}}</div>
+					<p mat-line>{{note.Content}}</p>
+					<mat-icon class="clearIcon" (click)="delete(note)">delete_forever</mat-icon>
+				</mat-list-item>
+			</mat-list>
+			<div fxLayout="row" fxFlex="100%" fxLayoutAlign="end end">
+				<button mat-raised-button (click)="exit()" style="margin-right: 5px;" color="warn">Exit</button>
+			</div>
+		</div>
+	</div>
+</div>

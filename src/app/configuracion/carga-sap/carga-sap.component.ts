@@ -20,15 +20,15 @@ export class CargaSapComponent implements OnInit {
   ListOfData = [];
   public result: any;
   private xlsxToJsonService: XlsxToJsonService = new XlsxToJsonService();
-  selectedValue : number;
+  selectedValue: number;
   dataSource: any = [];
   columnsToDisplay = [];
-TypesDocs = [{key : "Ventas", value : 0} ,{key :"Demanda", value : 1},
-{key :"Precios", value : 2},{key : "Presupuesto", value : 3}];
+  TypesDocs = [{ key: "Sales", value: 0 }, { key: "Pronostico", value: 1 },
+  { key: "Precios", value: 2 }, { key: "Sales y Ppto$", value: 3 }];
 
-  @ViewChild(MatPaginator, {static:true}) paginator: MatPaginator;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
-  constructor(private _appComponent: AppComponent, private _appService : AppService, public dialog: MatDialog) {
+  constructor(private _appComponent: AppComponent, private _appService: AppService, public dialog: MatDialog) {
     this._appComponent.ObtenerNombreUsu();
     this._appComponent.CambioM(true);
     this._appComponent.buildTogglerOff();
@@ -47,7 +47,7 @@ TypesDocs = [{key : "Ventas", value : 0} ,{key :"Demanda", value : 1},
     this.dataSource.paginator = this.paginator;
 
     this.columnsToDisplay = Encabe;
-    
+
   }
 
   FileToData(event) {
@@ -60,52 +60,52 @@ TypesDocs = [{key : "Ventas", value : 0} ,{key :"Demanda", value : 1},
         // do something with person
         return person;
       });
-      console.log(resultArray);
-      if( resultArray.length > 0 && !resultArray[0][0][""]  && !resultArray[0][0]["_1"]){
 
-      this.ListOfData = resultArray[0];
+      if (resultArray.length > 0 && !resultArray[0][0][""] && !resultArray[0][0]["_1"]) {
 
-      this.ObtenerHeaders();
+        this.ListOfData = resultArray[0];
+
+        this.ObtenerHeaders();
       }
-      else{
+      else {
         console.log("error.!")
       }
     })
 
   }
 
-  Publicar(){
+  Publicar() {
 
     this.dialog.open(Load_modal, {
       width: '500px',
-      backdropClass : 'Transparent-class',
-      panelClass : 'Transparent-class2',
-      disableClose : true
+      backdropClass: 'Transparent-class',
+      panelClass: 'Transparent-class2',
+      disableClose: true
     });
-    this._appService.postCargarSap(this.selectedValue,this.ListOfData).subscribe(data => {
+    this._appService.postCargarSap(this.selectedValue, this.ListOfData).subscribe(data => {
       this.dialog.closeAll();
-        if(data["Status"] > 0){
-          this.dialog.open(Alert_modal, {
-            width: '500px',
-            data: {
-              title: 'Completado.!',
-              textContent: 'El archivo de ' + this.TypesDocs[this.selectedValue].key + ', Ha cargado exitosamente.',
-              ok: 'Aceptar.'
-            }
-          });
-        }
-        else{
-          this.dialog.open(Alert_modal, {
-            width: '500px',
-            data: {
-              title: 'Error.!',
-              textContent: 'Señor Usuario Ocurrio un error, Es probable que el archivo no tenga un formato valido. Intentelo de nuevo',
-              ok: 'Aceptar.'
-            }
-          });
-        }
+      if (data["Status"] > 0) {
+        this.dialog.open(Alert_modal, {
+          width: '500px',
+          data: {
+            title: 'Completado.!',
+            textContent: 'El archivo de ' + this.TypesDocs[this.selectedValue].key + ', Ha cargado exitosamente.',
+            ok: 'Aceptar.'
+          }
+        });
+      }
+      else {
+        this.dialog.open(Alert_modal, {
+          width: '500px',
+          data: {
+            title: 'Error.!',
+            textContent: 'Señor Usuario Ocurrio un error, Es probable que el archivo no tenga un formato valido. Intentelo de nuevo',
+            cancel: 'Aceptar.'
+          }
+        });
+      }
 
-        
+
     });
   }
 

@@ -1,0 +1,43 @@
+.CampFormN > div:nth-child(2) {
+	margin-left: 5px;
+}
+h2 {
+	font-family: 'Krub', sans-serif;
+}
+button {
+	margin-right: 5px;
+}
+
+.ImgNnovedad {
+	width: 120%;
+	height: 130%;
+	background-image: url(../../../media/wallhaven-01k5d3.jpg);
+	background-position: 45% center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	border-radius: 50%;
+	position: absolute;
+	top: -60px;
+	left: -29px;
+}
+
+.ContNnovedad .ContImgNov {
+	position: relative;
+	overflow: hidden;
+}
+
+.ContFormN {
+	padding: 30px;
+}
+.ContFormN > div {
+	width: 100%;
+}
+.ContNnovedad {
+	width: 100%;
+}
+
+.form {
+	min-width: 150px;
+	max-width: 500px;
+	width: 100%;
+}

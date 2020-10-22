@@ -1,9 +1,12 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { AppService } from './app.service';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { Bienvenido_modal } from './popups/Bienvenida/Bienvenido';
+import { Alert_modal } from './popups/Alert/Alert';
+import { faCookieBite } from '@fortawesome/free-solid-svg-icons';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import * as $ from 'jquery';
 
 // import '../lib/menuH/menu';
@@ -18,7 +21,8 @@ import * as $ from 'jquery';
   }
 })
 export class AppComponent implements OnInit {
-
+  //icono galleta
+  faCookieBite = faCookieBite;
 
   //controler
   constructor(
@@ -26,7 +30,8 @@ export class AppComponent implements OnInit {
     private cookies: CookieService,
     private _appService: AppService,
     public dialog: MatDialog,
-    private cdRef: ChangeDetectorRef
+    private cdRef: ChangeDetectorRef,
+    private _snackBar: MatSnackBar
   ) { }
 
   //init
@@ -89,20 +94,8 @@ export class AppComponent implements OnInit {
       this._appService.getEstadoUs(this.IDUsu).subscribe(data => {
 
         if (data['Estado'] != 2) {
-          // $mdDialog.show(
-          //   $mdDialog.alert()
-          //     .parent(angular.element(document.querySelector('#popupContainer')))
-          //     .clickOutsideToClose(true)
-          //     .title('Atención.!')
-          //     .textContent('Su cuenta se encuentra desactivada, por favor contacte al administrador de los ÁBACOS.')
-          //     .ariaLabel('Alert Dialog Demo')
-          //     .ok('Aceptar')
 
-          // );
-          this.UrlMTS = '';
           this.router.navigate(['/login']);
-
-
         }
 
       });
@@ -114,14 +107,31 @@ export class AppComponent implements OnInit {
   ObtenerCook() {
 
     var Cookie = this.cookies.get("CLB");
+
     if (Cookie != null && Cookie != "") {
 
       var DatosCookie = Cookie.split('.');
       var datos = JSON.parse(atob(DatosCookie[1]));
+      var locals = JSON.parse(localStorage.getItem('InfoUsu'));
+      if (!locals) {
+        this.cookies.deleteAll();
+        localStorage.clear();
+        this.dialog.open(Alert_modal, {
+          width: '500px',
+          data: {
+            title: 'Error.!',
+            textContent: "Ocurrio un error al intentar conectar con el servidor, revise su conexión y vuelva a intentarlo.",
+            cancel: 'Aceptar.'
+          }
+        });
+        this.router.navigate(['/login']);
+        return "";
+      }
       return datos;
     }
     else {
       this.UrlMTS = '';
+      localStorage.clear();
       this.router.navigate(['/login']);
       return "";
     }
@@ -154,31 +164,69 @@ export class AppComponent implements OnInit {
       this.EmailG = datos.Email;
       this.router.navigate(['/home']);
       //modal
+      this.dialog.closeAll();
       this.dialog.open(Bienvenido_modal, {
-        width: '500px',
-        data: { Nombre: this.NombreUsuario }
+        width: '400px',
+        data: { Nombre: this.NombreUsuario },
+        panelClass: 'BienvePanel'
       });
     }
   }
 
   private getMenu() {
-    this.ListaMenus = [];
-    var menus = this.ListaMenus;
-    this._appService.getMenuxRol(this.rol).subscribe(data => {
-      var dataList = data['ListMenuxRol'];
-      dataList.forEach(function (menu) {
-        if (menu.PadreID == "0") {
-          menu['Submenus'] = [];
-          dataList.forEach(function (submenu) {
-            if (menu.MenuId == submenu.PadreID) {
-              menu['Submenus'].push(submenu);
-            }
-          });
-          menus.push(menu);
-        }
+    if (this.rol != undefined) {
+      this.ListaMenus = [];
+      var menus = this.ListaMenus;
+      this._appService.getMenuxRol(this.rol).subscribe(data => {
+        var dataList = data['ListMenuxRol'];
+        dataList.forEach(function (menu) {
+          if (menu.PadreID == "0") {
+            menu['Submenus'] = [];
+            dataList.forEach(function (submenu) {
+              if (menu.MenuId == submenu.PadreID) {
+                menu['Submenus'].push(submenu);
+              }
+            });
+            menus.push(menu);
+          }
+        });
       });
+
+    }
+    else {
+      this.router.navigate(['/login']);
+    }
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 5000,
+      verticalPosition: "bottom",
+      horizontalPosition: "end",
+      panelClass: 'custom-class'
     });
   }
+  // ListMarcas = ["Saltin Noel", "Festival", "Ducales", "Noel", "Tosh", "Dux", "Kibo", "Corona"];
+  IrDForecast(_model: any, Brand: string) {
+
+    if (Brand == "") {
+      if (_model.MenuId < 200) {
+        this.MarcaSelect = _model.Codigo;
+        this.NomTitle(this.MarcaSelect);
+        this.router.navigate(['/DemandForecast']);
+      }
+      else {
+        this.router.navigate([_model.Path]);
+      }
+    }
+    else {
+      this.MarcaSelect = Brand;
+      this.NomTitle(this.MarcaSelect);
+      this.router.navigate(['/DemandForecast']);
+    }
+
+  }
+
 
   ngAfterViewChecked() {
     this.cdRef.detectChanges();

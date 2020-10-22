@@ -1,0 +1,106 @@
+table tr th {
+  font-size: 15px;
+  line-height: 1.4;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  background-color: #f0ece2;
+  color: #a99075;
+  cursor: default;
+}
+tr.mat-row{
+  cursor: pointer;
+}
+tr:hover td {
+  background-color: #B0C5D1 !important;
+  color: #344955 !important;
+}
+tr td{
+  color: #808080;
+}
+.T1 tr.mat-footer-row,.T1 tr.mat-row{
+  height: 30px;
+  font-size: 20px;
+}
+.T1 tr.mat-header-row {
+  height: 40px;
+  font-size: 20px;
+}
+.T1 tr th:first-child span {
+  margin-left: -10%;
+}
+mat-icon{
+  text-align: center;
+  vertical-align: -webkit-baseline-middle;
+}
+
+.IconTrue{
+  color: #1CED54;
+}
+.IconFalse{
+  color: #FF383F;
+}
+/* span.Rol{
+    height: 30px;
+    width: 60px;
+    margin: 0 3px;
+} */
+/* Custom dropdown */
+.Rol {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  /* margin: 4px; */
+}
+
+span.Rol{
+  /* width: 100%; */
+  width: 8em;
+}
+span.Rol mat-select {
+    width: 100%;
+  /* margin-left: 3%; */
+}
+.Rol select, .Rol mat-select {
+
+  font-size: inherit;
+  /* padding: .5em; */
+  padding: .5em 0 .5em 2%;
+  /* padding-right: 2.5em;  */
+  border: 0;
+  margin: 0;
+  border-radius: 3px;
+  text-indent: 0.01px;
+  text-overflow: '';
+  /* -webkit-appearance: button; hide default arrow in chrome OSX */
+}
+
+.Rol::before,
+.Rol::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+
+.Rol::after { /*  Custom dropdown arrow */
+  /* content: "\25BC"; */
+  height: 1em;
+  font-size: .625em;
+  line-height: 1;
+  right: 1.2em;
+  top: 50%;
+  margin-top: -.5em;
+}
+
+.Rol::before { /*  Custom dropdown arrow cover */
+  width: 20px;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  border-radius: 0 3px 3px 0;
+  margin-right: 3%;
+
+}
+
+.Rol::after {
+  color: rgba(0,0,0,.4);
+}

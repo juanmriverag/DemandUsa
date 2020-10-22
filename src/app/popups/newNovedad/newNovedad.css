@@ -1,0 +1,132 @@
+.CampFormN > div:nth-child(2) {
+	margin-left: 5px;
+}
+h2 {
+	font-family: 'Krub', sans-serif;
+}
+button {
+	margin-right: 5px;
+}
+/* Custom input */
+
+.custom-input {
+	position: relative;
+	display: inline-block;
+	vertical-align: middle;
+	margin: 4px 0;
+}
+span.custom-input {
+	width: 100%;
+}
+.custom-input:not(.custom-input-alone) input {
+	width: 95%;
+	/* color: #7984A3; */
+	background-color: #e1e5f0;
+	font-size: inherit;
+	padding: 0.5em 0 0.5em 2%;
+	border-radius: 3px;
+	text-indent: 0.01px;
+}
+.custom-input-alone input {
+	width: 97%;
+	background-color: #e1e5f0;
+	font-size: inherit;
+	padding: 0.5em 0 0.5em 2%;
+	border-radius: 3px;
+	text-indent: 0.01px;
+}
+/* Custom dropdown */
+.custom-dropdown {
+	position: relative;
+	display: inline-block;
+	vertical-align: middle;
+	margin: 4px 0;
+}
+
+span.custom-dropdown {
+	width: 100%;
+}
+span.custom-dropdown mat-select {
+	width: 95%;
+	/* margin-left: 3%; */
+}
+.custom-dropdown select,
+.custom-dropdown mat-select {
+	color: #7984a3;
+	background-color: #e1e5f0;
+	font-size: inherit;
+	/* padding: .5em; */
+	padding: 0.5em 0 0.5em 2%;
+	/* padding-right: 2.5em;  */
+	border: 0;
+	margin: 0;
+	border-radius: 3px;
+	text-indent: 0.01px;
+	text-overflow: '';
+	/* -webkit-appearance: button; hide default arrow in chrome OSX */
+}
+
+option:hover {
+	background-color: blue;
+}
+
+.custom-dropdown::before,
+.custom-dropdown::after {
+	content: '';
+	position: absolute;
+	pointer-events: none;
+}
+
+.custom-dropdown::after {
+	/*  Custom dropdown arrow */
+	/* content: "\25BC"; */
+	height: 1em;
+	font-size: 0.625em;
+	line-height: 1;
+	right: 1.2em;
+	top: 50%;
+	margin-top: -0.5em;
+}
+
+.custom-dropdown::before {
+	/*  Custom dropdown arrow cover */
+	width: 20px;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	border-radius: 0 3px 3px 0;
+	margin-right: 3%;
+	background-color: rgba(0, 0, 0, 0.15);
+}
+
+.custom-dropdown::after {
+	color: rgba(0, 0, 0, 0.4);
+}
+
+.ImgNnovedad {
+	width: 123%;
+	height: 130%;
+	background-image: url(../../../media/FLogin2.jpg);
+	background-position: 33% center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	border-radius: 50%;
+	position: absolute;
+	top: -60px;
+	left: -29px;
+}
+
+.ContNnovedad .ContImgNov {
+	position: relative;
+	overflow: hidden;
+}
+
+.ContFormN {
+	padding: 30px;
+}
+.ContFormN > div {
+	width: 100%;
+}
+.ContNnovedad {
+	width: 100%;
+}

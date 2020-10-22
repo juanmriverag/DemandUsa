@@ -1,0 +1,43 @@
+.mat-dialog-content {
+	background-color: white;
+	padding: 24px 24px 40px 24px;
+	border-radius: 4px;
+	margin: 0;
+}
+.mat-dialog-content > div.W1 {
+	width: 100%;
+}
+/* div.BTNok{
+   width: auto;
+ } */
+.BTNok {
+	padding: 8px;
+	background-color: white;
+	border-radius: 50px;
+	position: absolute;
+	bottom: 2%;
+}
+.BTNok button {
+	/* background-color: #faab1a; */
+	color: #17262a;
+}
+.Saludo {
+	/* font-family: 'Fira Sans', sans-serif; */
+	/* font-family: 'Pacifico', cursive; */
+	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+	font-size: 3.5em;
+	color: #334854;
+}
+.Contenido {
+	font-family: 'Roboto';
+	font-size: 18px;
+}
+.Contenido label {
+	margin-left: 4px;
+}
+.LogoB {
+	background-image: url(../../../media/LogoForeCastN.png);
+	background-position: top;
+	background-repeat: no-repeat;
+	background-size: 310px;
+}

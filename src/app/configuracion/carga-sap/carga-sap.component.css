@@ -5,7 +5,7 @@ table td {
     color: #808080;
     line-height: 1.4;
 }
-  
+
 table tr th {
     font-size: 12px;
     line-height: 1.4;
@@ -20,12 +20,10 @@ tr.mat-row:nth-child(even) {
   }
 tr:hover td {
     background-color: #B0C5D1 !important;
-    color: #596E79 !important;
+    color: #344955 !important;
   }
 
-table {
-    width: 100%;
-}
+
 .carga-container {
     /* height: 400px;
     width: 550px; */

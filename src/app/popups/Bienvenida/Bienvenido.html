@@ -1,13 +1,18 @@
-<div fxLayout="column" fxLayoutAlign="start center" mat-dialog-content style="height: 200px;"
-(keyup)="salir()">
-  {{msn}}
-  <div fxLayout="row" fxLayoutAlign="center" fxFlex="100%" class="LogoAB" style="width: 100%;">
-
-  </div>
-  {{msn2}}
-
-
-</div>
-<div mat-dialog-actions fxLayoutAlign="end">
-  <button mat-raised-button (click)="salir()" color="primary">Continuar</button>
+<div fxLayout="column" fxLayoutAlign=" center" mat-dialog-content style="height: 300px;" (keyup)="salir()">
+	<div fxLayout="row" fxFlex="100%" fxLayoutAlign="center center" class="W1">
+		<label class="Saludo">{{msn}}</label>
+	</div>
+	<div fxLayout="row" fxFlex="20%" fxLayoutAlign="center center" class="Contenido W1">
+		<strong>{{NombreF}} </strong>
+	</div>
+	<div fxLayout="row" fxFlex="30%" fxLayoutAlign="center center" class="Contenido W1">
+		<label>{{msn2}}</label>
+	</div>
+	<div fxLayout="row" fxLayoutAlign="center" fxFlex="50%" class="LogoB W1"></div>
+	<div class="BTNok">
+		<button mat-fab color="accent" (click)="salir()">
+			<mat-icon>done</mat-icon>
+		</button>
+		<!-- <button mat-raised-button>Continuar</button> -->
+	</div>
 </div>

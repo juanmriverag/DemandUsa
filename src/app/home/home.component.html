@@ -1,261 +1,254 @@
-<div fxLayout="row" id="ContentCentral" [ngClass]="{'ContentCentralTop': Mostrar == false}" style="height:100%"
-    fxLayoutAlign="center center" fxFlex>
-    <!--<img src="static/img/LogoVL3.png" alt="VL" style="filter: opacity(30%);" />-->
+<div
+	fxLayout="row"
+	id="ContentCentral"
+	[ngClass]="{ ContentCentralTop: Mostrar == false }"
+	style="height: 100%;"
+	fxLayoutAlign="center center"
+	fxFlex
+>
+	<!--<img src="static/img/LogoVL3.png" alt="VL" style="filter: opacity(30%);" />-->
 
-    <div class="content" fxLayout="column" fxFlex.gt-xs="row" fxFlex>
-        <div fxLayout="row wrap">
-            <!-- saltin Noel  -->
-            <div (click)="IrDForecast(0)" fxFlex="100%" fxFlex.gt-xs="33.3%" fxFlexOrder="1" fxFlexOrder.gt-xs="-1" class="box snake">
-                <div class="image1">
+	<div class="content" fxLayout="column" fxFlex.gt-xs="row" fxFlex>
+		<div fxLayout="row wrap">
+			<!-- saltin Noel  -->
+			<div (click)="IrDForecast(0)" fxFlex="100%" fxFlex.gt-xs="33.3%" fxFlexOrder="1" fxFlexOrder.gt-xs="-1" class="box snake">
+				<div class="image1">
+					<div>
+						<h3>National Account</h3>
+					</div>
+				</div>
+				<div class="overlay1" fxLayout="row" fxLayoutAlign="space-around stretch">
+					<div fxLayout="column" fxLayoutAlign="center center">
+						<h3>Forecast National Account</h3>
+					</div>
+				</div>
+				<div class="overlay2" fxLayout="row" fxLayoutAlign="space-around stretch">
+					<div fxLayout="column" fxLayoutAlign="center center">
+						<h3>Forecast National Account</h3>
+					</div>
+				</div>
+				<div class="overlay3" fxLayout="row" fxLayoutAlign="space-around stretch">
+					<div fxLayout="column" fxLayoutAlign="center center">
+						<h3>Forecast National Account</h3>
+					</div>
+				</div>
+				<div class="overlay4" fxLayout="row" fxLayoutAlign="space-around stretch">
+					<div fxLayout="column" fxLayoutAlign="center center">
+						<h3>Forecast National Account</h3>
+					</div>
+				</div>
+			</div>
+			<!-- Central Office  -->
+			<div (click)="IrDForecast(1)" fxFlex="100%" fxFlex.gt-xs="33.3%" fxFlexOrder="2" fxFlexOrder.gt-xs="1" class="box snake">
+				<div class="image2">
+					<div>
+						<h3>Central Office</h3>
+					</div>
+				</div>
+				<div class="overlay1" fxLayout="row" fxLayoutAlign="space-around stretch">
+					<div fxLayout="column" fxLayoutAlign="center center">
+						<h3>Forecast Central Office</h3>
+					</div>
+				</div>
+				<div class="overlay2" fxLayout="row" fxLayoutAlign="space-around stretch">
+					<div fxLayout="column" fxLayoutAlign="center center">
+						<h3>Forecast Central Office</h3>
+					</div>
+				</div>
+				<div class="overlay3" fxLayout="row" fxLayoutAlign="space-around stretch">
+					<div fxLayout="column" fxLayoutAlign="center center">
+						<h3>Forecast Central Office</h3>
+					</div>
+				</div>
+				<div class="overlay4" fxLayout="row" fxLayoutAlign="space-around stretch">
+					<div fxLayout="column" fxLayoutAlign="center center">
+						<h3>Forecast Central Office</h3>
+					</div>
+				</div>
+			</div>
 
-                    <div>
-                        <p>Saltin Noel</p>
-                    </div>
+			<!-- North - East -->
+			<div (click)="IrDForecast(2)" fxFlex="100%" fxFlex.gt-xs="33.3%" fxFlexOrder="3" fxFlexOrder.gt-xs="2" class="box snake">
+				<div class="image3">
+					<div>
+						<h3>North - East</h3>
+					</div>
+				</div>
+				<div class="overlay1" fxLayout="row" fxLayoutAlign="space-around stretch">
+					<div fxLayout="column" fxLayoutAlign="center center">
+						<h3>Forecast North - East</h3>
+					</div>
+				</div>
+				<div class="overlay2" fxLayout="row" fxLayoutAlign="space-around stretch">
+					<div fxLayout="column" fxLayoutAlign="center center">
+						<h3>Forecast North - East</h3>
+					</div>
+				</div>
+				<div class="overlay3" fxLayout="row" fxLayoutAlign="space-around stretch">
+					<div fxLayout="column" fxLayoutAlign="center center">
+						<h3>Forecast North - East</h3>
+					</div>
+				</div>
+				<div class="overlay4" fxLayout="row" fxLayoutAlign="space-around stretch">
+					<div fxLayout="column" fxLayoutAlign="center center">
+						<h3>Forecast North - East</h3>
+					</div>
+				</div>
+			</div>
 
-                </div>
-                <div class="overlay1" fxLayout="row" fxLayoutAlign="space-around stretch">
-                    <div fxLayout="column" fxLayoutAlign="center center">
-                        <p>Forecast Saltin Noel</p>
-                    </div>
-                </div>
-                <div class="overlay2" fxLayout="row" fxLayoutAlign="space-around stretch">
-                    <div fxLayout="column" fxLayoutAlign="center center">
-                        <p>Forecast Saltin Noel</p>
-                    </div>
-                </div>
-                <div class="overlay3" fxLayout="row" fxLayoutAlign="space-around stretch">
-                    <div fxLayout="column" fxLayoutAlign="center center">
-                        <p>Forecast Saltin Noel</p>
-                    </div>
-                </div>
-                <div class="overlay4" fxLayout="row" fxLayoutAlign="space-around stretch">
-                    <div fxLayout="column" fxLayoutAlign="center center">
-                        <p>Forecast Saltin Noel</p>
-                    </div>
-                </div>
-            </div>
-            <!-- Festival -->
-            <div (click)="IrDForecast(1)" fxFlex="100%" fxFlex.gt-xs="33.3%" fxFlexOrder="2" fxFlexOrder.gt-xs="1" class="box snake">
-                <div class="image2">
-                    <div>
-                        <p>Festival</p>
-                    </div>
-                </div>
-                <div class="overlay1" fxLayout="row" fxLayoutAlign="space-around stretch">
-                    <div fxLayout="column" fxLayoutAlign="center center">
-                        <p>Forecast Festival</p>
-                    </div>
-                </div>
-                <div class="overlay2" fxLayout="row" fxLayoutAlign="space-around stretch">
-                    <div fxLayout="column" fxLayoutAlign="center center">
-                        <p>Forecast Festival</p>
-                    </div>
-                </div>
-                <div class="overlay3" fxLayout="row" fxLayoutAlign="space-around stretch">
-                    <div fxLayout="column" fxLayoutAlign="center center">
-                        <p>Forecast Festival</p>
-                    </div>
-                </div>
-                <div class="overlay4" fxLayout="row" fxLayoutAlign="space-around stretch">
-                    <div fxLayout="column" fxLayoutAlign="center center">
-                        <p>Forecast Festival</p>
-                    </div>
-                </div>
+			<!-- West -->
+			<div (click)="IrDForecast(3)" fxFlex="100%" fxFlex.gt-xs="33.3%" fxFlexOrder="4" fxFlexOrder.gt-xs="3" class="box snake">
+				<div class="image4">
+					<div>
+						<h3>West</h3>
+					</div>
+				</div>
+				<div class="overlay1" fxLayout="row" fxLayoutAlign="space-around stretch">
+					<div fxLayout="column" fxLayoutAlign="center center">
+						<h3>Forecast West</h3>
+					</div>
+				</div>
+				<div class="overlay2" fxLayout="row" fxLayoutAlign="space-around stretch">
+					<div fxLayout="column" fxLayoutAlign="center center">
+						<h3>Forecast West</h3>
+					</div>
+				</div>
+				<div class="overlay3" fxLayout="row" fxLayoutAlign="space-around stretch">
+					<div fxLayout="column" fxLayoutAlign="center center">
+						<h3>Forecast West</h3>
+					</div>
+				</div>
+				<div class="overlay4" fxLayout="row" fxLayoutAlign="space-around stretch">
+					<div fxLayout="column" fxLayoutAlign="center center">
+						<h3>Forecast West</h3>
+					</div>
+				</div>
+			</div>
 
-            </div>
+			<!-- Video -->
+			<div fxFlex="100%" fxFlex.gt-xs="33.3%" fxFlexOrder="-1" fxFlexOrder.gt-xs="5" class="box">
+				<div class="image5 centralImg" fxLayoutAlign="center center">
+					<div fxFlex="40%">
+						<h3>WE DELIVERER THE TASTE OF HOME</h3>
+					</div>
+				</div>
+			</div>
 
-            <!-- Ducales -->
-            <div (click)="IrDForecast(2)" fxFlex="100%" fxFlex.gt-xs="33.3%" fxFlexOrder="3" fxFlexOrder.gt-xs="2" class="box snake">
-                <div class="image3">
-                    <div>
-                        <p>Ducales</p>
-                    </div>
-                </div>
-                <div class="overlay1" fxLayout="row" fxLayoutAlign="space-around stretch">
-                    <div fxLayout="column" fxLayoutAlign="center center">
-                        <p>Forecast Ducales</p>
-                    </div>
-                </div>
-                <div class="overlay2" fxLayout="row" fxLayoutAlign="space-around stretch">
-                    <div fxLayout="column" fxLayoutAlign="center center">
-                        <p>Forecast Ducales</p>
-                    </div>
-                </div>
-                <div class="overlay3" fxLayout="row" fxLayoutAlign="space-around stretch">
-                    <div fxLayout="column" fxLayoutAlign="center center">
-                        <p>Forecast Ducales</p>
-                    </div>
-                </div>
-                <div class="overlay4" fxLayout="row" fxLayoutAlign="space-around stretch">
-                    <div fxLayout="column" fxLayoutAlign="center center">
-                        <p>Forecast Ducales</p>
-                    </div>
-                </div>
-            </div>
+			<!-- Maryland -->
+			<div (click)="IrDForecast(4)" fxFlex="100%" fxFlex.gt-xs="33.3%" fxFlexOrder="5" fxFlexOrder.gt-xs="6" class="box snake">
+				<div class="image6">
+					<div>
+						<h3>Maryland</h3>
+					</div>
+				</div>
+				<div class="overlay1" fxLayout="row" fxLayoutAlign="space-around stretch">
+					<div fxLayout="column" fxLayoutAlign="center center">
+						<h3>Forecast Maryland</h3>
+					</div>
+				</div>
+				<div class="overlay2" fxLayout="row" fxLayoutAlign="space-around stretch">
+					<div fxLayout="column" fxLayoutAlign="center center">
+						<h3>Forecast Maryland</h3>
+					</div>
+				</div>
+				<div class="overlay3" fxLayout="row" fxLayoutAlign="space-around stretch">
+					<div fxLayout="column" fxLayoutAlign="center center">
+						<h3>Forecast Maryland</h3>
+					</div>
+				</div>
+				<div class="overlay4" fxLayout="row" fxLayoutAlign="space-around stretch">
+					<div fxLayout="column" fxLayoutAlign="center center">
+						<h3>Forecast Maryland</h3>
+					</div>
+				</div>
+			</div>
 
+			<!-- B2B -->
+			<div (click)="IrDForecast(5)" fxFlex="100%" fxFlex.gt-xs="33.3%" fxFlexOrder="6" fxFlexOrder.gt-xs="7" class="box snake">
+				<div class="image7">
+					<div>
+						<h3>B2B</h3>
+					</div>
+				</div>
+				<div class="overlay1" fxLayout="row" fxLayoutAlign="space-around stretch">
+					<div fxLayout="column" fxLayoutAlign="center center">
+						<h3>Forecast B2B</h3>
+					</div>
+				</div>
+				<div class="overlay2" fxLayout="row" fxLayoutAlign="space-around stretch">
+					<div fxLayout="column" fxLayoutAlign="center center">
+						<h3>Forecast B2B</h3>
+					</div>
+				</div>
+				<div class="overlay3" fxLayout="row" fxLayoutAlign="space-around stretch">
+					<div fxLayout="column" fxLayoutAlign="center center">
+						<h3>Forecast B2B</h3>
+					</div>
+				</div>
+				<div class="overlay4" fxLayout="row" fxLayoutAlign="space-around stretch">
+					<div fxLayout="column" fxLayoutAlign="center center">
+						<h3>Forecast B2B</h3>
+					</div>
+				</div>
+			</div>
 
-            <!-- Noel -->
-            <div (click)="IrDForecast(3)" fxFlex="100%" fxFlex.gt-xs="33.3%" fxFlexOrder="4" fxFlexOrder.gt-xs="3" class="box snake">
-                <div class="image4">
-                    <div>
-                        <p>Noel</p>
-                    </div>
-                </div>
-                <div class="overlay1" fxLayout="row" fxLayoutAlign="space-around stretch">
-                    <div fxLayout="column" fxLayoutAlign="center center">
-                        <p>Forecast Noel</p>
-                    </div>
-                </div>
-                <div class="overlay2" fxLayout="row" fxLayoutAlign="space-around stretch">
-                    <div fxLayout="column" fxLayoutAlign="center center">
-                        <p>Forecast Noel</p>
-                    </div>
-                </div>
-                <div class="overlay3" fxLayout="row" fxLayoutAlign="space-around stretch">
-                    <div fxLayout="column" fxLayoutAlign="center center">
-                        <p>Forecast Noel</p>
-                    </div>
-                </div>
-                <div class="overlay4" fxLayout="row" fxLayoutAlign="space-around stretch">
-                    <div fxLayout="column" fxLayoutAlign="center center">
-                        <p>Forecast Noel</p>
-                    </div>
-                </div>
-            </div>
+			<!-- Carve y Kibo -->
+			<div (click)="IrDForecast(6)" fxFlex="100%" fxFlex.gt-xs="33.3%" fxFlexOrder="7" fxFlexOrder.gt-xs="8" class="box snake">
+				<div class="image8">
+					<div>
+						<h3>Central</h3>
+					</div>
+				</div>
+				<div class="overlay1" fxLayout="row" fxLayoutAlign="space-around stretch">
+					<div fxLayout="column" fxLayoutAlign="center center">
+						<h3>Forecast Central</h3>
+					</div>
+				</div>
+				<div class="overlay2" fxLayout="row" fxLayoutAlign="space-around stretch">
+					<div fxLayout="column" fxLayoutAlign="center center">
+						<h3>Forecast Central</h3>
+					</div>
+				</div>
+				<div class="overlay3" fxLayout="row" fxLayoutAlign="space-around stretch">
+					<div fxLayout="column" fxLayoutAlign="center center">
+						<h3>Forecast Central</h3>
+					</div>
+				</div>
+				<div class="overlay4" fxLayout="row" fxLayoutAlign="space-around stretch">
+					<div fxLayout="column" fxLayoutAlign="center center">
+						<h3>Forecast Central</h3>
+					</div>
+				</div>
+			</div>
 
-            <!-- Video -->
-            <div fxFlex="100%" fxFlex.gt-xs="33.3%" fxFlexOrder="-1" fxFlexOrder.gt-xs="5" class="box">
-
-                <div class="image5 ">
-
-                        <iframe id="myVideo" width="100%" height="100%" src="https://www.youtube.com/embed/iBHh9eS6wwQ?autoplay=1&controls=0&mute=1&loop=1" 
-                        frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                         allowfullscreen>
-                        </iframe>
-
-                    <!-- <video-background source="myVideo" id="myVideo2" loop autoplay autopause></video-background> -->
-                </div>
-
-            </div>
-
-            <!-- Tosh -->
-            <div (click)="IrDForecast(4)" fxFlex="100%" fxFlex.gt-xs="33.3%" fxFlexOrder="5" fxFlexOrder.gt-xs="6" class="box snake">
-                <div class="image6">
-                    <div>
-                        <p>Tosh</p>
-                    </div>
-                </div>
-                <div class="overlay1" fxLayout="row" fxLayoutAlign="space-around stretch">
-                    <div fxLayout="column" fxLayoutAlign="center center">
-                        <p>Forecast Tosh</p>
-                    </div>
-                </div>
-                <div class="overlay2" fxLayout="row" fxLayoutAlign="space-around stretch">
-                    <div fxLayout="column" fxLayoutAlign="center center">
-                        <p>Forecast Tosh</p>
-                    </div>
-                </div>
-                <div class="overlay3" fxLayout="row" fxLayoutAlign="space-around stretch">
-                    <div fxLayout="column" fxLayoutAlign="center center">
-                        <p>Forecast Tosh</p>
-                    </div>
-                </div>
-                <div class="overlay4" fxLayout="row" fxLayoutAlign="space-around stretch">
-                    <div fxLayout="column" fxLayoutAlign="center center">
-                        <p>Forecast Tosh</p>
-                    </div>
-                </div>
-            </div>
-
-
-            <!-- Dux -->
-            <div (click)="IrDForecast(5)" fxFlex="100%" fxFlex.gt-xs="33.3%" fxFlexOrder="6" fxFlexOrder.gt-xs="7" class="box snake">
-
-                <div class="image7">
-                    <div>
-                        <p>Dux</p>
-                    </div>
-                </div>
-                <div class="overlay1" fxLayout="row" fxLayoutAlign="space-around stretch">
-                    <div fxLayout="column" fxLayoutAlign="center center">
-                        <p>Forecast Dux</p>
-                    </div>
-                </div>
-                <div class="overlay2" fxLayout="row" fxLayoutAlign="space-around stretch">
-                    <div fxLayout="column" fxLayoutAlign="center center">
-                        <p>Forecast Dux</p>
-                    </div>
-                </div>
-                <div class="overlay3" fxLayout="row" fxLayoutAlign="space-around stretch">
-                    <div fxLayout="column" fxLayoutAlign="center center">
-                        <p>Forecast Dux</p>
-                    </div>
-                </div>
-                <div class="overlay4" fxLayout="row" fxLayoutAlign="space-around stretch">
-                    <div fxLayout="column" fxLayoutAlign="center center">
-                        <p>Forecast Dux</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Carve y Kino -->
-            <div (click)="IrDForecast(6)" fxFlex="100%" fxFlex.gt-xs="33.3%" fxFlexOrder="7" fxFlexOrder.gt-xs="8" class="box snake">
-                <div class="image8">
-                    <div>
-                        <p>Carve</p>
-                    </div>
-                </div>
-                <div class="overlay1" fxLayout="row" fxLayoutAlign="space-around stretch">
-                    <div fxLayout="column" fxLayoutAlign="center center">
-                        <p>Forecast Carve</p>
-                    </div>
-                </div>
-                <div class="overlay2" fxLayout="row" fxLayoutAlign="space-around stretch">
-                    <div fxLayout="column" fxLayoutAlign="center center">
-                        <p>Forecast Carve</p>
-                    </div>
-                </div>
-                <div class="overlay3" fxLayout="row" fxLayoutAlign="space-around stretch">
-                    <div fxLayout="column" fxLayoutAlign="center center">
-                        <p>Forecast Carve</p>
-                    </div>
-                </div>
-                <div class="overlay4" fxLayout="row" fxLayoutAlign="space-around stretch">
-                    <div fxLayout="column" fxLayoutAlign="center center">
-                        <p>Forecast Carve</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Corona -->
-            <div (click)="IrDForecast(7)" fxFlex="100%" fxFlex.gt-xs="33.3%" fxFlexOrder="8" fxFlexOrder.gt-xs="9" class="box snake">
-                <div class="image9">
-                    <div>
-                        <p>Corona</p>
-                    </div>
-                </div>
-                <div class="overlay1" fxLayout="row" fxLayoutAlign="space-around stretch">
-                    <div fxLayout="column" fxLayoutAlign="center center">
-                        <p>Forecast Corona</p>
-                    </div>
-                </div>
-                <div class="overlay2" fxLayout="row" fxLayoutAlign="space-around stretch">
-                    <div fxLayout="column" fxLayoutAlign="center center">
-                        <p>Forecast Corona</p>
-                    </div>
-                </div>
-                <div class="overlay3" fxLayout="row" fxLayoutAlign="space-around stretch">
-                    <div fxLayout="column" fxLayoutAlign="center center">
-                        <p>Forecast Corona</p>
-                    </div>
-                </div>
-                <div class="overlay4" fxLayout="row" fxLayoutAlign="space-around stretch">
-                    <div fxLayout="column" fxLayoutAlign="center center">
-                        <p>Forecast Corona</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
+			<!-- Florida -->
+			<div (click)="IrDForecast(7)" fxFlex="100%" fxFlex.gt-xs="33.3%" fxFlexOrder="8" fxFlexOrder.gt-xs="9" class="box snake">
+				<div class="image9">
+					<div>
+						<h3>Florida</h3>
+					</div>
+				</div>
+				<div class="overlay1" fxLayout="row" fxLayoutAlign="space-around stretch">
+					<div fxLayout="column" fxLayoutAlign="center center">
+						<h3>Forecast Florida</h3>
+					</div>
+				</div>
+				<div class="overlay2" fxLayout="row" fxLayoutAlign="space-around stretch">
+					<div fxLayout="column" fxLayoutAlign="center center">
+						<h3>Forecast Florida</h3>
+					</div>
+				</div>
+				<div class="overlay3" fxLayout="row" fxLayoutAlign="space-around stretch">
+					<div fxLayout="column" fxLayoutAlign="center center">
+						<h3>Forecast Florida</h3>
+					</div>
+				</div>
+				<div class="overlay4" fxLayout="row" fxLayoutAlign="space-around stretch">
+					<div fxLayout="column" fxLayoutAlign="center center">
+						<h3>Forecast Florida</h3>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>

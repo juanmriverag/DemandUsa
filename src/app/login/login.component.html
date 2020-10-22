@@ -1,60 +1,57 @@
 <div class="Mdcontent" fxFlex="100%">
+	<div
+		(keyup)="PressEn($event)"
+		fxLayout="row"
+		id="ContentCentral"
+		[ngClass]="{ ContentCentralTop: Mostrar == false }"
+		fxLayoutAlign="center center"
+		fxFlex="100%"
+		style="height: 100%;"
+	>
+		<div class="LoginContent"></div>
 
-  <div (keyup)="PressEn($event)" fxLayout="row" id="ContentCentral" [ngClass]="{'ContentCentralTop': Mostrar == false}"
-    fxLayoutAlign="center center" fxFlex="100%" style="height: 100%;">
-    <div class="LoginContent"></div>
+		<div id="subLoginContent" fxLayout="column" fxLayoutAlign="center" fxFlex="100%">
+			<div fxLayout="row" fxLayoutAlign="center" fxFlex="20%">
+				<div fxLayout="row" fxLayoutAlign="center" style="height: 100%;" fxFlex="100%" class="LogoAB"></div>
+			</div>
+			<div style="height: 39vh;" fxLayout="column" fxLayoutAlign="center" fxFlex="45%" class="formLogin">
+				<div fxLayout="column" style="text-align: center;" class="text-Login-top">
+					<span md-truncate></span>
+					<span md-truncate>Login with your GN account</span>
+				</div>
 
-    <div id="subLoginContent" fxLayout="column" fxLayoutAlign="center" fxFlex="100%">
-
-      <div fxLayout="row" fxLayoutAlign="center" fxFlex="20%">
-
-        <div fxLayout="row" fxLayoutAlign="center" style="height: 100%;" fxFlex="100%" class="LogoAB">
-
-        </div>
-
-      </div>
-      <div style=" height: 39vh;" fxLayout="column" fxLayoutAlign="center" fxFlex="45%" class="formLogin">
-        <div fxLayout="column" style="text-align: center" class="text-Login-top">
-          <span md-truncate></span>
-          <span md-truncate>Ingresa con tu cuenta GN</span>
-        </div>
-
-        <div fxLayout="row" fxLayoutAlign="center">
-          <mat-form-field class="md-block" fxFlex="65%">
-            <input matInput class="inLogin" name="NombreUsuario" placeholder="Usuario" [(ngModel)]="modelUser" required>
-          </mat-form-field>
-        </div>
-        <div fxLayout="row" fxLayoutAlign="center">
-          <mat-form-field class="md-block" fxFlex="65%">
-            <input matInput class="inLogin" name="Contrasena" placeholder="Contraseña" type="password"
-              [(ngModel)]="modelPass" required>
-          </mat-form-field>
-        </div>
-        <!-- <p *ngIf="mensajeError != null">{{mensajeError}}</p>
+				<div fxLayout="row" fxLayoutAlign="center">
+					<mat-form-field class="md-block" fxFlex="65%">
+						<input matInput class="inLogin" name="NombreUsuario" placeholder="Username" [(ngModel)]="modelUser" required />
+					</mat-form-field>
+				</div>
+				<div fxLayout="row" fxLayoutAlign="center">
+					<mat-form-field class="md-block" fxFlex="65%">
+						<input
+							matInput
+							class="inLogin"
+							name="Contrasena"
+							placeholder="Password"
+							type="password"
+							[(ngModel)]="modelPass"
+							required
+						/>
+					</mat-form-field>
+				</div>
+				<!-- <p *ngIf="mensajeError != null">{{mensajeError}}</p>
         <p *ngIf="mensajeError != null">Las credenciales ingresadas, son incorrectas. Por favor, intente de
           nuevo.</p> -->
+			</div>
 
-      </div>
+			<div fxLayout="column" lfxLayoutAlign="start center" class="Img-Login" fxFlex="35%">
+				<div fxLayout="row" fxLayoutAlign="center">
+					<button mat-raised-button color="primary" typeof="sumit" class="BTNLogin" (click)="realizarAutenticacion()">
+						Sign In
+					</button>
+				</div>
+			</div>
+		</div>
 
-      <div fxLayout="column" lfxLayoutAlign="start center" class="Img-Lobin" fxFlex="35%">
-        <div fxLayout="row" fxLayoutAlign="center">
-          <button mat-raised-button color="primary" typeof="sumit" class="BTNLogin " (click)="realizarAutenticacion()">
-            Ingresar
-          </button>
-        </div>
-
-
-
-      </div>
-
-
-    </div>
-    <div class="LogoNoelSmall">
-
-    </div>
-
-    <!-- </div> -->
-
-  </div>
-
+		<!-- </div> -->
+	</div>
 </div>

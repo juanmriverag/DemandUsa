@@ -1,501 +1,503 @@
-<div>
-  <div fxLayout="row" id="ContentCentral" [ngClass]="{'ContentCentralTop': Mostrar == false}" style="height:auto"
-    fxLayoutAlign="center center" fxFlex="100%">
-    <div fxLayout="column" fxFlex="100%">
+<div fxLayout="column" fxFlex="100%" class="pcontent" [ngClass]="{ ContentCentralTop: Mostrar == false }">
+	<!-- //row -->
+	<div fxLayout="row" fxLayoutAlign="space-around stretch" class="LayoutMargin">
+		<div fxLayout="column" fxFlex="5%">
+			<button class="BTNAcum" color="accent" [matMenuTriggerFor]="menu" mat-mini-fab aria-label="Acumulados">
+				<mat-icon>assessment</mat-icon>
+			</button>
 
-      <!-- //row -->
-      <div fxLayout="row" fxFlex="100%" fxLayoutAlign="space-around stretch" class="LayoutMargin">
-        <div fxLayout="column" fxFlex="5%">
-          <button class="BTNAcum" color="primary" (click)="openDialog()" mat-mini-fab aria-label="Acumulados">
-            <mat-icon>assessment</mat-icon>
-          </button>
+			<mat-menu #menu="matMenu">
+				<button mat-menu-item (click)="openDGraficaVts()">
+					<mat-icon>show_chart</mat-icon>
+					<span>Sales-Forecast-Budget </span>
+				</button>
+				<button mat-menu-item (click)="openDTablaVts()">
+					<mat-icon>table_chart</mat-icon>
+					<span>Cumulative compliance </span>
+				</button>
+				<button mat-menu-item (click)="openDCumpTotal()">
+					<mat-icon>whatshot</mat-icon>
+					<span>Territory Summary</span>
+				</button>
+				<button mat-menu-item (click)="AddNovedad()">
+					<mat-icon>add_box</mat-icon>
+					<span>New Item</span>
+				</button>
+			</mat-menu>
+			<TablaVts [Ctrl]="Ctrl"></TablaVts>
+			<GraficaVts [Ctrl]="Ctrl"></GraficaVts>
+			<CumpTotal [Ctrl]="Ctrl"></CumpTotal>
+		</div>
+		<div fxLayout="column" fxFlex="95%">
+			<table class="T1" mat-table [dataSource]="ListDMForeCast_" multiTemplateDataRows>
+				<!-- Category Column -->
+				<ng-container matColumnDef="category">
+					<th class="Btop" mat-header-cell *matHeaderCellDef>
+						<mat-icon class="icoN FloLeft" [ngClass]="{ UpIcon: Mcont }" (click)="Mcont = !Mcont">
+							keyboard_arrow_down
+						</mat-icon>
+						<span *ngIf="!Ca" (click)="SysFiltering('Ca')"> Division </span>
+						<input
+							*ngIf="Ca"
+							placeholder="Division"
+							matInput
+							(keyup)="applyFilter2()"
+							[(ngModel)]="Bus2.Category"
+							style="max-width: 60px;"
+							autofocus
+						/>
+					</th>
+					<td class="Tcenter" mat-cell *matCellDef="let element">{{ element.Category }}</td>
+					<td mat-footer-cell *matFooterCellDef></td>
+				</ng-container>
 
-          <ng-template>
-            <div class="Acumulados-Dialog" cdkDrag cdkDragRootElement=".cdk-overlay-pane">
-              <div fxLayout="column" fxFlex="100%">
-                <div fxLayout="row" fxFlex="100%">
-                  <div fxLayout="column" fxFlex="50%" fxLayoutAlign="center start">
-                    <mat-menu #appMenu="matMenu">
-                      <div mat-menu-item class="plMenuCSS" (click)="$event.stopPropagation();">
-                        <mat-label>Años</mat-label>
-                        <div class="NS-checkbox-group">
-                          <div class="NS-checkbox" *ngFor="let obj of ListYears">
-                            <label>
-                              <input type="checkbox" [(ngModel)]="obj.checked" (change)="applyFilter4()">
-                              <span>{{obj.year}}</span>
-                            </label>
-                          </div>
-                        </div>
-                      </div>
-                      <div mat-menu-item class="plMenuCSS" (click)="$event.stopPropagation();">
-                        <mat-label>Canal</mat-label>
-                        <span class="custom-dropdown ">
-                          <mat-select [(ngModel)]="Filtr.Canal" (selectionChange)="applyFilter3()">
-                            <mat-option [value]="''">Todos</mat-option>
-                            <mat-option *ngFor="let Canal  of LsitFiltrs.Canales" [value]="Canal ">
-                              {{Canal }}
-                            </mat-option>
-                          </mat-select>
-                        </span>
-                      </div>
-                      <div mat-menu-item class="plMenuCSS" (click)="$event.stopPropagation();">
-                        <mat-label>Categoria</mat-label>
-                        <span class="custom-dropdown">
-                          <mat-select [(ngModel)]="Filtr.Categoria" (selectionChange)="applyFilter3()">
-                            <mat-option [value]="''">Todas</mat-option>
-                            <mat-option *ngFor="let categoria  of LsitFiltrs.Categorias" [value]="categoria ">
-                              {{categoria }}
-                            </mat-option>
-                          </mat-select>
-                        </span>
-                      </div>
-                      <div mat-menu-item class="plMenuCSS" (click)="$event.stopPropagation();">
-                        <mat-label>Submarca</mat-label>
-                        <span class="custom-dropdown ">
-                          <mat-select [(ngModel)]="Filtr.Submarca" (selectionChange)="applyFilter3()">
-                            <mat-option [value]="''">Todas</mat-option>
-                            <mat-option *ngFor="let submarca of LsitFiltrs.Submarcas" [value]="submarca">
-                              {{submarca}}
-                            </mat-option>
-                          </mat-select>
-                        </span>
-                      </div>
+				<!-- Company Column -->
+				<ng-container matColumnDef="company">
+					<th class="Btop" mat-header-cell *matHeaderCellDef>
+						<span *ngIf="!Mc" (click)="SysFiltering('Mc')"> Company </span>
+						<input
+							*ngIf="Mc"
+							placeholder="Submarc"
+							matInput
+							(keyup)="applyFilter2()"
+							[(ngModel)]="Bus2.Company"
+							style="max-width: 60px;"
+							autofocus
+						/>
+					</th>
+					<td mat-cell *matCellDef="let element">{{ element.Company }}</td>
+					<td mat-footer-cell *matFooterCellDef>Totals</td>
+				</ng-container>
 
-                    </mat-menu>
-                    <button color="primary" class="FiltrIcon" [matMenuTriggerFor]="appMenu" mat-button
-                      aria-label="Filtros">
-                      Filtros <mat-icon>filter_list</mat-icon>
-                    </button>
+				<!-- Fmes1 Column -->
+				<ng-container matColumnDef="FmonthN1">
+					<th class="Bleft" mat-header-cell *matHeaderCellDef>{{ obtenerMes(1) }}</th>
+					<td class="Tend" mat-cell *matCellDef="let p">$ {{ p.FMonthN1 | formatNumber }}</td>
+					<td class="Tend" mat-footer-cell *matFooterCellDef>$ {{ getTotal('FMonthN1') | formatNumber }}</td>
+				</ng-container>
 
-                  </div>
-                  <div class="closeIcon" fxLayout="column" fxFlex="50%" fxLayoutAlign="center end">
-                    <mat-icon aria-label="Close" (click)="closeDialog()">close</mat-icon>
-                  </div>
-                </div>
-                <div fxLayout="row" fxFlex="100%" fxLayoutAlign="center center" class="LayoutMargin12">
-                  <div fxLayout="column" fxFlex="100%">
+				<!-- Fmes2 Column -->
+				<ng-container matColumnDef="FmonthN2">
+					<th mat-header-cell *matHeaderCellDef>{{ obtenerMes(2) }}</th>
+					<td class="Tend" mat-cell *matCellDef="let p">$ {{ p.FMonthN2 | formatNumber }}</td>
+					<td class="Tend" mat-footer-cell *matFooterCellDef>$ {{ getTotal('FMonthN2') | formatNumber }}</td>
+				</ng-container>
 
-                    <table class="T3" mat-table [dataSource]="ListPresupuesto" multiTemplateDataRows matSort
-                      (matSortChange)="sortData($event)">
+				<!-- Fmes3 Column -->
+				<ng-container matColumnDef="FmonthN3">
+					<th class="Bright" mat-header-cell *matHeaderCellDef>{{ obtenerMes(3) }}</th>
+					<td class="Tend" mat-cell *matCellDef="let p">$ {{ p.FMonthN3 | formatNumber }}</td>
+					<td class="Tend" mat-footer-cell *matFooterCellDef>$ {{ getTotal('FMonthN3') | formatNumber }}</td>
+				</ng-container>
 
-                      <ng-container [matColumnDef]="column" *ngFor="let column of Headerdis1; let i = index">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{column}} </th>
-                        <td mat-cell *matCellDef="let element"
-                          [ngClass]="{'colorBlue': element.Id == 2 , 'colorGreen' : element.Id == 4}">
-                          {{ element[column] }} </td>
-                      </ng-container>
+				<!-- Pmes1 Column -->
+				<ng-container matColumnDef="PmonthN1">
+					<th mat-header-cell *matHeaderCellDef>{{ obtenerMes(1) }}</th>
+					<td class="Tend" mat-cell *matCellDef="let p">$ {{ p.PMonthN1 | formatNumber }}</td>
+					<td class="Tend" mat-footer-cell *matFooterCellDef>$ {{ getTotal('PMonthN1') | formatNumber }}</td>
+				</ng-container>
 
-                      <ng-container [matColumnDef]="column" *ngFor="let column of Headerdis2; let i = index">
-                        <th mat-header-cell *matHeaderCellDef> {{obtenerMesO(i)}} </th>
-                        <td mat-cell *matCellDef="let element"
-                          [ngClass]="{'colorBlue': element.Id == 2 , 'colorGreen' : element.Id == 4, 'SubrColumn' : ((mesActual+4) > i && i > mesActual)  }">
-                          {{(element.Id < 3) ? '$' : ''}}
-                          {{ element[column] | number : '1.0-0' }} {{(element.Id > 2) ? '%' : ''}} </td>
-                      </ng-container>
+				<!-- Pmes2 Column -->
+				<ng-container matColumnDef="PmonthN2">
+					<th class="" mat-header-cell *matHeaderCellDef>{{ obtenerMes(2) }}</th>
+					<td class="Tend" mat-cell *matCellDef="let p">$ {{ p.PMonthN2 | formatNumber }}</td>
+					<td class="Tend" mat-footer-cell *matFooterCellDef>$ {{ getTotal('PMonthN2') | formatNumber }}</td>
+				</ng-container>
 
+				<!-- Pmes3 Column -->
+				<ng-container matColumnDef="PmonthN3">
+					<th class="Bright" mat-header-cell *matHeaderCellDef>{{ obtenerMes(3) }}</th>
+					<td class="Tend" mat-cell *matCellDef="let p">$ {{ p.PMonthN3 | formatNumber }}</td>
+					<td class="Tend" mat-footer-cell *matFooterCellDef>$ {{ getTotal('PMonthN3') | formatNumber }}</td>
+				</ng-container>
 
-                      <tr mat-header-row *matHeaderRowDef="displayedColumns3"></tr>
-                      <tr mat-row *matRowDef="let row; columns: displayedColumns3;"></tr>
+				<!-- Cumes1 Column -->
+				<ng-container matColumnDef="CumonthN1">
+					<th mat-header-cell *matHeaderCellDef>{{ obtenerMes(1) }}</th>
+					<td class="Tend" mat-cell *matCellDef="let p">{{ getCumplim_(p.FMonthN1, p.PMonthN1) | number: '1.0-0' }}%</td>
+					<td class="Tend" mat-footer-cell *matFooterCellDef>
+						{{ getCumplim_(getTotal('FMonthN1'), getTotal('PMonthN1')) | number: '1.0-0' }}%
+					</td>
+				</ng-container>
 
-                    </table>
-                  </div>
-                </div>
-              </div>
-            </div>
+				<!-- Cumes2 Column -->
+				<ng-container matColumnDef="CumonthN2">
+					<th class="" mat-header-cell *matHeaderCellDef>{{ obtenerMes(2) }}</th>
+					<td class="Tend" mat-cell *matCellDef="let p">{{ getCumplim_(p.FMonthN2, p.PMonthN2) | number: '1.0-0' }}%</td>
+					<td class="Tend" mat-footer-cell *matFooterCellDef>
+						{{ getCumplim_(getTotal('FMonthN2'), getTotal('PMonthN2')) | number: '1.0-0' }}%
+					</td>
+				</ng-container>
 
-          </ng-template>
-        </div>
-        <div fxLayout="column" fxFlex="95%">
+				<!-- Cumes3 Column -->
+				<ng-container matColumnDef="CumonthN3">
+					<th class="Bright" mat-header-cell *matHeaderCellDef>{{ obtenerMes(3) }}</th>
+					<td class="Tend" mat-cell *matCellDef="let p">{{ getCumplim_(p.FMonthN3, p.PMonthN3) | number: '1.0-0' }}%</td>
+					<td class="Tend" mat-footer-cell *matFooterCellDef>
+						{{ getCumplim_(getTotal('FMonthN3'), getTotal('PMonthN3')) | number: '1.0-0' }}%
+					</td>
+				</ng-container>
 
-          <table class="T1" mat-table [dataSource]="ListColaboracion_" multiTemplateDataRows>
+				<!-- Columnas  espacio -->
+				<ng-container matColumnDef="space1">
+					<th class="NoBbottom colornone" mat-header-cell *matHeaderCellDef colspan="2">
+						<div class="NS-checkbox-group" *ngIf="ListClients.length > 1">
+							<div class="NS-checkbox" *ngFor="let obj of ListClients">
+								<label>
+									<input type="checkbox" [(ngModel)]="obj.checked" (change)="changeFiltr5()" />
+									<span>{{ obj.canal }}</span>
+								</label>
+							</div>
+						</div>
+					</th>
+				</ng-container>
 
-            <!-- Categoria Column -->
-            <ng-container matColumnDef="categoria">
-              <th class="Btop" mat-header-cell *matHeaderCellDef>
-                <mat-icon class="icoN FloLeft" [ngClass]="{'UpIcon': Mcont}" (click)="Mcont = !Mcont">
-                  keyboard_arrow_down
-                </mat-icon> <span *ngIf="!Ca" (click)="SysFiltering('Ca')"> Categoria </span>
-                <input *ngIf="Ca" placeholder="Categoria" matInput (keyup)="applyFilter2()" [(ngModel)]="Bus2.Categoria"
-                  style="max-width:60px;" autofocus>
-              </th>
-              <td class="Tcenter" mat-cell *matCellDef="let element"> {{element.Categoria}}
-              </td>
-              <td mat-footer-cell *matFooterCellDef> </td>
-            </ng-container>
+				<!-- Items -->
+				<ng-container matColumnDef="Forecast_">
+					<th class="HeaderTop NoBbottom Btop Bright Bleft Tcenter Bdtop" mat-header-cell *matHeaderCellDef colspan="3">
+						$ Forecast
+					</th>
+				</ng-container>
+				<ng-container matColumnDef="Presupuesto_">
+					<th class="HeaderTop NoBbottom Btop Bright Tcenter Bdtop" mat-header-cell *matHeaderCellDef colspan="3">
+						$ Budget
+					</th>
+				</ng-container>
+				<ng-container matColumnDef="Compliance">
+					<th class="HeaderTop NoBbottom Btop Bright Tcenter Bdtop" mat-header-cell *matHeaderCellDef colspan="3">
+						% Compliance
+					</th>
+				</ng-container>
 
-            <!-- Submarca Column -->
-            <ng-container matColumnDef="submarca">
-              <th class="Btop" mat-header-cell *matHeaderCellDef>
-                <span *ngIf="!Mc" (click)="SysFiltering('Mc')"> Submarca </span>
-                <input *ngIf="Mc" placeholder="Submarc" matInput (keyup)="applyFilter2()" [(ngModel)]="Bus2.Submarca"
-                  style="max-width:60px;" autofocus>
-              </th>
-              <td class="Tcenter" mat-cell *matCellDef="let element"> {{element.Submarca}}
-              </td>
-              <td mat-footer-cell *matFooterCellDef> Totales </td>
-            </ng-container>
+				<tr mat-header-row *matHeaderRowDef="['space1', 'Forecast_', 'Presupuesto_', 'Compliance']"></tr>
+				<tr mat-header-row *matHeaderRowDef="displayedColumns2" class="Thcenter"></tr>
+				<tr
+					mat-row
+					*matRowDef="let row; columns: displayedColumns2"
+					[@detailExpand2]="Mcont ? 'expanded' : 'collapsed'"
+					(click)="SysFiltering('H')"
+				></tr>
+				<tr mat-footer-row *matFooterRowDef="displayedColumns2"></tr>
+			</table>
+		</div>
+	</div>
 
+	<div fxLayout="row" fxFlex="80%" fxLayoutAlign="space-between start" class="LayoutMargin js-pscroll">
+		<table class="T2" mat-table [dataSource]="ListDMForeCast" multiTemplateDataRows matSort (matSortChange)="sortData2($event)">
+			<!-- Company Column -->
+			<ng-container matColumnDef="company">
+				<th
+					mat-header-cell
+					*matHeaderCellDef
+					class="Btop"
+					[ngClass]="{ FiltrElement: Bus.Company != null && Bus.Company != '' }"
+					mat-sort-header
+				>
+					<span *ngIf="!Cl" (click)="SysFiltering('Cl')">Company</span>
+					<input *ngIf="Cl" placeholder="Company" matInput (keyup)="applyFilter()" [(ngModel)]="Bus.Company" autofocus />
+				</th>
+				<td class=" " mat-cell *matCellDef="let element" (click)="SysFiltering('H')">{{ element.Company }}</td>
+				<td mat-footer-cell *matFooterCellDef></td>
+			</ng-container>
 
-            <!-- Fmes1 Column -->
-            <ng-container matColumnDef="Fmesn1">
-              <th class=" Bleft" mat-header-cell *matHeaderCellDef> {{obtenerMes(1)}} </th>
-              <td class="Tcenter " mat-cell *matCellDef="let p">
-                ${{p.FMesn1 | number : '1.0-0'}}
-              </td>
-              <td class="Tcenter" mat-footer-cell *matFooterCellDef>
-                {{getTotal('FMesn1') | currency:'CAD':'symbol-narrow':'1.0-0'}}
-              </td>
-            </ng-container>
+			<!-- Category Column -->
+			<ng-container matColumnDef="category">
+				<th
+					mat-header-cell
+					*matHeaderCellDef
+					class="Btop"
+					[ngClass]="{ FiltrElement: Bus.Category != null && Bus.Category != '' }"
+					mat-sort-header
+				>
+					<span *ngIf="!Cg" (click)="SysFiltering('Cg')">Division</span>
+					<input *ngIf="Cg" placeholder="Division" matInput (keyup)="applyFilter()" [(ngModel)]="Bus.Category" autofocus />
+				</th>
+				<td class=" " mat-cell *matCellDef="let element" (click)="SysFiltering('H')">
+					{{ element.Category }}
+				</td>
+				<td mat-footer-cell *matFooterCellDef>Total Items :</td>
+			</ng-container>
 
-            <!-- Fmes2 Column -->
-            <ng-container matColumnDef="Fmesn2">
-              <th mat-header-cell *matHeaderCellDef> {{obtenerMes(2)}} </th>
-              <td class="Tcenter" mat-cell *matCellDef="let p">
-                ${{p.FMesn2 | number : '1.0-0'}}
-              </td>
-              <td class="Tcenter" mat-footer-cell *matFooterCellDef>
-                {{getTotal('FMesn2') | currency:'CAD':'symbol-narrow':'1.0-0'}}
-              </td>
-            </ng-container>
+			<!-- Brand Column -->
+			<ng-container matColumnDef="brand">
+				<th mat-header-cell *matHeaderCellDef class="Btop" mat-sort-header>
+					<span> Brand </span>
+				</th>
+				<td class=" " mat-cell *matCellDef="let element" (click)="SysFiltering('H')">{{ element.Brand }}</td>
+				<td mat-footer-cell *matFooterCellDef>{{ getSizeDMForeCast() }}</td>
+			</ng-container>
 
-            <!-- Fmes3 Column -->
-            <ng-container matColumnDef="Fmesn3">
-              <th class="Bright " mat-header-cell *matHeaderCellDef> {{obtenerMes(3)}} </th>
-              <td class="Tcenter" mat-cell *matCellDef="let p">
-                ${{p.FMesn3 | number : '1.0-0'}}
-              </td>
-              <td class="Tcenter" mat-footer-cell *matFooterCellDef>
-                {{getTotal('FMesn3') | currency:'CAD':'symbol-narrow':'1.0-0'}}
-              </td>
-            </ng-container>
+			<!-- Item Column -->
+			<ng-container matColumnDef="item">
+				<th mat-header-cell *matHeaderCellDef class="Btop paRight" [ngClass]="{ FiltrElement: Bus.Item != null && Bus.Item != '' }">
+					<span *ngIf="!Mt" (click)="SysFiltering('Mt')">Item Code</span>
+					<input *ngIf="Mt" placeholder="Item Code" matInput (keyup)="applyFilter()" [(ngModel)]="Bus.Item" autofocus />
+				</th>
+				<td class="paRight" mat-cell *matCellDef="let element" (click)="SysFiltering('H')">
+					{{ element.Item }}
+				</td>
+				<td mat-footer-cell *matFooterCellDef class="paRight"></td>
+			</ng-container>
 
-            <!-- Pmes1 Column -->
-            <ng-container matColumnDef="Pmesn1">
-              <th mat-header-cell *matHeaderCellDef> {{obtenerMes(1)}} </th>
-              <td class="Tcenter " mat-cell *matCellDef="let p">
-                ${{p.PMesn1 | number : '1.0-0'}}
-              </td>
-              <td class="Tcenter" mat-footer-cell *matFooterCellDef>
-                {{getTotal('PMesn1') | currency:'CAD':'symbol-narrow':'1.0-0'}}</td>
-            </ng-container>
+			<!-- Description Column -->
+			<ng-container matColumnDef="description">
+				<th
+					mat-header-cell
+					*matHeaderCellDef
+					class="Btop"
+					[ngClass]="{ FiltrElement: Bus.Description != null && Bus.Description != '' }"
+				>
+					<span *ngIf="!Des" (click)="SysFiltering('Des')"> Description </span>
+					<input *ngIf="Des" placeholder="Description" matInput (keyup)="applyFilter()" [(ngModel)]="Bus.Description" autofocus />
+				</th>
+				<td class="" mat-cell *matCellDef="let element" (click)="SysFiltering('H')">
+					{{ element.Description | slice: 0:45 }}
+				</td>
+				<td mat-footer-cell *matFooterCellDef>Totals :</td>
+			</ng-container>
 
-            <!-- Pmes2 Column -->
-            <ng-container matColumnDef="Pmesn2">
-              <th class="" mat-header-cell *matHeaderCellDef> {{obtenerMes(2)}} </th>
-              <td class="Tcenter" mat-cell *matCellDef="let p">
-                ${{p.PMesn2 | number : '1.0-0'}}
-              </td>
-              <td class="Tcenter" mat-footer-cell *matFooterCellDef>
-                {{getTotal('PMesn2') | currency:'CAD':'symbol-narrow':'1.0-0'}}
-              </td>
-            </ng-container>
+			<!-- Mes_Anterior_1 Column -->
+			<ng-container matColumnDef="monthN_3">
+				<th class="Bleft Tcenter paRight" mat-header-cell *matHeaderCellDef>{{ obtenerMes(-3) }}</th>
+				<td class="Tend paRight" mat-cell *matCellDef="let element">{{ element.MonthN_3 | formatNumber }}</td>
+				<td class="Tend paRight" mat-footer-cell *matFooterCellDef>
+					{{ getTotal2('MonthN_3') | formatNumber }}
+				</td>
+			</ng-container>
 
-            <!-- Pmes3 Column -->
-            <ng-container matColumnDef="Pmesn3">
-              <th class="Bright " mat-header-cell *matHeaderCellDef> {{obtenerMes(3)}} </th>
-              <td class="Tcenter" mat-cell *matCellDef="let p">
-                ${{p.PMesn3 | number : '1.0-0'}}
-              </td>
-              <td class="Tcenter" mat-footer-cell *matFooterCellDef>
-                {{getTotal('PMesn3') | currency:'CAD':'symbol-narrow':'1.0-0'}}
-              </td>
-            </ng-container>
+			<!-- Mes_Anterior_2 Column -->
+			<ng-container matColumnDef="monthN_2">
+				<th class="Tcenter paRight" mat-header-cell *matHeaderCellDef>{{ obtenerMes(-2) }}</th>
+				<td class="Tend paRight" mat-cell *matCellDef="let element">{{ element.MonthN_2 | formatNumber }}</td>
+				<td class="Tend paRight" mat-footer-cell *matFooterCellDef>
+					{{ getTotal2('MonthN_2') | formatNumber }}
+				</td>
+			</ng-container>
 
-            <!-- Cumes1 Column -->
-            <ng-container matColumnDef="Cumesn1">
-              <th mat-header-cell *matHeaderCellDef> {{obtenerMes(1)}} </th>
-              <td class="Tcenter " mat-cell *matCellDef="let p">
-                {{ getCumplim_(p.FMesn1,p.PMesn1) | number : '1.0-0'}}%
-              </td>
-              <td class="Tcenter " mat-footer-cell *matFooterCellDef>
-                {{getCumplim_(getTotal('FMesn1'),getTotal('PMesn1')) | number : '1.0-0'}}%
-              </td>
-            </ng-container>
+			<!-- Mes_Anterior_3 Column -->
+			<ng-container matColumnDef="monthN_1">
+				<th class="Tcenter paRight" mat-header-cell *matHeaderCellDef>{{ obtenerMes(-1) }}</th>
+				<td class="Tend paRight" mat-cell *matCellDef="let element">{{ element.MonthN_1 | formatNumber }}</td>
+				<td class="Tend paRight" mat-footer-cell *matFooterCellDef>
+					{{ getTotal2('MonthN_1') | formatNumber }}
+				</td>
+			</ng-container>
 
-            <!-- Cumes2 Column -->
-            <ng-container matColumnDef="Cumesn2">
-              <th class="" mat-header-cell *matHeaderCellDef> {{obtenerMes(2)}} </th>
-              <td class="Tcenter" mat-cell *matCellDef="let p">
-                {{getCumplim_(p.FMesn2,p.PMesn2) | number : '1.0-0'}}%
-              </td>
-              <td class="Tcenter " mat-footer-cell *matFooterCellDef>
-                {{getCumplim_(getTotal('FMesn2'),getTotal('PMesn2')) | number : '1.0-0'}}%
-              </td>
-            </ng-container>
+			<!-- Mes_actual Column -->
+			<ng-container matColumnDef="monthN">
+				<th class="Tcenter paRight" mat-header-cell *matHeaderCellDef>{{ obtenerMes(0) }}</th>
+				<td class="Tend paRight" mat-cell *matCellDef="let element">{{ element.MonthN | formatNumber }}</td>
+				<td mat-footer-cell *matFooterCellDef class="Tend paRight">{{ getTotal2('MonthN') | formatNumber }}</td>
+			</ng-container>
 
-            <!-- Cumes3 Column -->
-            <ng-container matColumnDef="Cumesn3">
-              <th class="Bright " mat-header-cell *matHeaderCellDef> {{obtenerMes(3)}} </th>
-              <td class="Tcenter" mat-cell *matCellDef="let p">
-                {{getCumplim_(p.FMesn3,p.PMesn3) | number : '1.0-0'}}%
-              </td>
-              <td class="Tcenter " mat-footer-cell *matFooterCellDef>
-                {{getCumplim_(getTotal('FMesn3'),getTotal('PMesn3')) | number : '1.0-0'}}%
-              </td>
-            </ng-container>
+			<!-- Average Column -->
+			<ng-container matColumnDef="average">
+				<th class="Tcenter" mat-header-cell *matHeaderCellDef mat-sort-header>Prom</th>
+				<td class="Tend P2" mat-cell *matCellDef="let element">
+					{{ element.Average | formatNumber }}
+				</td>
+				<td class="Tend" mat-footer-cell *matFooterCellDef>
+					{{ getTotal2('Average') | formatNumber }}
+				</td>
+			</ng-container>
 
-            <!-- Columnas  espacio -->
-            <ng-container matColumnDef="space1">
-              <th class="NoBbottom colornone" mat-header-cell *matHeaderCellDef colspan="2"> </th>
-            </ng-container>
+			<!-- mes1 Column -->
+			<ng-container matColumnDef="monthN1">
+				<th class="Mactual Bleft Tcenter" mat-header-cell *matHeaderCellDef>{{ obtenerMes(1) }}</th>
+				<td
+					class="Tend SubrColumn"
+					mat-cell
+					*matCellDef="let p; let i = dataIndex"
+					[ngClass]="{ SubrColumnDif: p.OMonthN1 != p.MonthN1, backcolorRed: p.MonthN1 > p.TopAverage && p.OMonthN1 != p.MonthN1 }"
+				>
+					<input
+						id="v{{ i * 3 }}"
+						matTooltip="{{ p.OMonthN1 }}"
+						[matTooltipPosition]="'above'"
+						matInput
+						[(ngModel)]="p.MonthN1"
+						(keyup)="susKeyEvent($event, p, i * 3, 1)"
+					/>
+				</td>
+				<td class="Tend" mat-footer-cell *matFooterCellDef>
+					{{ getTotal2('MonthN1') | formatNumber }}
+				</td>
+			</ng-container>
 
-            <!-- Items -->
-            <ng-container matColumnDef="Forecast_">
-              <th class="HeaderTop NoBbottom Btop Bright Bleft Tcenter Bdtop" mat-header-cell *matHeaderCellDef
-                colspan="3">
-                Forecast $
-              </th>
-            </ng-container>
-            <ng-container matColumnDef="Presupuesto_">
-              <th class="HeaderTop NoBbottom Btop Bright Tcenter Bdtop" mat-header-cell *matHeaderCellDef colspan="3">
-                Presupuesto $
-              </th>
-            </ng-container>
-            <ng-container matColumnDef="Cumplimiento">
-              <th class="HeaderTop NoBbottom Btop Bright Tcenter Bdtop" mat-header-cell *matHeaderCellDef colspan="3">
-                Cumplimiento %
-              </th>
-            </ng-container>
+			<!-- mes2 Column -->
+			<ng-container matColumnDef="monthN2">
+				<th class="Mactual Tcenter" mat-header-cell *matHeaderCellDef>{{ obtenerMes(2) }}</th>
+				<td
+					class="Tend SubrColumn"
+					mat-cell
+					*matCellDef="let p; let i = dataIndex"
+					[ngClass]="{ SubrColumnDif: p.OMonthN2 != p.MonthN2, backcolorRed: p.MonthN2 > p.TopAverage && p.OMonthN2 != p.MonthN2 }"
+				>
+					<input
+						id="v{{ i * 3 + 1 }}"
+						matTooltip="{{ p.OMonthN2 }}"
+						[matTooltipPosition]="'above'"
+						matInput
+						[(ngModel)]="p.MonthN2"
+						(keyup)="susKeyEvent($event, p, i * 3 + 1, 2)"
+					/>
+				</td>
+				<td class="Tend" mat-footer-cell *matFooterCellDef>
+					{{ getTotal2('MonthN2') | formatNumber }}
+				</td>
+			</ng-container>
 
-            <tr mat-header-row *matHeaderRowDef="['space1','Forecast_','Presupuesto_','Cumplimiento']">
-            </tr>
-            <tr mat-header-row *matHeaderRowDef="displayedColumns2;" class="Thcenter"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns2;"
-              [@detailExpand2]="Mcont ? 'expanded' : 'collapsed'" (click)="SysFiltering('H')"></tr>
-            <tr mat-footer-row *matFooterRowDef="displayedColumns2;"></tr>
+			<!-- mes3 Column -->
+			<ng-container matColumnDef="monthN3">
+				<th class="Bright Mactual Tcenter" mat-header-cell *matHeaderCellDef>{{ obtenerMes(3) }}</th>
+				<td
+					class="Tend SubrColumn P2"
+					mat-cell
+					*matCellDef="let p; let i = dataIndex"
+					[ngClass]="{ SubrColumnDif: p.OMonthN3 != p.MonthN3, backcolorRed: p.MonthN3 > p.TopAverage && p.OMonthN3 != p.MonthN3 }"
+				>
+					<input
+						id="v{{ i * 3 + 2 }}"
+						matTooltip="{{ p.OMonthN3 }}"
+						[matTooltipPosition]="'above'"
+						matInput
+						[(ngModel)]="p.MonthN3"
+						(keyup)="susKeyEvent($event, p, i * 3 + 2, 3)"
+					/>
+				</td>
+				<td class="Tend" mat-footer-cell *matFooterCellDef>
+					{{ getTotal2('MonthN3') | formatNumber }}
+				</td>
+			</ng-container>
 
-          </table>
-        </div>
-      </div>
+			<!-- Mape Column -->
+			<ng-container matColumnDef="mape">
+				<th class="Tcenter" mat-header-cell *matHeaderCellDef>MAPE {{ obtenerMes(-1) }}</th>
+				<td class="Tend" mat-cell *matCellDef="let element" matTooltip="({{ element.MapeFore }}) Cases" matTooltipPosition="above">
+					({{ element.Mape }})%
+				</td>
+				<td class="Tend" mat-footer-cell *matFooterCellDef></td>
+			</ng-container>
 
-      <div fxLayout="row" fxFlex="100%" fxLayoutAlign="center center" class="LayoutMargin">
-        <div fxLayout="column" fxFlex>
+			<!-- Price Column -->
+			<ng-container matColumnDef="price">
+				<th class="Tend" mat-header-cell *matHeaderCellDef>Price</th>
+				<td class="Tend" mat-cell *matCellDef="let element">
+					<input matInput [(ngModel)]="element.Price" (keyup)="PreKeyEvent($event, element)" />
+				</td>
+				<td class="Tend" mat-footer-cell *matFooterCellDef>
+					{{ getTotal2('Price') | formatNumber }}
+				</td>
+			</ng-container>
 
-          <table class="T2 table-scroll" mat-table [dataSource]="ListColaboracion" multiTemplateDataRows>
+			<!-- Notas Column -->
+			<ng-container matColumnDef="notas">
+				<th class="Tend" mat-header-cell *matHeaderCellDef>
+					<button mat-icon-button>
+						<mat-icon (click)="ListNotes()">forum</mat-icon>
+					</button>
+				</th>
+				<td class="Tend" mat-cell *matCellDef="let element">
+					<mat-icon class="Note" (click)="NewNote(element)">comment</mat-icon>
+				</td>
+				<td class="Tend" mat-footer-cell *matFooterCellDef></td>
+			</ng-container>
 
-            <!-- Canal Column -->
-            <ng-container matColumnDef="canal">
-              <th mat-header-cell *matHeaderCellDef class="w5 Btop"
-                [ngClass]="{'FiltrElement': Bus.Canal != null && Bus.Canal != ''}">
-                <span *ngIf="!Cl" (click)="SysFiltering('Cl')">Canal</span>
-                <input *ngIf="Cl" placeholder="Canal" matInput (keyup)="applyFilter()" [(ngModel)]="Bus.Canal"
-                  style="max-width:90%;" autofocus>
-              </th>
-              <td class="w5 Tcenter" mat-cell *matCellDef="let element" (click)="SysFiltering('H')"> {{element.Canal}}
-              </td>
-            </ng-container>
+			<!-- Columnas  espacio -->
+			<ng-container matColumnDef="space1">
+				<th class="NoBbottom colornone" mat-header-cell *matHeaderCellDef colspan="5"></th>
+			</ng-container>
+			<!-- Columnas  espacio2 -->
+			<ng-container matColumnDef="space2">
+				<th class="NoBbottom colornone" mat-header-cell *matHeaderCellDef colspan="3"></th>
+			</ng-container>
+			<!-- Columnas  espacio3 -->
+			<ng-container matColumnDef="space3">
+				<td mat-cell *matCellDef="let element" colspan="3">
+					<div
+						class="table-element-detail Tend deleteIcon"
+						[@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'"
+					></div>
+				</td>
+			</ng-container>
 
-            <!-- Categoria Column -->
-            <ng-container matColumnDef="categoria">
-              <th mat-header-cell *matHeaderCellDef class="w10 Btop"
-                [ngClass]="{'FiltrElement': Bus.Categoria != null && Bus.Categoria != ''}">
-                <span *ngIf="!Cg" (click)="SysFiltering('Cg')">Categoria</span>
-                <input *ngIf="Cg" placeholder="Categoria" matInput (keyup)="applyFilter()" [(ngModel)]="Bus.Categoria"
-                  style="max-width:90%;" autofocus>
-              </th>
-              <td class="w10 Tcenter" mat-cell *matCellDef="let element" (click)="SysFiltering('H')">
-                {{element.Categoria}}
-              </td>
-            </ng-container>
+			<!-- Item Sales -->
+			<ng-container matColumnDef="Haderventas">
+				<th class="HeaderTop NoBbottom Btop Bleft Tcenter Bdtop" mat-header-cell *matHeaderCellDef colspan="5">
+					Sales
+				</th>
+			</ng-container>
+			<ng-container matColumnDef="Haderpronostico">
+				<th class="Mactual HeaderTop NoBbottom Btop Bleft Bright Tcenter Bdtop" mat-header-cell *matHeaderCellDef colspan="3">
+					Forecast
+				</th>
+			</ng-container>
+			<!-- Columnas  espacio -->
+			<ng-container matColumnDef="expandedDetail1">
+				<td class="" mat-cell *matCellDef="let element" colspan="10">
+					<div class="table-element-detail Tend" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+						<label class="Cblue">Sales last year </label>
+						<mat-icon class="ShowSecuence"> arrow_forward </mat-icon>
+					</div>
+				</td>
+			</ng-container>
+			<ng-container matColumnDef="expandedDetail2">
+				<td mat-cell *matCellDef="let element">
+					<div
+						class="table-element-detail Tend deleteIcon"
+						[@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'"
+						title="Eliminar"
+					>
+						<mat-icon *ngIf="element.Nov" (click)="deletePronos(element)"> delete_forever </mat-icon>
+					</div>
+				</td>
+			</ng-container>
 
-            <!-- Marca Column -->
-            <ng-container matColumnDef="marca">
-              <th mat-header-cell *matHeaderCellDef class="w5 Btop">
-                <span> Marca </span>
-              </th>
-              <td class="w5 Tcenter" mat-cell *matCellDef="let element" (click)="SysFiltering('H')"> {{element.Marca}}
-              </td>
-            </ng-container>
+			<!-- Columnas  espacio -->
+			<!-- Mes_Anterior_1  año anterior Column -->
+			<ng-container matColumnDef="expandedA1">
+				<td mat-cell *matCellDef="let element">
+					<div class="table-element-detail Tcenter" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+						{{ element.MonthPrev1 | formatNumber }}
+					</div>
+				</td>
+			</ng-container>
 
-            <!-- Submarca Column -->
-            <ng-container matColumnDef="submarca">
-              <th mat-header-cell *matHeaderCellDef class="w10 Btop"
-                [ngClass]="{'FiltrElement': Bus.Submarca != null && Bus.Submarca != ''}">
-                <span *ngIf="!Sm" (click)="SysFiltering('Sm')"> Submarca </span>
-                <input *ngIf="Sm" placeholder="Submarca" matInput (keyup)="applyFilter()" [(ngModel)]="Bus.Submarca"
-                  style="max-width:90%;" autofocus>
-              </th>
-              <td class="w10 Tcenter" mat-cell *matCellDef="let element" (click)="SysFiltering('H')">
-                {{element.Submarca}}
-              </td>
-            </ng-container>
+			<!-- Mes_Anterior_2  año anterior Column -->
+			<ng-container matColumnDef="expandedA2">
+				<td class="Tcenter" mat-cell *matCellDef="let element">
+					<div class="table-element-detail Tcenter" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+						{{ element.MonthPrev2 | formatNumber }}
+					</div>
+				</td>
+			</ng-container>
 
-            <!-- Material Column -->
-            <ng-container matColumnDef="material">
-              <th mat-header-cell *matHeaderCellDef class="w5_25 Btop"
-                [ngClass]="{'FiltrElement': Bus.Material != null && Bus.Material != ''}">
-                <span *ngIf="!Mt" (click)="SysFiltering('Mt')">Material</span>
-                <input *ngIf="Mt" placeholder="Material" matInput (keyup)="applyFilter()" [(ngModel)]="Bus.Material"
-                  style="max-width:90%;" autofocus>
-              </th>
-              <td class="w5_25 Tcenter" mat-cell *matCellDef="let element" (click)="SysFiltering('H')">
-                {{element.Material}}
-              </td>
-            </ng-container>
+			<!-- Mes_Anterior_3 año anterior Column -->
+			<ng-container matColumnDef="expandedA3">
+				<td class="Tcenter" mat-cell *matCellDef="let element">
+					<div class="table-element-detail Tcenter" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+						{{ element.MonthPrev3 | formatNumber }}
+					</div>
+				</td>
+			</ng-container>
 
-            <!-- Descripcion Column -->
-            <ng-container matColumnDef="descripcion">
-              <th mat-header-cell *matHeaderCellDef class="w21 Btop"
-                [ngClass]="{'FiltrElement': Bus.Descripcion != null && Bus.Descripcion != ''}">
-                <span *ngIf="!Des" (click)="SysFiltering('Des')"> Descripcion </span>
-                <input *ngIf="Des" placeholder="Descripcion" matInput (keyup)="applyFilter()"
-                  [(ngModel)]="Bus.Descripcion" style="max-width:90%;" autofocus>
-              </th>
-              <td class="w21" mat-cell *matCellDef="let element" (click)="SysFiltering('H')">
-                {{element.Descripcion | slice:0:45}}
-              </td>
-            </ng-container>
-
-            <!-- Mes_Anterior_1 Column -->
-            <ng-container matColumnDef="mesn_3">
-              <th class="w5_5 Bleft " mat-header-cell *matHeaderCellDef> {{obtenerMes(-3)}} </th>
-              <td class="w5_5 Tcenter" mat-cell *matCellDef="let element"> {{element.Mesn_3 }} </td>
-            </ng-container>
-
-            <!-- Mes_Anterior_2 Column -->
-            <ng-container matColumnDef="mesn_2">
-              <th class="w5_5" mat-header-cell *matHeaderCellDef> {{obtenerMes(-2)}} </th>
-              <td class="w5_5 Tcenter" mat-cell *matCellDef="let element"> {{element.Mesn_2 }} </td>
-            </ng-container>
-
-            <!-- Mes_Anterior_3 Column -->
-            <ng-container matColumnDef="mesn_1">
-              <th class="w5_5" mat-header-cell *matHeaderCellDef> {{obtenerMes(-1)}} </th>
-              <td class="w5_5 Tcenter" mat-cell *matCellDef="let element"> {{element.Mesn_3 }} </td>
-            </ng-container>
-
-            <!-- Promedio Column -->
-            <ng-container matColumnDef="promedio">
-              <th class="w5_5" mat-header-cell *matHeaderCellDef> Promedio </th>
-              <td class="w5_5 Tcenter" mat-cell *matCellDef="let element">
-                {{element.Promedio}} </td>
-            </ng-container>
-
-            <!-- mes1 Column -->
-            <ng-container matColumnDef="mesn1">
-              <th class="w5_5 Mactual Bleft" mat-header-cell *matHeaderCellDef> {{obtenerMes(1)}} </th>
-              <td class="w5_5 Tcenter SubrColumn" mat-cell *matCellDef="let p; let i = dataIndex"
-              [ngClass]="{'SubrColumnDif': p.OMesn1 != p.Mesn1 }">
-                <input id="v{{i * 3}}" matTooltip="{{p.OMesn1}}" [matTooltipPosition]="'above'" matInput [(ngModel)]="p.Mesn1"
-                  (keyup)="susKeyEvent($event,p,i*3,1)" style="max-width:90%;">
-              </td>
-            </ng-container>
-
-            <!-- mes2 Column -->
-            <ng-container matColumnDef="mesn2">
-              <th class="w5_5 Mactual" mat-header-cell *matHeaderCellDef> {{obtenerMes(2)}} </th>
-              <td class="w5_5 Tcenter SubrColumn" mat-cell *matCellDef="let p; let i = dataIndex"
-              [ngClass]="{'SubrColumnDif': p.OMesn2 != p.Mesn2 }">
-                <input id="v{{i * 3 + 1}}" matTooltip="{{p.OMesn2}}" [matTooltipPosition]="'above'" matInput [(ngModel)]="p.Mesn2" (keyup)="susKeyEvent($event,p,i*3+1,2)"
-                  style="max-width:90%;">
-              </td>
-            </ng-container>
-
-            <!-- mes3 Column -->
-            <ng-container matColumnDef="mesn3">
-              <th class="w5_5 Bright Mactual" mat-header-cell *matHeaderCellDef> {{obtenerMes(3)}} </th>
-              <td class="w5_5 Tcenter SubrColumn" mat-cell *matCellDef="let p; let i = dataIndex"
-              [ngClass]="{'SubrColumnDif': p.OMesn3 != p.Mesn3 }">
-                <input id="v{{i * 3 + 2}}" matTooltip="{{p.OMesn3}}" [matTooltipPosition]="'above'" matInput [(ngModel)]="p.Mesn3" (keyup)="susKeyEvent($event,p,i*3+2,3)"
-                  style="max-width:90%;">
-              </td>
-            </ng-container>
-
-            <!-- Precio Column -->
-            <ng-container matColumnDef="precio">
-              <th class="w5_5" mat-header-cell *matHeaderCellDef> Precio </th>
-              <td class="w5_5 Tcenter" mat-cell *matCellDef="let element">$ {{element.Precio }} </td>
-            </ng-container>
-
-            <!-- Columnas  espacio -->
-            <ng-container matColumnDef="space1">
-              <th class="w56_35 NoBbottom colornone" mat-header-cell *matHeaderCellDef colspan="6"> </th>
-            </ng-container>
-            <!-- Columnas  espacio2 -->
-            <ng-container matColumnDef="space2">
-              <th class="NoBbottom colornone" mat-header-cell *matHeaderCellDef> </th>
-            </ng-container>
-
-            <!-- Item Ventas -->
-            <ng-container matColumnDef="Haderventas">
-              <th class="w22 HeaderTop NoBbottom Btop Bleft Tcenter Bdtop" mat-header-cell *matHeaderCellDef
-                colspan="4">
-                Ventas
-              </th>
-            </ng-container>
-            <ng-container matColumnDef="Haderpronostico">
-              <th class="Mactual HeaderTop NoBbottom Btop Bleft Bright Tcenter Bdtop" mat-header-cell *matHeaderCellDef
-                colspan="3">
-                Pronóstico
-              </th>
-            </ng-container>
-            <!-- Columnas  espacio -->
-            <ng-container matColumnDef="expandedDetail1">
-              <td class="w78_35" mat-cell *matCellDef="let element" colspan="10">
-                <div class="table-element-detail Tend"
-                  [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
-                  <label class="Cblue">Ventas año anterior </label>
-                  <mat-icon class="ShowSecuence"> arrow_forward </mat-icon>
-                </div>
-              </td>
-            </ng-container>
-            <ng-container matColumnDef="expandedDetail2">
-              <td mat-cell *matCellDef="let element">
-                <div class="table-element-detail "
-                  [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
-                </div>
-              </td>
-            </ng-container>
-
-            <!-- Columnas  espacio -->
-            <!-- Mes_Anterior_1  año anterior Column -->
-            <ng-container matColumnDef="expandedA1">
-              <td mat-cell *matCellDef="let element">
-                <div class="table-element-detail Tcenter"
-                  [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
-                  {{element.MesAn1}}
-                </div>
-              </td>
-            </ng-container>
-
-            <!-- Mes_Anterior_2  año anterior Column -->
-            <ng-container matColumnDef="expandedA2">
-
-              <td class="Tcenter" mat-cell *matCellDef="let element">
-                <div class="table-element-detail Tcenter"
-                  [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
-                  {{element.MesAn2}}
-                </div>
-              </td>
-            </ng-container>
-
-            <!-- Mes_Anterior_3 año anterior Column -->
-            <ng-container matColumnDef="expandedA3">
-
-              <td class="Tcenter" mat-cell *matCellDef="let element">
-                <div class="table-element-detail Tcenter"
-                  [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
-                  {{element.MesAn3}}
-                </div>
-              </td>
-            </ng-container>
-
-
-            <tr mat-header-row *matHeaderRowDef="['space1','Haderventas','Haderpronostico','space2']">
-            </tr>
-            <tr mat-header-row *matHeaderRowDef="displayedColumns;" class="Thcenter"></tr>
-            <tr mat-row *matRowDef="let element; columns: displayedColumns;" class="table-element-row js-pscroll"
-              [class.table-expanded-row]="expandedElement === element"
-              (click)="expandedElement = expandedElement === element ? null : element"></tr>
-            <tr mat-row
-              *matRowDef="let row; columns: ['expandedDetail1','expandedA1','expandedA2','expandedA3','expandedDetail2']"
-              class="table-detail-row">
-            </tr>
-
-          </table>
-          <!-- <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator> -->
-        </div>
-      </div>
-    </div>
-  </div>
+			<tr mat-header-row *matHeaderRowDef="['space1', 'Haderventas', 'Haderpronostico', 'space2']; sticky: true"></tr>
+			<tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+			<tr
+				mat-row
+				*matRowDef="let element; columns: displayedColumns"
+				class="table-element-row js-pscroll"
+				[class.table-expanded-row]="expandedElement === element"
+				(click)="expandedElement = expandedElement === element ? null : element"
+				[ngClass]="{ Nov: element.Nov }"
+			></tr>
+			<tr
+				mat-row
+				*matRowDef="let row; columns: ['expandedDetail1', 'expandedA1', 'expandedA2', 'expandedA3', 'expandedDetail2', 'space3']"
+				class="table-detail-row"
+			></tr>
+			<tr mat-footer-row *matFooterRowDef="displayedColumns; sticky: true"></tr>
+		</table>
+		<!-- <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator> -->
+	</div>
 </div>

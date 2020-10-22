@@ -1,0 +1,71 @@
+<div fxLayout="column" fxLayoutAlign="start center" mat-dialog-content style="height: 400px;">
+	<div fxLayout="row" fxFlex="100%" class="ContNnovedad">
+		<div fxLayout="column" fxFlex="20%" class="ContImgNov">
+			<div class="ImgNnovedad"></div>
+		</div>
+		<div fxLayout="column" fxLayoutAlign="center center" fxFlex="80%" class="ContFormN">
+			<div fxLayout="row" fxFlex="100%" fxLayoutAlign="start start">
+				<h2>New Item</h2>
+			</div>
+			<div fxLayout="row" fxFlex="100%" class="CampFormN">
+				<div fxLayout="column" fxFlex="50%">
+					<mat-label>Client</mat-label>
+					<span class="custom-input">
+						<input matInput [(ngModel)]="ModelNew.Description" autofocus required />
+					</span>
+				</div>
+				<div fxLayout="column" fxFlex="50%">
+					<mat-label>Division</mat-label>
+					<span class="custom-dropdown">
+						<mat-select [(ngModel)]="ModelNew.Canal" multiple>
+							<mat-option *ngFor="let Canal  of ListFiltrs.Canales" [value]="Canal">
+								{{Canal }}
+							</mat-option>
+						</mat-select>
+					</span>
+				</div>
+			</div>
+			<div fxLayout="row" fxFlex="100%" class="CampFormN">
+				<div fxLayout="column" fxFlex="50%">
+					<mat-label>Brand</mat-label>
+					<span class="custom-dropdown">
+						<mat-select [(ngModel)]="ModelNew.Category" required>
+							<mat-option *ngFor="let Category  of ListFiltrs.Categorias" [value]="Category">
+								{{Category }}
+							</mat-option>
+						</mat-select>
+					</span>
+				</div>
+				<div fxLayout="column" fxFlex="50%">
+					<mat-label>Company</mat-label>
+					<span class="custom-dropdown">
+						<mat-select [(ngModel)]="ModelNew.Company">
+							<mat-option *ngFor="let Company  of ListFiltrs.Submarcas" [value]="Company">
+								{{Company }}
+							</mat-option>
+						</mat-select>
+					</span>
+				</div>
+			</div>
+			<div fxLayout="row" fxFlex="100%" class="CampFormN">
+				<div fxLayout="column" fxFlex="50%">
+					<mat-label>Item Code</mat-label>
+					<span class="custom-input">
+						<input matInput [(ngModel)]="ModelNew.Item" autofocus />
+					</span>
+				</div>
+
+				<div fxLayout="column" fxFlex="50%">
+					<mat-label>Description</mat-label>
+					<span class="custom-input">
+						<input matInput [(ngModel)]="ModelNew.Description" autofocus required />
+					</span>
+				</div>
+			</div>
+			<div fxLayout="row" fxFlex="100%" fxLayoutAlign="end end">
+				<button mat-raised-button (click)="cancel()" style="margin-right: 5px;" color="warn">Decline</button>
+				<button mat-raised-button (click)="ok()" color="primary">Add</button>
+			</div>
+		</div>
+	</div>
+</div>
