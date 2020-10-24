@@ -391,11 +391,16 @@ option:hover {
 	cursor: pointer;
 }
 
+.eNote {
+	color: #e16162;
+}
+
 .deleteIcon .mat-icon:hover {
 	color: #c86369;
 }
 .closeIcon .mat-icon:hover {
 	color: #0a212b;
+	cursor: pointer;
 }
 div.plMenuCSS {
 	min-width: 200px;

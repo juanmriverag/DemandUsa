@@ -160,4 +160,15 @@ export class AppService {
 		bodystr.append('Option', Option);
 		return this.httpclient.post(this.urlBase.url + 'Note', bodystr);
 	}
+
+	//ItemChar
+	getItemChart(Territory: string, Client: string, Item: string) {
+		// Initialize Params Object
+		let params = new HttpParams();
+		// Begin assigning parameters
+		params = params.append('Territory', Territory);
+		params = params.append('Client', Client);
+		params = params.append('Item', Item);
+		return this.httpclient.get<any[]>(this.urlBase.url + 'getItemChart', { params: params });
+	}
 }

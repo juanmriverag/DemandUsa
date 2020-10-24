@@ -19,6 +19,7 @@ import { Note_modal } from '../popups/Note/Note';
 import { Notes_modal } from '../popups/Notes/Notes';
 import { TablaVts_modal } from '../popups/TablaVts/TablaVts';
 import { GraficaVts_modal } from '../popups/GraficaVts/GraficaVts';
+import { itemChartP_modal } from '../popups/itemChartP/itemChartP';
 import { CumpTotal_modal } from '../popups/CumpTotal/CumpTotal';
 import { Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { newNovedad_modal } from '../popups/newNovedad/newNovedad';
@@ -48,6 +49,7 @@ declare function NSFunctionMostrarMenus(mostrar: boolean): any;
 export class ColaboracionVComponent implements OnInit, AfterViewInit {
 	meses = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 	mesActual = 0;
+	dataChartItem = {};
 	displayedColumns = [
 		'category',
 		'company',
@@ -107,6 +109,7 @@ export class ColaboracionVComponent implements OnInit, AfterViewInit {
 	@Output() Finish: EventEmitter<null> = new EventEmitter();
 	@ViewChild(TablaVts_modal, { static: false }) _TablaVts_modal: TablaVts_modal;
 	@ViewChild(GraficaVts_modal, { static: false }) _GraficaVts_modal: GraficaVts_modal;
+	@ViewChild(itemChartP_modal, { static: false }) _itemChartP_modal: itemChartP_modal;
 	@ViewChild(CumpTotal_modal, { static: false }) _CumpTotal_modal: CumpTotal_modal;
 	@ViewChild(TemplateRef, { static: true }) _dialogTemplate: TemplateRef<any>;
 	@ViewChild(MatSort, { static: true }) sort: MatSort;
@@ -289,7 +292,6 @@ export class ColaboracionVComponent implements OnInit, AfterViewInit {
 		this.getDMForeCast();
 	}
 	applyFilter5() {
-		debugger;
 		if (this.filtrClient == '') {
 			this.filtrClient = '-';
 			this.getDMForeCast();
@@ -305,7 +307,6 @@ export class ColaboracionVComponent implements OnInit, AfterViewInit {
 			});
 
 			if (this.filtrClient == '') {
-				debugger;
 				this.filtrClient = this.ListClients[0].canal;
 				this.ListClients[0].checked = true;
 			}
@@ -326,7 +327,7 @@ export class ColaboracionVComponent implements OnInit, AfterViewInit {
 
 		this._appService.getAllDMForeCastXTerritory(this.Bus.Territory, this.filtrClient).subscribe((data) => {
 			this.ListDMForeCast = new MatTableDataSource(data['ListColabs']);
-			debugger;
+
 			this.ListDMForeCast.sort = this.sort;
 			this.ListDMForeCast.filterPredicate = this.tableFilter();
 
@@ -637,6 +638,7 @@ export class ColaboracionVComponent implements OnInit, AfterViewInit {
 	}
 
 	getAllClients() {
+		debugger;
 		var _data = this.ListUnique(this.ListDMForeCast.data, 'Client');
 		_data.forEach((element) => {
 			this.ListClients.push({ canal: element, checked: true });
@@ -664,6 +666,9 @@ export class ColaboracionVComponent implements OnInit, AfterViewInit {
 	}
 	openDCumpTotal() {
 		this._CumpTotal_modal.openDialog();
+	}
+	openDitemChartP() {
+		this._itemChartP_modal.openDialog();
 	}
 
 	AddNovedad() {
@@ -695,11 +700,19 @@ export class ColaboracionVComponent implements OnInit, AfterViewInit {
 		});
 	}
 
+	cleanNoteList() {
+		this.ListDMForeCast.data.forEach((element) => {
+			element.IdNote = null;
+		});
+	}
+
 	getNotes() {
 		this._appService.getNotes().subscribe((rest) => {
 			this.Notes = rest['ListNotes'];
 			if (this.Notes.length > 0) {
 				this.InsertNotesList();
+			} else {
+				this.cleanNoteList();
 			}
 		});
 	}
@@ -741,6 +754,14 @@ export class ColaboracionVComponent implements OnInit, AfterViewInit {
 			if (result) {
 				this.getNotes();
 			}
+		});
+	}
+
+	chartItem(_model) {
+		this._appService.getItemChart(_model.Territory, _model.Client, _model.Item).subscribe((req) => {
+			this.dataChartItem = req['listItemChart'];
+			debugger;
+			this.openDitemChartP();
 		});
 	}
 

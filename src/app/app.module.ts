@@ -41,6 +41,7 @@ import { Load_modal } from './popups/Load/Load';
 import { newNovedad_modal } from './popups/newNovedad/newNovedad';
 import { TablaVts_modal } from './popups/TablaVts/TablaVts';
 import { GraficaVts_modal } from './popups/GraficaVts/GraficaVts';
+import { itemChartP_modal } from './popups/itemChartP/itemChartP';
 import { CumpTotal_modal } from './popups/CumpTotal/CumpTotal';
 import { Note_modal } from './popups/Note/Note';
 import { Notes_modal } from './popups/Notes/Notes';
@@ -74,6 +75,7 @@ const rutas: Routes = [
 		Load_modal,
 		TablaVts_modal,
 		GraficaVts_modal,
+		itemChartP_modal,
 		CumpTotal_modal,
 		newNovedad_modal,
 		Note_modal,
@@ -108,6 +110,7 @@ const rutas: Routes = [
 		Load_modal,
 		TablaVts_modal,
 		GraficaVts_modal,
+		itemChartP_modal,
 		CumpTotal_modal,
 		newNovedad_modal,
 		Note_modal,

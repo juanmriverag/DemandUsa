@@ -78,7 +78,7 @@ export class LoginComponent implements OnInit {
 						});
 					} else {
 						///Hacer Login.
-						this.cookies.set('CLB', this.Token);
+						this.cookies.set('CLB', this.Token, null, null, null, false, 'Lax');
 
 						this.appComponent.HacerLogin(this.UsuRegistrado);
 					}

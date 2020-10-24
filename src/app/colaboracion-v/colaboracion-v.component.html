@@ -27,15 +27,14 @@
 			<TablaVts [Ctrl]="Ctrl"></TablaVts>
 			<GraficaVts [Ctrl]="Ctrl"></GraficaVts>
 			<CumpTotal [Ctrl]="Ctrl"></CumpTotal>
+			<itemChartP [listData]="dataChartItem"></itemChartP>
 		</div>
 		<div fxLayout="column" fxFlex="95%">
 			<table class="T1" mat-table [dataSource]="ListDMForeCast_" multiTemplateDataRows>
 				<!-- Category Column -->
 				<ng-container matColumnDef="category">
 					<th class="Btop" mat-header-cell *matHeaderCellDef>
-						<mat-icon class="icoN FloLeft" [ngClass]="{ UpIcon: Mcont }" (click)="Mcont = !Mcont">
-							keyboard_arrow_down
-						</mat-icon>
+						<mat-icon class="icoN FloLeft" [ngClass]="{ UpIcon: Mcont }" (click)="Mcont = !Mcont"> keyboard_arrow_down </mat-icon>
 						<span *ngIf="!Ca" (click)="SysFiltering('Ca')"> Division </span>
 						<input
 							*ngIf="Ca"
@@ -43,7 +42,7 @@
 							matInput
 							(keyup)="applyFilter2()"
 							[(ngModel)]="Bus2.Category"
-							style="max-width: 60px;"
+							style="max-width: 60px"
 							autofocus
 						/>
 					</th>
@@ -57,11 +56,11 @@
 						<span *ngIf="!Mc" (click)="SysFiltering('Mc')"> Company </span>
 						<input
 							*ngIf="Mc"
-							placeholder="Submarc"
+							placeholder="Company"
 							matInput
 							(keyup)="applyFilter2()"
 							[(ngModel)]="Bus2.Company"
-							style="max-width: 60px;"
+							style="max-width: 60px"
 							autofocus
 						/>
 					</th>
@@ -154,19 +153,13 @@
 
 				<!-- Items -->
 				<ng-container matColumnDef="Forecast_">
-					<th class="HeaderTop NoBbottom Btop Bright Bleft Tcenter Bdtop" mat-header-cell *matHeaderCellDef colspan="3">
-						$ Forecast
-					</th>
+					<th class="HeaderTop NoBbottom Btop Bright Bleft Tcenter Bdtop" mat-header-cell *matHeaderCellDef colspan="3">$ Forecast</th>
 				</ng-container>
 				<ng-container matColumnDef="Presupuesto_">
-					<th class="HeaderTop NoBbottom Btop Bright Tcenter Bdtop" mat-header-cell *matHeaderCellDef colspan="3">
-						$ Budget
-					</th>
+					<th class="HeaderTop NoBbottom Btop Bright Tcenter Bdtop" mat-header-cell *matHeaderCellDef colspan="3">$ Budget</th>
 				</ng-container>
 				<ng-container matColumnDef="Compliance">
-					<th class="HeaderTop NoBbottom Btop Bright Tcenter Bdtop" mat-header-cell *matHeaderCellDef colspan="3">
-						% Compliance
-					</th>
+					<th class="HeaderTop NoBbottom Btop Bright Tcenter Bdtop" mat-header-cell *matHeaderCellDef colspan="3">% Compliance</th>
 				</ng-container>
 
 				<tr mat-header-row *matHeaderRowDef="['space1', 'Forecast_', 'Presupuesto_', 'Compliance']"></tr>
@@ -398,7 +391,7 @@
 					</button>
 				</th>
 				<td class="Tend" mat-cell *matCellDef="let element">
-					<mat-icon class="Note" (click)="NewNote(element)">comment</mat-icon>
+					<mat-icon class="Note" [ngClass]="{ eNote: element.IdNote != null }" (click)="NewNote(element)">comment</mat-icon>
 				</td>
 				<td class="Tend" mat-footer-cell *matFooterCellDef></td>
 			</ng-container>
@@ -414,18 +407,15 @@
 			<!-- Columnas  espacio3 -->
 			<ng-container matColumnDef="space3">
 				<td mat-cell *matCellDef="let element" colspan="3">
-					<div
-						class="table-element-detail Tend deleteIcon"
-						[@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'"
-					></div>
+					<div class="table-element-detail Tend closeIcon" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+						<mat-icon (click)="chartItem(element)"> insights</mat-icon>
+					</div>
 				</td>
 			</ng-container>
 
 			<!-- Item Sales -->
 			<ng-container matColumnDef="Haderventas">
-				<th class="HeaderTop NoBbottom Btop Bleft Tcenter Bdtop" mat-header-cell *matHeaderCellDef colspan="5">
-					Sales
-				</th>
+				<th class="HeaderTop NoBbottom Btop Bleft Tcenter Bdtop" mat-header-cell *matHeaderCellDef colspan="5">Sales</th>
 			</ng-container>
 			<ng-container matColumnDef="Haderpronostico">
 				<th class="Mactual HeaderTop NoBbottom Btop Bleft Bright Tcenter Bdtop" mat-header-cell *matHeaderCellDef colspan="3">
