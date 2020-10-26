@@ -41,3 +41,15 @@ button {
 	max-width: 500px;
 	width: 100%;
 }
+
+.titleNote {
+	font-family: 'Krub', sans-serif;
+	font-size: 1.5em;
+	margin-top: 1rem;
+	margin-bottom: 0;
+	font-weight: 900;
+}
+
+.contentTitleNote {
+	margin-left: 5px;
+}

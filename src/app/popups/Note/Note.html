@@ -1,4 +1,4 @@
-<div fxLayout="column" fxLayoutAlign="start center" mat-dialog-content style="height: 400px;">
+<div fxLayout="column" fxLayoutAlign="start center" mat-dialog-content style="height: 400px">
 	<div fxLayout="row" fxFlex="100%" class="ContNnovedad">
 		<div fxLayout="column" fxFlex="20%" class="ContImgNov">
 			<div class="ImgNnovedad"></div>
@@ -6,7 +6,10 @@
 		<div fxLayout="column" fxLayoutAlign="center center" fxFlex="80%" class="ContFormN">
 			<div fxLayout="row" fxFlex="100%" fxLayoutAlign="start center">
 				<mat-icon>comment</mat-icon>
-				<h2>Note for {{_Note.Territory}} - {{_Note.Item}}</h2>
+				<div fxLayout="column" class="contentTitleNote">
+					<p class="titleNote">{{_Note.Territory}} - Note</p>
+					<label class="f12">{{_Note.Item}} - {{data.item.Description}}</label>
+				</div>
 			</div>
 			<form class="form">
 				<mat-form-field class="full-width">
@@ -20,7 +23,7 @@
 				</mat-form-field>
 			</form>
 			<div fxLayout="row" fxFlex="100%" fxLayoutAlign="end end">
-				<button mat-raised-button (click)="exit()" style="margin-right: 5px;" color="warn">Decline</button>
+				<button mat-raised-button (click)="exit()" style="margin-right: 5px" color="warn">Decline</button>
 				<button mat-raised-button (click)="ok()" color="primary">{{BtnOk}}</button>
 			</div>
 		</div>

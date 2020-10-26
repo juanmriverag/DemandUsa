@@ -31,6 +31,7 @@ export class GraficaVts_modal implements AfterViewInit, OnDestroy {
 	ListForeCastChart: any = [];
 	ListFiltrDispo: any = [];
 	typechart = 'ComboChart';
+
 	columnNames: string[] = [];
 	data = [];
 	Filtr = {
@@ -60,8 +61,8 @@ export class GraficaVts_modal implements AfterViewInit, OnDestroy {
 		selectionMode: 'multiple',
 		tooltip: { trigger: 'selection' },
 		series: {
-			0: { color: '#749AA8' },
-			1: { type: 'line', color: '#2D4F5C' },
+			0: { type: 'line', color: '#749AA8' },
+			1: { color: '#2D4F5C' },
 			// 2: { color: '#A99075' },
 			// 3: { type: 'line', color: '#E8BC89' },
 			// 3: { type: 'line', color: '#5C4A36' },
@@ -117,7 +118,7 @@ export class GraficaVts_modal implements AfterViewInit, OnDestroy {
 		this.columnNames = [];
 		this.data = [];
 		this.columnNames.push('Month');
-
+		debugger;
 		const element = this._Ctrl.ListYears[1];
 		if (element.checked) {
 			this.columnNames.push('Sales-Forecast - ' + element.year);

@@ -15,7 +15,7 @@ import { TemplatePortal } from '@angular/cdk/portal';
 import { ScriptLoaderService, GoogleChartPackagesHelper } from 'angular-google-charts';
 
 // import { ColaboracionVComponent } from '../../colaboracion-v/colaboracion-v.component';
-const type = GoogleChartPackagesHelper.getPackageForChartName('BarChart');
+// const type = GoogleChartPackagesHelper.getPackageForChartName('BarChart');
 @Component({
 	selector: 'itemChartP',
 	templateUrl: './itemChartP.html',
@@ -23,32 +23,38 @@ const type = GoogleChartPackagesHelper.getPackageForChartName('BarChart');
 })
 export class itemChartP_modal implements AfterViewInit, OnDestroy {
 	dataChartItem: any; // entrada
+	_modelItem: {};
+	loading: string = 'loading';
 
 	@ViewChild(TemplateRef, { static: false }) _dialogTemplate: TemplateRef<any>;
 	private _overlayRef: OverlayRef;
 	private _portal: TemplatePortal;
 
-	typechart = 'ComboChart';
+	typechart = 'LineChart';
 	columnNames: string[] = [];
 	dataChart = [];
 
 	options = {
 		title: '',
-		legend: { position: 'right', textStyle: { fontSize: 10 } },
-		width: 950,
-		height: 400,
+		legend: { position: 'in', textStyle: { fontSize: 10 } },
 
-		seriesType: 'bars',
+		width: 650,
+		height: 350,
+		// curveType: 'function',
 		selectionMode: 'multiple',
-		tooltip: { trigger: 'selection' },
+		tooltip: { trigger: 'selection', textStyle: { fontSize: 10 } },
+		aggregationTarget: 'series',
+		hAxis: { slantedTextAngle: 90 },
+		// vAxis: { viewWindow: { min: 1 } },
 		series: {
-			0: { color: '#749AA8' },
-			1: { type: 'line', color: '#2D4F5C' },
+			0: { color: '#2D4F5C' },
+			1: { color: '#ED1C23' },
 			// 2: { color: '#A99075' },
 			// 3: { type: 'line', color: '#E8BC89' },
 			// 3: { type: 'line', color: '#5C4A36' },
 		},
-		// chartArea: { width: '70%', height: '90%' },
+		// chartArea: { left: 50, top: 15, winth: '150%' },
+		chartArea: { width: '95%', height: '80%', top: 5, left: 35 },
 		// legend: { position: 'bottom' }
 	};
 
@@ -63,8 +69,15 @@ export class itemChartP_modal implements AfterViewInit, OnDestroy {
 		this._overlayRef.dispose();
 	}
 
-	openDialog(data) {
+	refresh(data) {
 		this.dataChartItem = data;
+		this.crear();
+	}
+
+	openDialog(data, _model) {
+		this.loading = 'loadig';
+		this.dataChartItem = data;
+		this._modelItem = _model;
 		this._overlayRef.attach(this._portal);
 		this.crear();
 	}
@@ -75,10 +88,12 @@ export class itemChartP_modal implements AfterViewInit, OnDestroy {
 		this.columnNames.push('Date');
 		this.columnNames.push('Sales');
 		this.columnNames.push('ForeCast');
-		debugger;
+
 		this.dataChartItem.forEach((element) => {
 			this.dataChart.push([element.Date, element.Sale, element.ForeCast]);
 		});
+
+		this.loading = 'complete';
 		// this.data.listCharts.forEach((element) => {
 		// 	this.dataChart.push([element.Date, element.Sale, element.ForeCast]);
 		// });

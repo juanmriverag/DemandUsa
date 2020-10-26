@@ -301,7 +301,11 @@
 					class="Tend SubrColumn"
 					mat-cell
 					*matCellDef="let p; let i = dataIndex"
-					[ngClass]="{ SubrColumnDif: p.OMonthN1 != p.MonthN1, backcolorRed: p.MonthN1 > p.TopAverage && p.OMonthN1 != p.MonthN1 }"
+					[ngClass]="{
+						SubrColumnDif: p.OMonthN1 != p.MonthN1,
+						bgYellow: p.MonthN1 >= p.TopAverage && p.MonthN1 < p.Average * 1.7,
+						bgRed: p.MonthN1 >= p.Average * 1.7
+					}"
 				>
 					<input
 						id="v{{ i * 3 }}"
@@ -324,7 +328,11 @@
 					class="Tend SubrColumn"
 					mat-cell
 					*matCellDef="let p; let i = dataIndex"
-					[ngClass]="{ SubrColumnDif: p.OMonthN2 != p.MonthN2, backcolorRed: p.MonthN2 > p.TopAverage && p.OMonthN2 != p.MonthN2 }"
+					[ngClass]="{
+						SubrColumnDif: p.OMonthN2 != p.MonthN2,
+						bgYellow: p.MonthN2 >= p.TopAverage && p.MonthN2 < p.Average * 1.7,
+						bgRed: p.MonthN2 >= p.Average * 1.7
+					}"
 				>
 					<input
 						id="v{{ i * 3 + 1 }}"
@@ -347,7 +355,11 @@
 					class="Tend SubrColumn P2"
 					mat-cell
 					*matCellDef="let p; let i = dataIndex"
-					[ngClass]="{ SubrColumnDif: p.OMonthN3 != p.MonthN3, backcolorRed: p.MonthN3 > p.TopAverage && p.OMonthN3 != p.MonthN3 }"
+					[ngClass]="{
+						SubrColumnDif: p.OMonthN3 != p.MonthN3,
+						bgYellow: p.MonthN3 >= p.TopAverage && p.MonthN3 < p.Average * 1.7,
+						bgRed: p.MonthN3 >= p.Average * 1.7
+					}"
 				>
 					<input
 						id="v{{ i * 3 + 2 }}"

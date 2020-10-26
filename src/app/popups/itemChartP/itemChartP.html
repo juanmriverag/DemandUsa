@@ -2,21 +2,17 @@
 	<div class="Custom-Dialog" cdkDrag cdkDragRootElement=".cdk-overlay-pane">
 		<div fxLayout="column" fxFlex="100%">
 			<div class="BartopPop" fxLayout="row" fxFlex="100%">
-				<div fxLayout="column" fxFlex="50%" fxLayoutAlign="center start"></div>
-				<div class="closeIcon" fxLayout="column" fxFlex="50%" fxLayoutAlign="center end">
+				<div fxLayout="column" fxFlex="80%" fxLayoutAlign="center start">
+					<label class="titleChart">Item : {{_modelItem.Item}} - {{_modelItem.Description}}</label>
+				</div>
+				<div class="closeIcon" fxLayout="column" fxFlex="20%" fxLayoutAlign="center end">
 					<mat-icon aria-label="Close" (click)="closeDialog()">close</mat-icon>
 				</div>
 			</div>
 			<div fxLayout="row" fxFlex="100%" fxLayoutAlign="center center" class="LayoutMargin12">
 				<div fxLayout="column" fxFlex="100%" style="cursor: pointer">
-					<google-chart
-						class="LayoutMargin12"
-						[title]="Hola"
-						[type]="typechart"
-						[data]="dataChart"
-						[columnNames]="columnNames"
-						[options]="options"
-					>
+					<!-- {{loading}} -->
+					<google-chart [title]="Hola" [type]="typechart" [data]="dataChart" [columnNames]="columnNames" [options]="options">
 					</google-chart>
 				</div>
 			</div>

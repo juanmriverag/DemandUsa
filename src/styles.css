@@ -99,6 +99,10 @@ app-root {
 	position: absolute;
 }
 
+.f12 {
+	font-size: 12px;
+}
+
 .LogoAB {
 	background-image: url(./media/LogoForeCastN.png);
 	background-position: center 60px;
@@ -347,14 +351,26 @@ input {
 }
 
 snack-bar-container.mat-snack-bar-container.custom-class {
-	background: rgb(4, 119, 187);
+	/* background: rgb(4, 119, 187); */
 	color: white;
 }
+snack-bar-container.mat-snack-bar-container.bgRed {
+	background: #ed1c23;
+}
+snack-bar-container.mat-snack-bar-container.bgYellow {
+	background: #f9aa33;
+}
 
-table td.backcolorRed,
-.backcolorRed input,
-.backcolorRed {
+table td.bgRed,
+.bgRed input,
+.bgRed {
 	background-color: #e28186 !important;
+	color: white !important;
+}
+table td.bgYellow,
+.bgYellow input,
+.bgYellow {
+	background-color: #f9aa33 !important;
 	color: white !important;
 }
 

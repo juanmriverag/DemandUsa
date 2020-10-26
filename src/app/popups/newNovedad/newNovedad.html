@@ -1,4 +1,4 @@
-<div fxLayout="column" fxLayoutAlign="start center" mat-dialog-content style="height: 400px;">
+<div fxLayout="column" fxLayoutAlign="start center" mat-dialog-content style="height: 400px">
 	<div fxLayout="row" fxFlex="100%" class="ContNnovedad">
 		<div fxLayout="column" fxFlex="20%" class="ContImgNov">
 			<div class="ImgNnovedad"></div>
@@ -11,16 +11,14 @@
 				<div fxLayout="column" fxFlex="50%">
 					<mat-label>Client</mat-label>
 					<span class="custom-input">
-						<input matInput [(ngModel)]="ModelNew.Description" autofocus required />
+						<input matInput [(ngModel)]="ModelNew.Client" autofocus required />
 					</span>
 				</div>
 				<div fxLayout="column" fxFlex="50%">
 					<mat-label>Division</mat-label>
 					<span class="custom-dropdown">
-						<mat-select [(ngModel)]="ModelNew.Canal" multiple>
-							<mat-option *ngFor="let Canal  of ListFiltrs.Canales" [value]="Canal">
-								{{Canal }}
-							</mat-option>
+						<mat-select [(ngModel)]="ModelNew.Division" required>
+							<mat-option *ngFor="let Division  of ListFiltrs.Division" [value]="Division"> {{Division }} </mat-option>
 						</mat-select>
 					</span>
 				</div>
@@ -29,10 +27,8 @@
 				<div fxLayout="column" fxFlex="50%">
 					<mat-label>Brand</mat-label>
 					<span class="custom-dropdown">
-						<mat-select [(ngModel)]="ModelNew.Category" required>
-							<mat-option *ngFor="let Category  of ListFiltrs.Categorias" [value]="Category">
-								{{Category }}
-							</mat-option>
+						<mat-select [(ngModel)]="ModelNew.Brand" required>
+							<mat-option *ngFor="let Brand  of ListFiltrs.Brand" [value]="Brand"> {{Brand }} </mat-option>
 						</mat-select>
 					</span>
 				</div>
@@ -40,9 +36,7 @@
 					<mat-label>Company</mat-label>
 					<span class="custom-dropdown">
 						<mat-select [(ngModel)]="ModelNew.Company">
-							<mat-option *ngFor="let Company  of ListFiltrs.Submarcas" [value]="Company">
-								{{Company }}
-							</mat-option>
+							<mat-option *ngFor="let Company  of ListFiltrs.Company" [value]="Company"> {{Company }} </mat-option>
 						</mat-select>
 					</span>
 				</div>
@@ -63,7 +57,7 @@
 				</div>
 			</div>
 			<div fxLayout="row" fxFlex="100%" fxLayoutAlign="end end">
-				<button mat-raised-button (click)="cancel()" style="margin-right: 5px;" color="warn">Decline</button>
+				<button mat-raised-button (click)="cancel()" style="margin-right: 5px" color="warn">Decline</button>
 				<button mat-raised-button (click)="ok()" color="primary">Add</button>
 			</div>
 		</div>

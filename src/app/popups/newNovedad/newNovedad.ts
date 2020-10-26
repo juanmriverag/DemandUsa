@@ -2,7 +2,8 @@ import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { AppService } from '../../app.service';
 export interface _model {
-	Canal: string;
+	Territory: string;
+	Client: string;
 	Category: string;
 	Item: string;
 	Brand: string;
@@ -20,13 +21,13 @@ export class newNovedad_modal implements OnInit, OnDestroy {
 	List_model: _model[] = [];
 	ListFiltrDispo: any = [];
 	ListFiltrs = {
-		Canales: [],
-		Categorias: [],
-		Submarcas: [],
+		Division: [],
+		Brand: [],
+		Company: [],
 	};
 	ModelNew = {
-		Canal: [],
-		Category: '',
+		Client: '',
+		Division: '',
 		Item: '',
 		Brand: '',
 		Company: '',
@@ -37,7 +38,7 @@ export class newNovedad_modal implements OnInit, OnDestroy {
 		public dialogRef: MatDialogRef<newNovedad_modal>,
 		@Inject(MAT_DIALOG_DATA)
 		public data: {
-			Brand: string;
+			Territory: string;
 			ListUnique: any;
 			// Company: string;
 			// Category: string;
@@ -45,38 +46,48 @@ export class newNovedad_modal implements OnInit, OnDestroy {
 			// Brand: string;
 		}
 	) {
+		this.refresh();
 		this.getFiltrDisp();
 		// $(document).find('body app-root').toggleClass("blurclass");
 	}
 
+	refresh() {
+		this.ModelNew = {
+			Client: '',
+			Division: '',
+			Item: '',
+			Brand: '',
+			Company: '',
+			Description: '',
+		};
+	}
+
 	getFiltrDisp() {
-		this._appService.getAllFiltrDisp(this.data.Brand, '', '', '', '').subscribe((datas) => {
+		this._appService.getAllFiltrDisp(this.data.Territory, '', '', '', '').subscribe((datas) => {
 			this.ListFiltrDispo = datas['ListFiltr'];
-			this.ListFiltrs.Canales = this.data.ListUnique(this.ListFiltrDispo, 'Canal');
-			this.ListFiltrs.Categorias = this.data.ListUnique(this.ListFiltrDispo, 'Category');
-			this.ListFiltrs.Submarcas = this.data.ListUnique(this.ListFiltrDispo, 'Company');
+			this.ListFiltrs.Division = this.data.ListUnique(this.ListFiltrDispo, 'Category');
+			this.ListFiltrs.Brand = this.data.ListUnique(this.ListFiltrDispo, 'Brand');
+			this.ListFiltrs.Company = this.data.ListUnique(this.ListFiltrDispo, 'Company');
 		});
 	}
 
 	ok() {
-		this.ModelNew.Brand = this.data.Brand;
 		this.List_model = [];
 		if (
 			this.ModelNew.Item != '' &&
-			this.ModelNew.Canal.length > 0 &&
+			this.ModelNew.Client.length > 0 &&
 			this.ModelNew.Description != '' &&
-			this.ModelNew.Category != '' &&
+			this.ModelNew.Division != '' &&
 			this.ModelNew.Company != ''
 		) {
-			this.ModelNew.Canal.forEach((element) => {
-				this.List_model.push({
-					Canal: element,
-					Category: this.ModelNew.Category,
-					Description: this.ModelNew.Description,
-					Brand: this.ModelNew.Brand,
-					Item: this.ModelNew.Item,
-					Company: this.ModelNew.Company,
-				});
+			this.List_model.push({
+				Territory: this.data.Territory,
+				Client: this.ModelNew.Client,
+				Category: this.ModelNew.Division,
+				Description: this.ModelNew.Description,
+				Brand: this.ModelNew.Brand,
+				Item: this.ModelNew.Item,
+				Company: this.ModelNew.Company,
 			});
 
 			this._appService.postNewItem(this.List_model).subscribe((datas) => {

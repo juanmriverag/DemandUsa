@@ -105,6 +105,7 @@ export class ColaboracionVComponent implements OnInit, AfterViewInit {
 		Companies: [],
 		Brands: [],
 	};
+	ItemSelect: {};
 
 	@Output() Finish: EventEmitter<null> = new EventEmitter();
 	@ViewChild(TablaVts_modal, { static: false }) _TablaVts_modal: TablaVts_modal;
@@ -522,7 +523,9 @@ export class ColaboracionVComponent implements OnInit, AfterViewInit {
 			this.getDMForeCast_();
 		});
 	}
+
 	deletePronos(_model) {
+		debugger;
 		this._appService.deleteColab(_model.Territory, _model.Item).subscribe((data) => {
 			this.getDMForeCast();
 		});
@@ -545,9 +548,12 @@ export class ColaboracionVComponent implements OnInit, AfterViewInit {
 
 		if (keyEvent.which === 39 || keyEvent.which === 13) {
 			Id = Id + (IdInp + 1);
-			if (_model['MonthN' + numI] > _model.TopAverage) {
-				this._appComponent.openSnackBar('Ooops.!! you project very good sales. ❤️', '');
+			if (_model['MonthN' + numI] > _model.TopAverage && _model['MonthN' + numI] < _model.Average * 1.7) {
+				this._appComponent.openSnackBar("You're forecasting above 30% of average sales. 🧐", '', 'Yellow');
+			} else if (_model['MonthN' + numI] > _model.Average * 1.7) {
+				this._appComponent.openSnackBar("¡Attention!...You're forecasting above 70% of the average sales. 🤔", '', 'Red');
 			}
+
 			this.PostForeC(_model);
 			$(Id).focus();
 		} else if (keyEvent.which === 37) {
@@ -666,8 +672,15 @@ export class ColaboracionVComponent implements OnInit, AfterViewInit {
 	openDCumpTotal() {
 		this._CumpTotal_modal.openDialog();
 	}
-	openDitemChartP() {
-		this._itemChartP_modal.openDialog(this.dataChartItem);
+	openDitemChartP(_model) {
+		this.getChartItemData(_model).add((data) => {
+			this._itemChartP_modal.openDialog(this.dataChartItem, _model);
+		});
+	}
+	refresh() {
+		this.getChartItemData(this.ItemSelect).add((data) => {
+			this._itemChartP_modal.refresh(this.dataChartItem);
+		});
 	}
 
 	AddNovedad() {
@@ -694,6 +707,7 @@ export class ColaboracionVComponent implements OnInit, AfterViewInit {
 			this.Notes.forEach((note) => {
 				if (element.Territory == note.Territory && element.Item == note.Item) {
 					element.IdNote = note.IdNote;
+					note.Description = element.Description;
 				}
 			});
 		});
@@ -756,11 +770,15 @@ export class ColaboracionVComponent implements OnInit, AfterViewInit {
 		});
 	}
 
-	chartItem(_model) {
-		this._appService.getItemChart(_model.Territory, _model.Client, _model.Item).subscribe((req) => {
+	getChartItemData(_model) {
+		return this._appService.getItemChart(_model.Territory, _model.Client, _model.Item).subscribe((req) => {
 			this.dataChartItem = req['listItemChart'];
-			this.openDitemChartP();
 		});
+	}
+
+	chartItem(_model) {
+		this.ItemSelect = _model;
+		this.openDitemChartP(_model);
 	}
 
 	ngOnInit() {

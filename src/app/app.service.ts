@@ -98,7 +98,7 @@ export class AppService {
 	getAllCanales() {
 		return this.httpclient.get<any[]>(this.urlBase.url + 'Canal');
 	}
-	getAllFiltrDisp(Client: string, Category: string, Territory: string, Company: string, Brand: string) {
+	getAllFiltrDisp(Territory: string, Client: string, Category: string, Company: string, Brand: string) {
 		// Initialize Params Object
 		let params = new HttpParams();
 
@@ -120,12 +120,12 @@ export class AppService {
 		bodystr.append('Modelo', JSON.stringify(_model));
 		return this.httpclient.put(this.urlBase.url + 'DMForeC', bodystr);
 	}
-	deleteColab(canal: string, material: string) {
+	deleteColab(Territory: string, Item: string) {
 		let params = new HttpParams();
 
 		// Begin assigning parameters
-		params = params.append('Canal', canal);
-		params = params.append('Item', material);
+		params = params.append('Territory', Territory);
+		params = params.append('Item', Item);
 
 		return this.httpclient.delete(this.urlBase.url + 'Item', { params: params });
 	}
