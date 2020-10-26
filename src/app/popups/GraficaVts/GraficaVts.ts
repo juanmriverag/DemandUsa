@@ -106,7 +106,6 @@ export class GraficaVts_modal implements AfterViewInit, OnDestroy {
 		this._appService
 			.getForeChart(this.Filtr.Client, this.Filtr.Category, this._Ctrl.Bus.Territory, this.Filtr.Company, this.Filtr.Brand)
 			.subscribe((data) => {
-				debugger;
 				this.ListForeCastChart = new MatTableDataSource(data['ListForeCastChart']);
 				this.ListForeCastChart.filterPredicate = this.tableFilter();
 				this.getFiltrDisp();

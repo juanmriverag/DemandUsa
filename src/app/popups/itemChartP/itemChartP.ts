@@ -8,12 +8,11 @@ import {
 	OnDestroy,
 	ElementRef,
 	Input,
+	Inject,
 } from '@angular/core';
 import { Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { TemplatePortal } from '@angular/cdk/portal';
 import { ScriptLoaderService, GoogleChartPackagesHelper } from 'angular-google-charts';
-import { AppService } from '../../app.service';
-import { MatTableDataSource } from '@angular/material';
 
 // import { ColaboracionVComponent } from '../../colaboracion-v/colaboracion-v.component';
 const type = GoogleChartPackagesHelper.getPackageForChartName('BarChart');
@@ -23,7 +22,7 @@ const type = GoogleChartPackagesHelper.getPackageForChartName('BarChart');
 	styleUrls: ['../../colaboracion-v/colaboracion-v.component.css'],
 })
 export class itemChartP_modal implements AfterViewInit, OnDestroy {
-	@Input('listData') _listData; // entrada
+	dataChartItem: any; // entrada
 
 	@ViewChild(TemplateRef, { static: false }) _dialogTemplate: TemplateRef<any>;
 	private _overlayRef: OverlayRef;
@@ -31,13 +30,14 @@ export class itemChartP_modal implements AfterViewInit, OnDestroy {
 
 	typechart = 'ComboChart';
 	columnNames: string[] = [];
-	data = [];
+	dataChart = [];
 
 	options = {
 		title: '',
 		legend: { position: 'right', textStyle: { fontSize: 10 } },
 		width: 950,
 		height: 400,
+
 		seriesType: 'bars',
 		selectionMode: 'multiple',
 		tooltip: { trigger: 'selection' },
@@ -48,18 +48,11 @@ export class itemChartP_modal implements AfterViewInit, OnDestroy {
 			// 3: { type: 'line', color: '#E8BC89' },
 			// 3: { type: 'line', color: '#5C4A36' },
 		},
-		chartArea: { width: '70%', height: '90%' },
+		// chartArea: { width: '70%', height: '90%' },
 		// legend: { position: 'bottom' }
 	};
 
-	constructor(
-		private _overlay: Overlay,
-		private _viewContainerRef: ViewContainerRef,
-		private loaderService: ScriptLoaderService,
-		private _appService: AppService
-	) {
-		console.log(3);
-	}
+	constructor(private _overlay: Overlay, private _viewContainerRef: ViewContainerRef) {}
 
 	//content
 	closeDialog() {
@@ -70,37 +63,37 @@ export class itemChartP_modal implements AfterViewInit, OnDestroy {
 		this._overlayRef.dispose();
 	}
 
-	openDialog() {
+	openDialog(data) {
+		this.dataChartItem = data;
 		this._overlayRef.attach(this._portal);
+		this.crear();
 	}
 
 	crear() {
 		this.columnNames = [];
-		this.data = [];
+		this.dataChart = [];
 		this.columnNames.push('Date');
 		this.columnNames.push('Sales');
 		this.columnNames.push('ForeCast');
 		debugger;
-		this._listData.forEach((element) => {
-			this.data.push([element.Date, this.isnull(element.Sales), this.isnull(element.ForeCast)]);
+		this.dataChartItem.forEach((element) => {
+			this.dataChart.push([element.Date, element.Sale, element.ForeCast]);
 		});
+		// this.data.listCharts.forEach((element) => {
+		// 	this.dataChart.push([element.Date, element.Sale, element.ForeCast]);
+		// });
 	}
 
-	isnull(val) {
-		if (val == 0) {
-			return null;
-		} else {
-			return val;
-		}
-	}
+	// isnull(val) {
+	// 	if (val == 0) {
+	// 		return null;
+	// 	} else {
+	// 		return val;
+	// 	}
+	// }
 
-	ngOnInit() {
-		if (this._listData.length) {
-			this.crear();
-		}
-	}
+	ngOnInit() {}
 	ngAfterViewInit() {
-		console.log(2);
 		var originElement = $('.MainPadding').get()[0];
 		this._portal = new TemplatePortal(this._dialogTemplate, this._viewContainerRef);
 		this._overlayRef = this._overlay.create({

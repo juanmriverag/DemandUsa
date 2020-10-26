@@ -638,7 +638,6 @@ export class ColaboracionVComponent implements OnInit, AfterViewInit {
 	}
 
 	getAllClients() {
-		debugger;
 		var _data = this.ListUnique(this.ListDMForeCast.data, 'Client');
 		_data.forEach((element) => {
 			this.ListClients.push({ canal: element, checked: true });
@@ -668,7 +667,7 @@ export class ColaboracionVComponent implements OnInit, AfterViewInit {
 		this._CumpTotal_modal.openDialog();
 	}
 	openDitemChartP() {
-		this._itemChartP_modal.openDialog();
+		this._itemChartP_modal.openDialog(this.dataChartItem);
 	}
 
 	AddNovedad() {
@@ -760,7 +759,6 @@ export class ColaboracionVComponent implements OnInit, AfterViewInit {
 	chartItem(_model) {
 		this._appService.getItemChart(_model.Territory, _model.Client, _model.Item).subscribe((req) => {
 			this.dataChartItem = req['listItemChart'];
-			debugger;
 			this.openDitemChartP();
 		});
 	}

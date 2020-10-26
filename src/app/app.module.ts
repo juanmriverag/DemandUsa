@@ -60,8 +60,8 @@ const rutas: Routes = [
 	{ path: 'home', component: HomeComponent },
 	{ path: 'login', component: LoginComponent },
 	{ path: 'DemandForecast', component: ColaboracionVComponent },
-	{ path: 'configuracion/cargaSap', component: CargaSapComponent },
-	{ path: 'configuracion/ctrlUser', component: UsermanagerComponent },
+	// { path: 'configuracion/cargaSap', component: CargaSapComponent },
+	{ path: 'setting/Users', component: UsermanagerComponent },
 ];
 
 @NgModule({
