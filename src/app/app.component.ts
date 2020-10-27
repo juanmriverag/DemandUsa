@@ -129,6 +129,7 @@ export class AppComponent implements OnInit {
 		var Rol = datos.Rol;
 
 		var locals = JSON.parse(localStorage.getItem('InfoUsu'));
+
 		this.NombreUsuario = locals.name;
 		this.EmailG = locals.mail;
 		this.Username = datos.Usuario;
@@ -150,7 +151,7 @@ export class AppComponent implements OnInit {
 			this.dialog.closeAll();
 			this.dialog.open(Bienvenido_modal, {
 				width: '400px',
-				data: { Nombre: this.NombreUsuario },
+				data: { Nombre: datos.Alias },
 				panelClass: 'BienvePanel',
 			});
 		}

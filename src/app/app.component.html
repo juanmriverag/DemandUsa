@@ -4,13 +4,13 @@
 			<li class="efect-menu-li">
 				<div fxLayout="row" fxFlex="100%">
 					<div fxLayout="column">
-						<i class="IcoDefault material-icons" style="font-size: 53px; margin-right: 2px; color: #586d78;">account_circle</i>
+						<i class="IcoDefault material-icons" style="font-size: 53px; margin-right: 2px; color: #586d78">account_circle</i>
 					</div>
-					<div fxLayout="column" class="InfoUser">
-						<span style="color: #ffc001;">
+					<div fxLayout="column" fxLayoutAlign="center start" class="InfoUser">
+						<span style="color: #ffc001">
 							{{ NombreUsuario }}
 						</span>
-						<span style="font-weight: 300;"> {{ EmailG }}</span>
+						<span style="font-weight: 300"> {{ EmailG }}</span>
 					</div>
 				</div>
 			</li>
@@ -18,12 +18,12 @@
 
 		<ul class="NS-container-menus">
 			<li *ngFor="let menu of ListaMenus" class="NS-menu">
-				<div class="NS-menu-title" style="width: 100%;">
+				<div class="NS-menu-title" style="width: 100%">
 					<span>{{ menu.Titulo }}</span>
 				</div>
 				<ul class="NS-container-submenus">
 					<li *ngFor="let submenu of menu.Submenus" class="NS-submenu" (click)="IrDForecast(submenu, '')">
-						<div class="NS-submenu-title" style="width: 100%;">
+						<div class="NS-submenu-title" style="width: 100%">
 							<span>{{ submenu.Titulo }}</span>
 						</div>
 					</li>
@@ -35,16 +35,16 @@
 <main [ngClass]="{ MainPadding: Mostrar == true, MainHeight: Mostrar == false }">
 	<div fxLayout="row" fxLayoutAlign="center center" class="header" *ngIf="Mostrar">
 		<div class="icono-menu" fxLayout="row" fxLayoutAlign="start center" fxFlex="55%">
-			<div fxLayout="column" fxLayoutAlign="center start" style="height: 100%;">
+			<div fxLayout="column" fxLayoutAlign="center start" style="height: 100%">
 				<div
 					class="NS-btn-menu icono-menu"
 					fxLayout="row"
 					fxLayoutAlign="start end"
 					fxFlex="40%"
-					style="margin-top: 25%; cursor: pointer;"
+					style="margin-top: 25%; cursor: pointer"
 				>
 					<div>
-						<div class="nav-var" style="padding-bottom: 2px;">
+						<div class="nav-var" style="padding-bottom: 2px">
 							<div class="bar1"></div>
 							<div class="bar2"></div>
 							<div class="bar3"></div>
@@ -80,7 +80,7 @@
 				<label> Min screen </label>
 			</button>
 			<button mat-button routerLink="/home" class="notEnlarge" fxLayout="row" fxLayoutAlign="center center" *ngIf="widthMax > 960">
-				<mat-icon style="font-size: 20px;">home</mat-icon>
+				<mat-icon style="font-size: 20px">home</mat-icon>
 				<label> Home </label>
 			</button>
 			<button mat-icon-button class="moreMenu" [matMenuTriggerFor]="menu">

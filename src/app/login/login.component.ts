@@ -70,9 +70,9 @@ export class LoginComponent implements OnInit {
 							data: {
 								title: 'Error.!',
 								textContent:
-									'Señor(a) ' +
+									'User  ' +
 									this.UsuRegistrado.Nombre +
-									', Su cuenta se encuentra desactivada, por favor contacte al administrador de la App..',
+									', Your account is deactivated, please contact the administrator of the App..',
 								cancel: 'Aceptar.',
 							},
 						});
@@ -87,13 +87,11 @@ export class LoginComponent implements OnInit {
 					const dialogRef = this.dialog.open(Alert_modal, {
 						width: '500px',
 						data: {
-							title: 'Error.!',
+							title: 'Alert!!!',
 							textContent:
-								'Señor(a) ' +
-								this.UsuNORegistrado.DisplayName +
-								", Usted no se encuentra en nuestra App, Si desea registrarse de clic en el boton 'Registrarse'.",
-							ok: 'Registrarse',
-							cancel: 'Cancelar',
+								'User ' + this.UsuNORegistrado.DisplayName + ", You are not yet registered in our App, click on the 'Sing up' button.",
+							ok: 'Sing Up',
+							cancel: 'Cancel',
 						},
 					});
 
@@ -109,10 +107,10 @@ export class LoginComponent implements OnInit {
 								this.dialog.open(Alert_modal, {
 									width: '500px',
 									data: {
-										title: 'Registro completo.!',
+										title: 'Full record.!',
 										textContent:
-											'Señor Usuario ahora se encuentra registrado pero descativado, para que su cuenta este activa debe esperar que el administrador del sistema lo haga.',
-										ok: 'Aceptar',
+											"You're already registered but disabled, so that your account is active should expect the system administrator you do.",
+										ok: 'Ok',
 									},
 								});
 							});
@@ -124,8 +122,9 @@ export class LoginComponent implements OnInit {
 						width: '500px',
 						data: {
 							title: 'Error.!',
-							textContent: 'Señor Usuario Ocurrio un error, Es probable que sus credenciales no sean correctas. Intentelo de nuevo',
-							cancel: 'Intentar de nuevo.',
+							textContent:
+								'Sorry, an error occurred, Your credentials are probably not correct. If the error persists, contact the administrator.',
+							cancel: 'Try again',
 						},
 					});
 				}
@@ -136,8 +135,8 @@ export class LoginComponent implements OnInit {
 				width: '500px',
 				data: {
 					title: 'Error.!',
-					textContent: 'Mister User An error occurred, it is probable that You have not filled all the fields. Try again',
-					cancel: 'Intentar de nuevo.',
+					textContent: 'Sorry, an error occurred, it is probable that You have not filled all the fields.',
+					cancel: 'Try again',
 				},
 			});
 		}
