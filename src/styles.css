@@ -54,6 +54,17 @@ app-usermanager.ng-star-inserted {
 	width: 100%;
 	height: 80vh;
 }
+*::-webkit-scrollbar {
+	width: 0.5rem;
+}
+
+*::-webkit-scrollbar-track {
+	background: rgb(123 123 123 / 20%);
+}
+
+*::-webkit-scrollbar-thumb {
+	background: #98969e;
+}
 
 .box {
 	height: 33.33%;

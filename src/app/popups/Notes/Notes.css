@@ -49,7 +49,10 @@ mat-list {
 	font-size: inherit;
 	margin-top: 0.2em;
 }
-
+.notecontent {
+	overflow: auto;
+	margin-bottom: 1rem;
+}
 .Note {
 	cursor: pointer;
 }

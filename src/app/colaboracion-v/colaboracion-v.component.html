@@ -303,8 +303,8 @@
 					*matCellDef="let p; let i = dataIndex"
 					[ngClass]="{
 						SubrColumnDif: p.OMonthN1 != p.MonthN1,
-						bgYellow: p.MonthN1 >= p.TopAverage && p.MonthN1 < p.Average * 1.7 && p.OMonthN1 != p.MonthN1,
-						bgRed: p.MonthN1 >= p.Average * 1.7 && p.OMonthN1 != p.MonthN1
+						bgYellow: p.MonthN1 >= p.TopAverage && p.MonthN1 < p.Average * 1.7 && p.OMonthN1 != p.MonthN1 && !p.Nov,
+						bgRed: p.MonthN1 >= p.Average * 1.7 && p.OMonthN1 != p.MonthN1 && !p.Nov
 					}"
 				>
 					<input
@@ -330,8 +330,8 @@
 					*matCellDef="let p; let i = dataIndex"
 					[ngClass]="{
 						SubrColumnDif: p.OMonthN2 != p.MonthN2,
-						bgYellow: p.MonthN2 >= p.TopAverage && p.MonthN2 < p.Average * 1.7 && p.OMonthN2 != p.MonthN2,
-						bgRed: p.MonthN2 >= p.Average * 1.7 && p.OMonthN2 != p.MonthN2
+						bgYellow: p.MonthN2 >= p.TopAverage && p.MonthN2 < p.Average * 1.7 && p.OMonthN2 != p.MonthN2 && !p.Nov,
+						bgRed: p.MonthN2 >= p.Average * 1.7 && p.OMonthN2 != p.MonthN2 && !p.Nov
 					}"
 				>
 					<input
@@ -357,8 +357,8 @@
 					*matCellDef="let p; let i = dataIndex"
 					[ngClass]="{
 						SubrColumnDif: p.OMonthN3 != p.MonthN3,
-						bgYellow: p.MonthN3 >= p.TopAverage && p.MonthN3 < p.Average * 1.7 && p.OMonthN3 != p.MonthN3,
-						bgRed: p.MonthN3 >= p.Average * 1.7 && p.OMonthN3 != p.MonthN3
+						bgYellow: p.MonthN3 >= p.TopAverage && p.MonthN3 < p.Average * 1.7 && p.OMonthN3 != p.MonthN3 && !p.Nov,
+						bgRed: p.MonthN3 >= p.Average * 1.7 && p.OMonthN3 != p.MonthN3 && !p.Nov
 					}"
 				>
 					<input
@@ -398,12 +398,14 @@
 			<!-- Notas Column -->
 			<ng-container matColumnDef="notas">
 				<th class="Tend" mat-header-cell *matHeaderCellDef>
-					<button mat-icon-button>
+					<button mat-icon-button matTooltip="Notes">
 						<mat-icon (click)="ListNotes()">forum</mat-icon>
 					</button>
 				</th>
 				<td class="Tend" mat-cell *matCellDef="let element">
-					<mat-icon class="Note" [ngClass]="{ eNote: element.IdNote != null }" (click)="NewNote(element)">comment</mat-icon>
+					<mat-icon class="Note" matTooltip="Note" [ngClass]="{ eNote: element.IdNote != null }" (click)="NewNote(element)"
+						>comment</mat-icon
+					>
 				</td>
 				<td class="Tend" mat-footer-cell *matFooterCellDef></td>
 			</ng-container>
@@ -420,7 +422,7 @@
 			<ng-container matColumnDef="space3">
 				<td mat-cell *matCellDef="let element" colspan="3">
 					<div class="table-element-detail Tend closeIcon" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
-						<mat-icon (click)="chartItem(element)"> insights</mat-icon>
+						<mat-icon (click)="chartItem(element)" matTooltip="Open Chart"> insights</mat-icon>
 					</div>
 				</td>
 			</ng-container>

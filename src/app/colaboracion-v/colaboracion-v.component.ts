@@ -548,9 +548,9 @@ export class ColaboracionVComponent implements OnInit, AfterViewInit {
 
 		if (keyEvent.which === 39 || keyEvent.which === 13) {
 			Id = Id + (IdInp + 1);
-			if (_model['MonthN' + numI] > _model.TopAverage && _model['MonthN' + numI] < _model.Average * 1.7) {
+			if (_model['MonthN' + numI] > _model.TopAverage && _model['MonthN' + numI] < _model.Average * 1.7 && !_model.Nov) {
 				this._appComponent.openSnackBar("You're forecasting above 30% of average sales. 🧐", '', 'Yellow');
-			} else if (_model['MonthN' + numI] > _model.Average * 1.7) {
+			} else if (_model['MonthN' + numI] > _model.Average * 1.7 && !_model.Nov) {
 				this._appComponent.openSnackBar("¡Attention!...You're forecasting above 70% of the average sales. 🤔", '', 'Red');
 			}
 
@@ -692,7 +692,7 @@ export class ColaboracionVComponent implements OnInit, AfterViewInit {
 
 		dialogRef.afterClosed().subscribe((result) => {
 			if (result) {
-				this.load();
+				// this.load();
 				this.getDMForeCast();
 			}
 		});
