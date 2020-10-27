@@ -383,7 +383,7 @@ export class ColaboracionVComponent implements OnInit, AfterViewInit {
 
 	getFiltrDisp() {
 		this._appService
-			.getAllFiltrDisp(this.Filtr.Client, this.Filtr.Category, this.Bus.Territory, this.Filtr.Company, this.Filtr.Brand)
+			.getAllFiltrDisp(this.Bus.Territory, this.Filtr.Client, this.Filtr.Category, this.Filtr.Company, this.Filtr.Brand)
 			.subscribe((data) => {
 				this.ListFiltrDispo = data['ListFiltr'];
 				this.ListFiltrs.Clients = this.ListUnique(this.ListFiltrDispo, 'Client');

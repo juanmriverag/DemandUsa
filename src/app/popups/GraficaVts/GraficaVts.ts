@@ -93,7 +93,7 @@ export class GraficaVts_modal implements AfterViewInit, OnDestroy {
 
 	getFiltrDisp() {
 		this._appService
-			.getAllFiltrDisp(this.Filtr.Client, this.Filtr.Category, this._Ctrl.Bus.Territory, this.Filtr.Company, this.Filtr.Brand)
+			.getAllFiltrDisp(this._Ctrl.Bus.Territory, this.Filtr.Client, this.Filtr.Category, this.Filtr.Company, this.Filtr.Brand)
 			.subscribe((data) => {
 				this.ListFiltrDispo = data['ListFiltr'];
 				this.ListFiltrs.Clients = this._Ctrl.ListUnique(this.ListFiltrDispo, 'Client');
