@@ -303,8 +303,8 @@
 					*matCellDef="let p; let i = dataIndex"
 					[ngClass]="{
 						SubrColumnDif: p.OMonthN1 != p.MonthN1,
-						bgYellow: p.MonthN1 >= p.TopAverage && p.MonthN1 < p.Average * 1.7,
-						bgRed: p.MonthN1 >= p.Average * 1.7
+						bgYellow: p.MonthN1 >= p.TopAverage && p.MonthN1 < p.Average * 1.7 && p.OMonthN1 != p.MonthN1,
+						bgRed: p.MonthN1 >= p.Average * 1.7 && p.OMonthN1 != p.MonthN1
 					}"
 				>
 					<input
@@ -330,8 +330,8 @@
 					*matCellDef="let p; let i = dataIndex"
 					[ngClass]="{
 						SubrColumnDif: p.OMonthN2 != p.MonthN2,
-						bgYellow: p.MonthN2 >= p.TopAverage && p.MonthN2 < p.Average * 1.7,
-						bgRed: p.MonthN2 >= p.Average * 1.7
+						bgYellow: p.MonthN2 >= p.TopAverage && p.MonthN2 < p.Average * 1.7 && p.OMonthN2 != p.MonthN2,
+						bgRed: p.MonthN2 >= p.Average * 1.7 && p.OMonthN2 != p.MonthN2
 					}"
 				>
 					<input
@@ -357,8 +357,8 @@
 					*matCellDef="let p; let i = dataIndex"
 					[ngClass]="{
 						SubrColumnDif: p.OMonthN3 != p.MonthN3,
-						bgYellow: p.MonthN3 >= p.TopAverage && p.MonthN3 < p.Average * 1.7,
-						bgRed: p.MonthN3 >= p.Average * 1.7
+						bgYellow: p.MonthN3 >= p.TopAverage && p.MonthN3 < p.Average * 1.7 && p.OMonthN3 != p.MonthN3,
+						bgRed: p.MonthN3 >= p.Average * 1.7 && p.OMonthN3 != p.MonthN3
 					}"
 				>
 					<input
