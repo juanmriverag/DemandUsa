@@ -31,7 +31,7 @@ export class CargaSapComponent implements OnInit {
 
 	@ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
-	constructor(private _appComponent: AppComponent, private _appService: AppService, public dialog: MatDialog) {
+	constructor(private _appComponent: AppComponent, private appService: AppService, public dialog: MatDialog) {
 		this._appComponent.ObtenerNombreUsu();
 		this._appComponent.CambioM(true);
 		this._appComponent.buildTogglerOff();
@@ -80,7 +80,7 @@ export class CargaSapComponent implements OnInit {
 			disableClose: true,
 		});
 
-		this._appService.postCargarSap(this.selectedValue, this.ListOfData).subscribe((data) => {
+		this.appService.postCargarSap(this.selectedValue, this.ListOfData).subscribe((data) => {
 			this.dialog.closeAll();
 			if (data['Status'] > 0) {
 				this.dialog.open(Alert_modal, {

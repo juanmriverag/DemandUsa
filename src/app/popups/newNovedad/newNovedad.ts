@@ -34,12 +34,12 @@ export class newNovedad_modal implements OnInit, OnDestroy {
 		Description: '',
 	};
 	constructor(
-		private _appService: AppService,
+		private appService: AppService,
 		public dialogRef: MatDialogRef<newNovedad_modal>,
 		@Inject(MAT_DIALOG_DATA)
 		public data: {
 			Territory: string;
-			ListUnique: any;
+			// ListUnique: any;
 			// Company: string;
 			// Category: string;
 			// Canal: string;
@@ -63,11 +63,11 @@ export class newNovedad_modal implements OnInit, OnDestroy {
 	}
 
 	getFiltrDisp() {
-		this._appService.getAllFiltrDisp(this.data.Territory, '', '', '', '').subscribe((datas) => {
+		this.appService.getAllFiltrDisp(this.data.Territory, '', '', '', '').subscribe((datas) => {
 			this.ListFiltrDispo = datas['ListFiltr'];
-			this.ListFiltrs.Division = this.data.ListUnique(this.ListFiltrDispo, 'Category');
-			this.ListFiltrs.Brand = this.data.ListUnique(this.ListFiltrDispo, 'Brand');
-			this.ListFiltrs.Company = this.data.ListUnique(this.ListFiltrDispo, 'Company');
+			this.ListFiltrs.Division = this.appService.ListUnique(this.ListFiltrDispo, 'Category');
+			this.ListFiltrs.Brand = this.appService.ListUnique(this.ListFiltrDispo, 'Brand');
+			this.ListFiltrs.Company = this.appService.ListUnique(this.ListFiltrDispo, 'Company');
 		});
 	}
 
@@ -90,7 +90,7 @@ export class newNovedad_modal implements OnInit, OnDestroy {
 				Company: this.ModelNew.Company,
 			});
 
-			this._appService.postNewItem(this.List_model).subscribe((datas) => {
+			this.appService.postNewItem(this.List_model).subscribe((datas) => {
 				this.isGood = true;
 				this.cancel();
 			});

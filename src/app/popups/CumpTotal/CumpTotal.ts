@@ -12,6 +12,7 @@ import {
 import { Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { TemplatePortal } from '@angular/cdk/portal';
 import { ScriptLoaderService, GoogleChartPackagesHelper } from 'angular-google-charts';
+import { AppService } from '../../app.service';
 
 // import { ColaboracionVComponent } from '../../colaboracion-v/colaboracion-v.component';
 const type = GoogleChartPackagesHelper.getPackageForChartName('BarChart');
@@ -20,14 +21,28 @@ const type = GoogleChartPackagesHelper.getPackageForChartName('BarChart');
 	templateUrl: './CumpTotal.html',
 	styleUrls: ['../../colaboracion-v/colaboracion-v.component.css'],
 })
-export class CumpTotal_modal implements AfterViewInit, OnDestroy {
+export class CumpTotal_modal implements OnInit, AfterViewInit, OnDestroy {
 	@Input('Ctrl') _Ctrl; // entrada
 
 	@ViewChild(TemplateRef, { static: false }) _dialogTemplate: TemplateRef<any>;
 	private _overlayRef: OverlayRef;
 	private _portal: TemplatePortal;
 
-	constructor(private _overlay: Overlay, private _viewContainerRef: ViewContainerRef, private loaderService: ScriptLoaderService) {}
+	Filtr = {
+		Company: null,
+		Brand: null,
+	};
+	ListFiltrs = {
+		Companies: [],
+		Brands: [],
+	};
+	ListTerCompliance: any;
+	constructor(
+		private _overlay: Overlay,
+		private _viewContainerRef: ViewContainerRef,
+		private loaderService: ScriptLoaderService,
+		public appService: AppService
+	) {}
 
 	displayedColumns = [
 		'territory',
@@ -53,6 +68,37 @@ export class CumpTotal_modal implements AfterViewInit, OnDestroy {
 	openDialog() {
 		this._overlayRef.attach(this._portal);
 		// console.log(this._Ctrl.ListTerCompliance);
+	}
+
+	getFiltros() {
+		this.appService.getfiltr2(this.Filtr.Company, this.Filtr.Brand).subscribe((data) => {
+			const _data = data['ListFiltr2'];
+			this.ListFiltrs.Companies = this.appService.ListUnique(_data, 'Company');
+			this.ListFiltrs.Brands = this.appService.ListUnique(_data, 'Brand');
+		});
+	}
+
+	getCumpTotal() {
+		this.appService.getAllCompTotal(this.Filtr.Company, this.Filtr.Brand).subscribe((data) => {
+			this.ListTerCompliance = data['ListTerCompliance'];
+		});
+	}
+
+	gettotalTerritorySummary(val: string) {
+		var copy = this.ListTerCompliance;
+		if (copy) {
+			return copy.map((t) => t[val]).reduce((acc, value) => acc + value, 0);
+		}
+		return 0;
+	}
+
+	applyFilter() {
+		this.getCumpTotal();
+		this.getFiltros();
+	}
+	ngOnInit() {
+		this.getFiltros();
+		this.getCumpTotal();
 	}
 
 	ngAfterViewInit() {

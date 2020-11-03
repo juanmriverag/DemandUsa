@@ -4,7 +4,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class FormatNumberPipe implements PipeTransform {
 	transform(data: any, args: string[]): any {
 		var value = data;
-
 		if (value.length != 0) {
 			value = parseInt(value, 10);
 		}

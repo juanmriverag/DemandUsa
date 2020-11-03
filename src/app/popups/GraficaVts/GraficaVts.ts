@@ -75,7 +75,7 @@ export class GraficaVts_modal implements AfterViewInit, OnDestroy {
 		private _overlay: Overlay,
 		private _viewContainerRef: ViewContainerRef,
 		private loaderService: ScriptLoaderService,
-		private _appService: AppService
+		private appService: AppService
 	) {}
 
 	//content
@@ -92,19 +92,19 @@ export class GraficaVts_modal implements AfterViewInit, OnDestroy {
 	}
 
 	getFiltrDisp() {
-		this._appService
+		this.appService
 			.getAllFiltrDisp(this._Ctrl.Bus.Territory, this.Filtr.Client, this.Filtr.Category, this.Filtr.Company, this.Filtr.Brand)
 			.subscribe((data) => {
 				this.ListFiltrDispo = data['ListFiltr'];
-				this.ListFiltrs.Clients = this._Ctrl.ListUnique(this.ListFiltrDispo, 'Client');
-				this.ListFiltrs.Categories = this._Ctrl.ListUnique(this.ListFiltrDispo, 'Category');
-				this.ListFiltrs.Companies = this._Ctrl.ListUnique(this.ListFiltrDispo, 'Company');
-				this.ListFiltrs.Brands = this._Ctrl.ListUnique(this.ListFiltrDispo, 'Brand');
+				this.ListFiltrs.Clients = this.appService.ListUnique(this.ListFiltrDispo, 'Client');
+				this.ListFiltrs.Categories = this.appService.ListUnique(this.ListFiltrDispo, 'Category');
+				this.ListFiltrs.Companies = this.appService.ListUnique(this.ListFiltrDispo, 'Company');
+				this.ListFiltrs.Brands = this.appService.ListUnique(this.ListFiltrDispo, 'Brand');
 			});
 	}
 
 	getForeCastChart() {
-		this._appService
+		this.appService
 			.getForeChart(this.Filtr.Client, this.Filtr.Category, this._Ctrl.Bus.Territory, this.Filtr.Company, this.Filtr.Brand)
 			.subscribe((data) => {
 				this.ListForeCastChart = new MatTableDataSource(data['ListForeCastChart']);
@@ -118,7 +118,7 @@ export class GraficaVts_modal implements AfterViewInit, OnDestroy {
 		this.columnNames = [];
 		this.data = [];
 		this.columnNames.push('Month');
-		debugger;
+
 		const element = this._Ctrl.ListYears[1];
 		if (element.checked) {
 			this.columnNames.push('Sales-Forecast - ' + element.year);
@@ -126,7 +126,7 @@ export class GraficaVts_modal implements AfterViewInit, OnDestroy {
 		}
 
 		this.ListForeCastChart.filteredData.forEach((element) => {
-			element.Month = this._Ctrl.obtenerMesO(element.Month - 1);
+			element.Month = this.appService.obtenerMesO(element.Month - 1);
 			this.data.push([element.Month, this.isnull(element.ForecastCurrent), element.BudgetCurrent]);
 		});
 	}

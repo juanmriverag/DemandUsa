@@ -14,7 +14,7 @@
 						<mat-icon mat-list-icon>note</mat-icon>
 						<div mat-line>{{note.Title}}</div>
 						<div mat-line>{{note.Territory}} - {{note.Item}} | {{note.Description}}</div>
-						<div mat-line>{{note.CreationDate.substring(0,10) }} | by : {{note.Creator}}</div>
+						<div mat-line>{{note.CreationDate.substring(0,12) }} | by : {{note.Creator}}</div>
 						<p mat-line>{{note.Content}}</p>
 						<mat-icon class="clearIcon" (click)="delete(note)">delete_forever</mat-icon>
 					</mat-list-item>

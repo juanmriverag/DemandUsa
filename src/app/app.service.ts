@@ -17,6 +17,8 @@ import { Router } from '@angular/router';
 })
 export class AppService {
 	@Output() change: EventEmitter<null> = new EventEmitter();
+	meses = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
 	constructor(private router: Router, private cookies: CookieService, private httpclient: HttpClient, private urlBase: BDUrl) {}
 
 	private handleError(error: HttpErrorResponse) {
@@ -25,6 +27,30 @@ export class AppService {
 		// return an observable with a user-facing error message
 		return throwError('Something bad happened; please try again later.');
 	}
+
+	//--------------------------------------> MetodsPu <------------------------------------------------
+	//lisUnique
+	ListUnique(List: [], Column: string) {
+		var Uniques = List.map((data) => data[Column]);
+		return Uniques.filter((x, i, a) => x && a.indexOf(x) === i);
+	}
+	//obtiene mes del day -1 cuantos dias de le suma o resta
+	obtenerMes(day: number) {
+		if (day != null) {
+			var d = new Date();
+			d.setMonth(d.getMonth() + day, 7);
+			return this.meses[d.getMonth()];
+		}
+		return 'none';
+	}
+	//obtiene mes del nummes
+	obtenerMesO(nummes: number) {
+		if (nummes != null) {
+			return this.meses[nummes];
+		}
+		return 'none';
+	}
+	//--------------------------------------> MetodsPu <------------------------------------------------
 
 	//metodo
 
@@ -51,8 +77,11 @@ export class AppService {
 	getAllDMForeCast_(Territory: string, Client: string) {
 		return this.httpclient.get<any[]>(this.urlBase.url + 'DMForeC_/' + Territory + '/' + Client);
 	}
-	getAllCompTotal() {
-		return this.httpclient.get<any[]>(this.urlBase.url + 'TerCompliance');
+	getAllCompTotal(Company: string, Brand: string) {
+		var params = new HttpParams();
+		params = params.append('Company', Company);
+		params = params.append('Brand', Brand);
+		return this.httpclient.get<any[]>(this.urlBase.url + 'TerCompliance', { params: params });
 	}
 	postCargarSap(IdTypeDoc: any, _modelList: any) {
 		var httpOptions = {
@@ -109,6 +138,15 @@ export class AppService {
 		params = params.append('Client', Client);
 		params = params.append('Brand', Brand);
 		return this.httpclient.get<any[]>(this.urlBase.url + 'FiltrDisp', { params: params });
+	}
+	getfiltr2(Company: string, Brand: string) {
+		// Initialize Params Object
+		let params = new HttpParams();
+
+		// Begin assigning parameters
+		params = params.append('Company', Company);
+		params = params.append('Brand', Brand);
+		return this.httpclient.get<any[]>(this.urlBase.url + 'FiltrDisp2', { params: params });
 	}
 	postNewItem(_models: any) {
 		let bodystr = new FormData();

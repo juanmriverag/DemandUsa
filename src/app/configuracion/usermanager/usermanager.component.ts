@@ -14,7 +14,7 @@ export class UsermanagerComponent implements OnInit {
 	ListRoles: {};
 	columnsToDisplay: string[] = ['id', 'username', 'alias', 'nombre', 'rol', 'estado'];
 
-	constructor(private _appComponent: AppComponent, private _appService: AppService) {
+	constructor(private _appComponent: AppComponent, private appService: AppService) {
 		this._appComponent.ObtenerNombreUsu();
 		this._appComponent.CambioM(true);
 		this._appComponent.NomTitle('User Manager');
@@ -22,14 +22,14 @@ export class UsermanagerComponent implements OnInit {
 	}
 
 	obtenerList() {
-		this._appService.getAllUsers().subscribe((data) => {
+		this.appService.getAllUsers().subscribe((data) => {
 			this.ListUsers = new MatTableDataSource(data['Usuarios']);
 			this.ListRoles = data['ListRoles'];
 		});
 	}
 
 	guardarCambios(_model) {
-		this._appService.putUsers(_model).subscribe((data) => {});
+		this.appService.putUsers(_model).subscribe((data) => {});
 	}
 
 	cambiarAlias(keyEvent, _model) {

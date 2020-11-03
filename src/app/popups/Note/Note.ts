@@ -22,7 +22,7 @@ export class Note_modal implements OnInit, OnDestroy {
 	BtnOk: string = '';
 
 	constructor(
-		public _appService: AppService,
+		public appService: AppService,
 		public dialogRef: MatDialogRef<Note_modal>,
 		@Inject(MAT_DIALOG_DATA)
 		public data: {
@@ -54,7 +54,7 @@ export class Note_modal implements OnInit, OnDestroy {
 			op = 1;
 		}
 
-		this._appService.postNote(this._Note, op).subscribe((rest) => {
+		this.appService.postNote(this._Note, op).subscribe((rest) => {
 			this.dialogRef.close(this._Note);
 		});
 	}

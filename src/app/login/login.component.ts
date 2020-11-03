@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
 	constructor(
 		private appComponent: AppComponent,
 		private cookies: CookieService,
-		private _appService: AppService,
+		private appService: AppService,
 		public dialog: MatDialog
 	) {
 		this.cookies.delete('CLB');
@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
 		if (this.modelUser != undefined && this.modelPass != undefined) {
 			var credencialesEncriptadas = btoa(this.modelUser + ':' + this.modelPass);
 
-			this._appService.postPTLogin(credencialesEncriptadas, this.modelUser, this.modelPass).subscribe((data) => {
+			this.appService.postPTLogin(credencialesEncriptadas, this.modelUser, this.modelPass).subscribe((data) => {
 				///UsuRegistrado =  datos De base de datos DEMAN.
 				this.UsuRegistrado = data['Usuario'];
 				///UsuNORegistrado = datos del directorio activo.
@@ -103,7 +103,7 @@ export class LoginComponent implements OnInit {
 								Username: this.UsuNORegistrado.UserName,
 								Contrasena: this.modelPass,
 							};
-							this._appService.postUser(model).subscribe((data) => {
+							this.appService.postUser(model).subscribe((data) => {
 								this.dialog.open(Alert_modal, {
 									width: '500px',
 									data: {

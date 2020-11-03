@@ -14,7 +14,7 @@ export class Notes_modal implements OnInit, OnDestroy {
 	List_Notes: TypeNote[];
 
 	constructor(
-		public _appService: AppService,
+		public appService: AppService,
 		public dialogRef: MatDialogRef<Notes_modal>,
 		@Inject(MAT_DIALOG_DATA)
 		public data: {
@@ -24,7 +24,7 @@ export class Notes_modal implements OnInit, OnDestroy {
 		this.List_Notes = this.data.Notes;
 	}
 	delete(Note: TypeNote) {
-		this._appService.postNote(Note, 3).subscribe((rest) => {
+		this.appService.postNote(Note, 3).subscribe((rest) => {
 			this.dialogRef.close(true);
 		});
 	}

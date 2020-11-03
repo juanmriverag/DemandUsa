@@ -28,7 +28,7 @@ export class AppComponent implements OnInit {
 	constructor(
 		private router: Router,
 		private cookies: CookieService,
-		private _appService: AppService,
+		private appService: AppService,
 		public dialog: MatDialog,
 		private cdRef: ChangeDetectorRef,
 		private _snackBar: MatSnackBar
@@ -86,7 +86,7 @@ export class AppComponent implements OnInit {
 
 	changeEstado() {
 		if (this.IDUsu != undefined && this.IDUsu != '') {
-			this._appService.getEstadoUs(this.IDUsu).subscribe((data) => {
+			this.appService.getEstadoUs(this.IDUsu).subscribe((data) => {
 				if (data['Estado'] != 2) {
 					this.router.navigate(['/login']);
 				}
@@ -161,7 +161,7 @@ export class AppComponent implements OnInit {
 		if (this.rol != undefined) {
 			this.ListaMenus = [];
 			var menus = this.ListaMenus;
-			this._appService.getMenuxRol(this.rol).subscribe((data) => {
+			this.appService.getMenuxRol(this.rol).subscribe((data) => {
 				var dataList = data['ListMenuxRol'];
 				dataList.forEach(function (menu) {
 					if (menu.PadreID == '0') {

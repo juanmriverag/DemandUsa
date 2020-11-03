@@ -47,7 +47,6 @@ declare function NSFunctionMostrarMenus(mostrar: boolean): any;
 	],
 })
 export class ColaboracionVComponent implements OnInit, AfterViewInit {
-	meses = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 	mesActual = 0;
 	dataChartItem = {};
 	displayedColumns = [
@@ -118,7 +117,7 @@ export class ColaboracionVComponent implements OnInit, AfterViewInit {
 	constructor(
 		private elRef: ElementRef,
 		private _appComponent: AppComponent,
-		private _appService: AppService,
+		public appService: AppService,
 		public dialog: MatDialog,
 		private _overlay: Overlay,
 		private _viewContainerRef: ViewContainerRef
@@ -316,7 +315,7 @@ export class ColaboracionVComponent implements OnInit, AfterViewInit {
 		}
 	}
 	getMarcas() {
-		this._appService.getAllMarca().subscribe((data) => {
+		this.appService.getAllMarca().subscribe((data) => {
 			this.Marcas = data['ListMarcas'];
 		});
 	}
@@ -326,7 +325,7 @@ export class ColaboracionVComponent implements OnInit, AfterViewInit {
 		// 	this.filtrCanal = '-';
 		// }
 
-		this._appService.getAllDMForeCastXTerritory(this.Bus.Territory, this.filtrClient).subscribe((data) => {
+		this.appService.getAllDMForeCastXTerritory(this.Bus.Territory, this.filtrClient).subscribe((data) => {
 			this.ListDMForeCast = new MatTableDataSource(data['ListColabs']);
 
 			this.ListDMForeCast.sort = this.sort;
@@ -352,7 +351,7 @@ export class ColaboracionVComponent implements OnInit, AfterViewInit {
 		}
 	}
 	getDMForeCast_() {
-		this._appService.getAllDMForeCast_(this.Bus.Territory, this.filtrClient).subscribe((data) => {
+		this.appService.getAllDMForeCast_(this.Bus.Territory, this.filtrClient).subscribe((data) => {
 			this.ListDMForeCast_ = new MatTableDataSource(data['ListColabs_']);
 
 			this.ListDMForeCast_.filterPredicate = this.tableFilter2();
@@ -363,40 +362,33 @@ export class ColaboracionVComponent implements OnInit, AfterViewInit {
 	}
 
 	getBudget() {
-		this._appService
+		this.appService
 			.getAllBudget(this.Filtr.Client, this.Filtr.Category, this.Bus.Territory, this.Filtr.Company, this.Filtr.Brand)
 			.subscribe((data) => {
 				this.ListBudgetOrig = data['ListBudget'];
 				this.manageBudget();
-				this.getCumpTotal();
 				this.getFiltrDisp();
 				this.Finish.emit();
+				this.dialog.closeAll();
 			});
-	}
-
-	getCumpTotal() {
-		this._appService.getAllCompTotal().subscribe((data) => {
-			this.ListTerCompliance = data['ListTerCompliance'];
-			this.dialog.closeAll();
-		});
 	}
 
 	getFiltrDisp() {
-		this._appService
+		this.appService
 			.getAllFiltrDisp(this.Bus.Territory, this.Filtr.Client, this.Filtr.Category, this.Filtr.Company, this.Filtr.Brand)
 			.subscribe((data) => {
 				this.ListFiltrDispo = data['ListFiltr'];
-				this.ListFiltrs.Clients = this.ListUnique(this.ListFiltrDispo, 'Client');
-				this.ListFiltrs.Categories = this.ListUnique(this.ListFiltrDispo, 'Category');
-				this.ListFiltrs.Companies = this.ListUnique(this.ListFiltrDispo, 'Company');
-				this.ListFiltrs.Brands = this.ListUnique(this.ListFiltrDispo, 'Brand');
+				this.ListFiltrs.Clients = this.appService.ListUnique(this.ListFiltrDispo, 'Client');
+				this.ListFiltrs.Categories = this.appService.ListUnique(this.ListFiltrDispo, 'Category');
+				this.ListFiltrs.Companies = this.appService.ListUnique(this.ListFiltrDispo, 'Company');
+				this.ListFiltrs.Brands = this.appService.ListUnique(this.ListFiltrDispo, 'Brand');
 			});
 	}
 
-	ListUnique(List, Column: string) {
-		var Uniques = List.map((data) => data[Column]);
-		return Uniques.filter((x, i, a) => x && a.indexOf(x) === i);
-	}
+	// ListUnique(List, Column: string) {
+	// 	var Uniques = List.map((data) => data[Column]);
+	// 	return Uniques.filter((x, i, a) => x && a.indexOf(x) === i);
+	// }
 
 	manageBudget() {
 		this.Headerdis1 = [];
@@ -406,7 +398,7 @@ export class ColaboracionVComponent implements OnInit, AfterViewInit {
 		var cum = 0;
 		var mag = this.ListBudgetOrig;
 
-		this.ListYears = this.ListUnique(mag, 'Year').map(function (item) {
+		this.ListYears = this.appService.ListUnique(mag, 'Year').map(function (item) {
 			var obj = { year: item, checked: true };
 			return obj;
 		});
@@ -519,14 +511,13 @@ export class ColaboracionVComponent implements OnInit, AfterViewInit {
 		_model.MonthN2 = +_model.MonthN2;
 		_model.MonthN3 = +_model.MonthN3;
 
-		this._appService.putForeC(_model).subscribe((data) => {
+		this.appService.putForeC(_model).subscribe((data) => {
 			this.getDMForeCast_();
 		});
 	}
 
 	deletePronos(_model) {
-		debugger;
-		this._appService.deleteColab(_model.Territory, _model.Item).subscribe((data) => {
+		this.appService.deleteColab(_model.Territory, _model.Item).subscribe((data) => {
 			this.getDMForeCast();
 		});
 	}
@@ -535,7 +526,7 @@ export class ColaboracionVComponent implements OnInit, AfterViewInit {
 		var index = this.ListDMForeCast.data.indexOf(_model);
 
 		if (keyEvent.which === 39 || keyEvent.which === 13) {
-			this._appService.putPrices(_model).subscribe((data) => {
+			this.appService.putPrices(_model).subscribe((data) => {
 				this.getDMForeCast_();
 			});
 		}
@@ -587,23 +578,6 @@ export class ColaboracionVComponent implements OnInit, AfterViewInit {
 		}
 	}
 
-	//obtiene mes del day -1 cuantos dias de le suma o resta
-	obtenerMes(day: number) {
-		if (day != null) {
-			var d = new Date();
-			d.setMonth(d.getMonth() + day, 7);
-			return this.meses[d.getMonth()];
-		}
-		return 'none';
-	}
-	//obtiene mes del nummes
-	obtenerMesO(nummes: number) {
-		if (nummes != null) {
-			return this.meses[nummes];
-		}
-		return 'none';
-	}
-
 	obtenerMesActual() {
 		var d = new Date();
 		this.mesActual = d.getMonth();
@@ -627,14 +601,6 @@ export class ColaboracionVComponent implements OnInit, AfterViewInit {
 		return 0;
 	}
 
-	gettotalTerritorySummary(val: string) {
-		var copy = this.ListTerCompliance;
-		if (copy) {
-			return copy.map((t) => t[val]).reduce((acc, value) => acc + value, 0);
-		}
-		return 0;
-	}
-
 	getTotal2(val: string) {
 		var copy = this.ListDMForeCast.filteredData;
 		if (copy) {
@@ -644,7 +610,7 @@ export class ColaboracionVComponent implements OnInit, AfterViewInit {
 	}
 
 	getAllClients() {
-		var _data = this.ListUnique(this.ListDMForeCast.data, 'Client');
+		var _data = this.appService.ListUnique(this.ListDMForeCast.data, 'Client');
 		_data.forEach((element) => {
 			this.ListClients.push({ canal: element, checked: true });
 		});
@@ -686,7 +652,7 @@ export class ColaboracionVComponent implements OnInit, AfterViewInit {
 	AddNovedad() {
 		const dialogRef = this.dialog.open(newNovedad_modal, {
 			width: '600px',
-			data: { Territory: this.Bus.Territory, ListUnique: this.ListUnique },
+			data: { Territory: this.Bus.Territory },
 			panelClass: 'NewNovedadClass',
 		});
 
@@ -720,7 +686,7 @@ export class ColaboracionVComponent implements OnInit, AfterViewInit {
 	}
 
 	getNotes() {
-		this._appService.getNotes().subscribe((rest) => {
+		this.appService.getNotes().subscribe((rest) => {
 			this.Notes = rest['ListNotes'];
 			if (this.Notes.length > 0) {
 				this.InsertNotesList();
@@ -771,7 +737,7 @@ export class ColaboracionVComponent implements OnInit, AfterViewInit {
 	}
 
 	getChartItemData(_model) {
-		return this._appService.getItemChart(_model.Territory, _model.Client, _model.Item).subscribe((req) => {
+		return this.appService.getItemChart(_model.Territory, _model.Client, _model.Item).subscribe((req) => {
 			this.dataChartItem = req['listItemChart'];
 		});
 	}
