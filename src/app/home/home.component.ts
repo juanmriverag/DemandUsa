@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
 	Mostrar;
 	videoUrl = '../../media/DemandForecast.mp4';
 	menu: any[];
-	ListMarcas = ['National Account', 'Office Central', 'North-East', 'West', 'Maryland', 'B2B', 'Central', 'Florida'];
+	ListMarcas = ['National Account', 'Online Sales', 'North-East', 'West', 'Maryland', 'B2B', 'Central', 'Florida'];
 	constructor(private _appComponent: AppComponent, private router: Router) {
 		this._appComponent.ObtenerNombreUsu();
 		this._appComponent.CambioM(true);
