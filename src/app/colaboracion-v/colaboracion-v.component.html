@@ -17,7 +17,7 @@
 				</button>
 				<button mat-menu-item (click)="openDCumpTotal()">
 					<mat-icon>whatshot</mat-icon>
-					<span>Territory Summary</span>
+					<span>Summary Reports</span>
 				</button>
 				<button mat-menu-item (click)="AddNovedad()">
 					<mat-icon>add_box</mat-icon>
@@ -403,9 +403,7 @@
 					</button>
 				</th>
 				<td class="Tend" mat-cell *matCellDef="let element">
-					<mat-icon class="Note" matTooltip="Note" [ngClass]="{ eNote: element.IdNote != null }" (click)="NewNote(element)"
-						>comment</mat-icon
-					>
+					<mat-icon (click)="chartItem(element)" matTooltip="Open Chart"> insights</mat-icon>
 				</td>
 				<td class="Tend" mat-footer-cell *matFooterCellDef></td>
 			</ng-container>
@@ -422,7 +420,9 @@
 			<ng-container matColumnDef="space3">
 				<td mat-cell *matCellDef="let element" colspan="3">
 					<div class="table-element-detail Tend closeIcon" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
-						<mat-icon (click)="chartItem(element)" matTooltip="Open Chart"> insights</mat-icon>
+						<mat-icon class="Note" matTooltip="Note" [ngClass]="{ eNote: element.IdNote != null }" (click)="NewNote(element)">
+							comment</mat-icon
+						>
 					</div>
 				</td>
 			</ng-container>

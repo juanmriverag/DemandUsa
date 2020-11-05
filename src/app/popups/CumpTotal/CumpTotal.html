@@ -32,110 +32,338 @@
 				</div>
 			</div>
 			<div fxLayout="row" fxFlex="100%" fxLayoutAlign="center center" class="LayoutMarginCumTotal">
-				<div fxLayout="column" fxFlex="100%">
-					<table class="T3" mat-table [dataSource]="ListTerCompliance" multiTemplateDataRows>
-						<!-- Brand Column -->
-						<ng-container matColumnDef="territory">
-							<th class="Btop" mat-header-cell *matHeaderCellDef>
-								<span (click)="SysFiltering('Mc')"> Territory </span>
-							</th>
-							<td mat-cell *matCellDef="let element">{{element.Territory}}</td>
-							<td mat-footer-cell *matFooterCellDef>Totals</td>
-						</ng-container>
+				<mat-tab-group mat-align-tabs="start">
+					<mat-tab label="Territory">
+						<div fxLayout="column" fxFlex="100%">
+							<table class="T3" mat-table [dataSource]="ListTerCompliance" multiTemplateDataRows>
+								<!-- Brand Column -->
+								<ng-container matColumnDef="territory">
+									<th class="Btop" mat-header-cell *matHeaderCellDef>
+										<span (click)="SysFiltering('Mc')"> Territory </span>
+									</th>
+									<td mat-cell *matCellDef="let element">{{element.Territory}}</td>
+									<td mat-footer-cell *matFooterCellDef>Totals</td>
+								</ng-container>
 
-						<!-- Fmes1 Column -->
-						<ng-container matColumnDef="FMonthN1">
-							<th class="Bleft" mat-header-cell *matHeaderCellDef>{{appService.obtenerMes(1)}}</th>
-							<td class="Tcenter" mat-cell *matCellDef="let p">$ {{p.FMonthN1 | number }}</td>
-							<td class="Tcenter" mat-footer-cell *matFooterCellDef>$ {{gettotalTerritorySummary('FMonthN1') | number}}</td>
-						</ng-container>
+								<!-- Fmes1 Column -->
+								<ng-container matColumnDef="FMonthN1">
+									<th class="Bleft" mat-header-cell *matHeaderCellDef>{{appService.obtenerMes(1)}}</th>
+									<td class="Tcenter" mat-cell *matCellDef="let p">$ {{p.FMonthN1 | number }}</td>
+									<td class="Tcenter" mat-footer-cell *matFooterCellDef>$ {{gettotalTerritorySummary('FMonthN1') | number}}</td>
+								</ng-container>
 
-						<!-- Fmes2 Column -->
-						<ng-container matColumnDef="FMonthN2">
-							<th mat-header-cell *matHeaderCellDef>{{appService.obtenerMes(2)}}</th>
-							<td class="Tcenter" mat-cell *matCellDef="let p">$ {{p.FMonthN2 | number }}</td>
-							<td class="Tcenter" mat-footer-cell *matFooterCellDef>$ {{gettotalTerritorySummary('FMonthN2') | number}}</td>
-						</ng-container>
+								<!-- Fmes2 Column -->
+								<ng-container matColumnDef="FMonthN2">
+									<th mat-header-cell *matHeaderCellDef>{{appService.obtenerMes(2)}}</th>
+									<td class="Tcenter" mat-cell *matCellDef="let p">$ {{p.FMonthN2 | number }}</td>
+									<td class="Tcenter" mat-footer-cell *matFooterCellDef>$ {{gettotalTerritorySummary('FMonthN2') | number}}</td>
+								</ng-container>
 
-						<!-- Fmes3 Column -->
-						<ng-container matColumnDef="FMonthN3">
-							<th class="Bright" mat-header-cell *matHeaderCellDef>{{appService.obtenerMes(3)}}</th>
-							<td class="Tcenter" mat-cell *matCellDef="let p">$ {{p.FMonthN3 | number }}</td>
-							<td class="Tcenter" mat-footer-cell *matFooterCellDef>$ {{gettotalTerritorySummary('FMonthN3') | number}}</td>
-						</ng-container>
+								<!-- Fmes3 Column -->
+								<ng-container matColumnDef="FMonthN3">
+									<th class="Bright" mat-header-cell *matHeaderCellDef>{{appService.obtenerMes(3)}}</th>
+									<td class="Tcenter" mat-cell *matCellDef="let p">$ {{p.FMonthN3 | number }}</td>
+									<td class="Tcenter" mat-footer-cell *matFooterCellDef>$ {{gettotalTerritorySummary('FMonthN3') | number}}</td>
+								</ng-container>
 
-						<!-- Pmes1 Column -->
-						<ng-container matColumnDef="PMonthN1">
-							<th mat-header-cell *matHeaderCellDef>{{appService.obtenerMes(1)}}</th>
-							<td class="Tcenter" mat-cell *matCellDef="let p">$ {{p.PMonthN1 | number }}</td>
-							<td class="Tcenter" mat-footer-cell *matFooterCellDef>$ {{gettotalTerritorySummary('PMonthN1') | number}}</td>
-						</ng-container>
+								<!-- Pmes1 Column -->
+								<ng-container matColumnDef="PMonthN1">
+									<th mat-header-cell *matHeaderCellDef>{{appService.obtenerMes(1)}}</th>
+									<td class="Tcenter" mat-cell *matCellDef="let p">$ {{p.PMonthN1 | number }}</td>
+									<td class="Tcenter" mat-footer-cell *matFooterCellDef>$ {{gettotalTerritorySummary('PMonthN1') | number}}</td>
+								</ng-container>
 
-						<!-- Pmes2 Column -->
-						<ng-container matColumnDef="PMonthN2">
-							<th class="" mat-header-cell *matHeaderCellDef>{{appService.obtenerMes(2)}}</th>
-							<td class="Tcenter" mat-cell *matCellDef="let p">$ {{p.PMonthN2 | number }}</td>
-							<td class="Tcenter" mat-footer-cell *matFooterCellDef>$ {{gettotalTerritorySummary('PMonthN2') | number}}</td>
-						</ng-container>
+								<!-- Pmes2 Column -->
+								<ng-container matColumnDef="PMonthN2">
+									<th class="" mat-header-cell *matHeaderCellDef>{{appService.obtenerMes(2)}}</th>
+									<td class="Tcenter" mat-cell *matCellDef="let p">$ {{p.PMonthN2 | number }}</td>
+									<td class="Tcenter" mat-footer-cell *matFooterCellDef>$ {{gettotalTerritorySummary('PMonthN2') | number}}</td>
+								</ng-container>
 
-						<!-- Pmes3 Column -->
-						<ng-container matColumnDef="PMonthN3">
-							<th class="Bright" mat-header-cell *matHeaderCellDef>{{appService.obtenerMes(3)}}</th>
-							<td class="Tcenter" mat-cell *matCellDef="let p">$ {{p.PMonthN3 | number }}</td>
-							<td class="Tcenter" mat-footer-cell *matFooterCellDef>$ {{gettotalTerritorySummary('PMonthN3') | number}}</td>
-						</ng-container>
+								<!-- Pmes3 Column -->
+								<ng-container matColumnDef="PMonthN3">
+									<th class="Bright" mat-header-cell *matHeaderCellDef>{{appService.obtenerMes(3)}}</th>
+									<td class="Tcenter" mat-cell *matCellDef="let p">$ {{p.PMonthN3 | number }}</td>
+									<td class="Tcenter" mat-footer-cell *matFooterCellDef>$ {{gettotalTerritorySummary('PMonthN3') | number}}</td>
+								</ng-container>
 
-						<!-- Cumes1 Column -->
-						<ng-container matColumnDef="CuMonthN1">
-							<th mat-header-cell *matHeaderCellDef>{{appService.obtenerMes(1)}}</th>
-							<td class="Tcenter" mat-cell *matCellDef="let p">{{p.CMonthN1 | number }}%</td>
-							<td class="Tcenter" mat-footer-cell *matFooterCellDef>
-								{{_Ctrl.getCumplim_(gettotalTerritorySummary('FMonthN1'),gettotalTerritorySummary('PMonthN1')) | number : '1.0-0' }}%
-							</td>
-						</ng-container>
+								<!-- Cumes1 Column -->
+								<ng-container matColumnDef="CuMonthN1">
+									<th mat-header-cell *matHeaderCellDef>{{appService.obtenerMes(1)}}</th>
+									<td class="Tcenter" mat-cell *matCellDef="let p">{{p.CMonthN1 | number }}%</td>
+									<td class="Tcenter" mat-footer-cell *matFooterCellDef>
+										{{_Ctrl.getCumplim_(gettotalTerritorySummary('FMonthN1'),gettotalTerritorySummary('PMonthN1')) | number : '1.0-0'
+										}}%
+									</td>
+								</ng-container>
 
-						<!-- Cumes2 Column -->
-						<ng-container matColumnDef="CuMonthN2">
-							<th class="" mat-header-cell *matHeaderCellDef>{{appService.obtenerMes(2)}}</th>
-							<td class="Tcenter" mat-cell *matCellDef="let p">{{p.CMonthN2 | number }}%</td>
-							<td class="Tcenter" mat-footer-cell *matFooterCellDef>
-								{{_Ctrl.getCumplim_(gettotalTerritorySummary('FMonthN2'),gettotalTerritorySummary('PMonthN2')) | number : '1.0-0' }}%
-							</td>
-						</ng-container>
+								<!-- Cumes2 Column -->
+								<ng-container matColumnDef="CuMonthN2">
+									<th class="" mat-header-cell *matHeaderCellDef>{{appService.obtenerMes(2)}}</th>
+									<td class="Tcenter" mat-cell *matCellDef="let p">{{p.CMonthN2 | number }}%</td>
+									<td class="Tcenter" mat-footer-cell *matFooterCellDef>
+										{{_Ctrl.getCumplim_(gettotalTerritorySummary('FMonthN2'),gettotalTerritorySummary('PMonthN2')) | number : '1.0-0'
+										}}%
+									</td>
+								</ng-container>
 
-						<!-- Cumes3 Column -->
-						<ng-container matColumnDef="CuMonthN3">
-							<th class="Bright" mat-header-cell *matHeaderCellDef>{{appService.obtenerMes(3)}}</th>
-							<td class="Tcenter" mat-cell *matCellDef="let p">{{p.CMonthN3 | number }}%</td>
-							<td class="Tcenter" mat-footer-cell *matFooterCellDef>
-								{{_Ctrl.getCumplim_(gettotalTerritorySummary('FMonthN3'),gettotalTerritorySummary('PMonthN3')) | number : '1.0-0'}}%
-							</td>
-						</ng-container>
+								<!-- Cumes3 Column -->
+								<ng-container matColumnDef="CuMonthN3">
+									<th class="Bright" mat-header-cell *matHeaderCellDef>{{appService.obtenerMes(3)}}</th>
+									<td class="Tcenter" mat-cell *matCellDef="let p">{{p.CMonthN3 | number }}%</td>
+									<td class="Tcenter" mat-footer-cell *matFooterCellDef>
+										{{_Ctrl.getCumplim_(gettotalTerritorySummary('FMonthN3'),gettotalTerritorySummary('PMonthN3')) | number :
+										'1.0-0'}}%
+									</td>
+								</ng-container>
 
-						<!-- Columnas  espacio -->
-						<ng-container matColumnDef="space1">
-							<th class="NoBbottom colornone" mat-header-cell *matHeaderCellDef></th>
-						</ng-container>
+								<!-- Columnas  espacio -->
+								<ng-container matColumnDef="space1">
+									<th class="NoBbottom colornone" mat-header-cell *matHeaderCellDef></th>
+								</ng-container>
 
-						<!-- Items -->
-						<ng-container matColumnDef="Forecast_">
-							<th class="HeaderTop NoBbottom Btop Bright Bleft Tcenter Bdtop" mat-header-cell *matHeaderCellDef colspan="3">
-								Forecast $
-							</th>
-						</ng-container>
-						<ng-container matColumnDef="Presupuesto_">
-							<th class="HeaderTop NoBbottom Btop Bright Tcenter Bdtop" mat-header-cell *matHeaderCellDef colspan="3">Budget $</th>
-						</ng-container>
-						<ng-container matColumnDef="Compliance">
-							<th class="HeaderTop NoBbottom Btop Bright Tcenter Bdtop" mat-header-cell *matHeaderCellDef colspan="3">Compliance %</th>
-						</ng-container>
+								<!-- Items -->
+								<ng-container matColumnDef="Forecast_">
+									<th class="HeaderTop NoBbottom Btop Bright Bleft Tcenter Bdtop" mat-header-cell *matHeaderCellDef colspan="3">
+										Forecast $
+									</th>
+								</ng-container>
+								<ng-container matColumnDef="Presupuesto_">
+									<th class="HeaderTop NoBbottom Btop Bright Tcenter Bdtop" mat-header-cell *matHeaderCellDef colspan="3">Budget $</th>
+								</ng-container>
+								<ng-container matColumnDef="Compliance">
+									<th class="HeaderTop NoBbottom Btop Bright Tcenter Bdtop" mat-header-cell *matHeaderCellDef colspan="3">
+										Compliance %
+									</th>
+								</ng-container>
 
-						<tr mat-header-row *matHeaderRowDef="['space1','Forecast_','Presupuesto_','Compliance']"></tr>
-						<tr mat-header-row *matHeaderRowDef="displayedColumns;" class="Thcenter"></tr>
-						<tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-						<tr mat-footer-row *matFooterRowDef="displayedColumns;"></tr>
-					</table>
-				</div>
+								<tr mat-header-row *matHeaderRowDef="['space1','Forecast_','Presupuesto_','Compliance']"></tr>
+								<tr mat-header-row *matHeaderRowDef="displayedColumns;" class="Thcenter"></tr>
+								<tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+								<tr mat-footer-row *matFooterRowDef="displayedColumns;"></tr>
+							</table></div
+					></mat-tab>
+					<mat-tab label="Company"
+						><div fxLayout="column" fxFlex="100%">
+							<table class="T3" mat-table [dataSource]="ListTerCompliance" multiTemplateDataRows>
+								<!-- Brand Column -->
+								<ng-container matColumnDef="territory">
+									<th class="Btop" mat-header-cell *matHeaderCellDef>
+										<span (click)="SysFiltering('Mc')"> Territory </span>
+									</th>
+									<td mat-cell *matCellDef="let element">{{element.Territory}}</td>
+									<td mat-footer-cell *matFooterCellDef>Totals</td>
+								</ng-container>
+
+								<!-- Fmes1 Column -->
+								<ng-container matColumnDef="FMonthN1">
+									<th class="Bleft" mat-header-cell *matHeaderCellDef>{{appService.obtenerMes(1)}}</th>
+									<td class="Tcenter" mat-cell *matCellDef="let p">$ {{p.FMonthN1 | number }}</td>
+									<td class="Tcenter" mat-footer-cell *matFooterCellDef>$ {{gettotalTerritorySummary('FMonthN1') | number}}</td>
+								</ng-container>
+
+								<!-- Fmes2 Column -->
+								<ng-container matColumnDef="FMonthN2">
+									<th mat-header-cell *matHeaderCellDef>{{appService.obtenerMes(2)}}</th>
+									<td class="Tcenter" mat-cell *matCellDef="let p">$ {{p.FMonthN2 | number }}</td>
+									<td class="Tcenter" mat-footer-cell *matFooterCellDef>$ {{gettotalTerritorySummary('FMonthN2') | number}}</td>
+								</ng-container>
+
+								<!-- Fmes3 Column -->
+								<ng-container matColumnDef="FMonthN3">
+									<th class="Bright" mat-header-cell *matHeaderCellDef>{{appService.obtenerMes(3)}}</th>
+									<td class="Tcenter" mat-cell *matCellDef="let p">$ {{p.FMonthN3 | number }}</td>
+									<td class="Tcenter" mat-footer-cell *matFooterCellDef>$ {{gettotalTerritorySummary('FMonthN3') | number}}</td>
+								</ng-container>
+
+								<!-- Pmes1 Column -->
+								<ng-container matColumnDef="PMonthN1">
+									<th mat-header-cell *matHeaderCellDef>{{appService.obtenerMes(1)}}</th>
+									<td class="Tcenter" mat-cell *matCellDef="let p">$ {{p.PMonthN1 | number }}</td>
+									<td class="Tcenter" mat-footer-cell *matFooterCellDef>$ {{gettotalTerritorySummary('PMonthN1') | number}}</td>
+								</ng-container>
+
+								<!-- Pmes2 Column -->
+								<ng-container matColumnDef="PMonthN2">
+									<th class="" mat-header-cell *matHeaderCellDef>{{appService.obtenerMes(2)}}</th>
+									<td class="Tcenter" mat-cell *matCellDef="let p">$ {{p.PMonthN2 | number }}</td>
+									<td class="Tcenter" mat-footer-cell *matFooterCellDef>$ {{gettotalTerritorySummary('PMonthN2') | number}}</td>
+								</ng-container>
+
+								<!-- Pmes3 Column -->
+								<ng-container matColumnDef="PMonthN3">
+									<th class="Bright" mat-header-cell *matHeaderCellDef>{{appService.obtenerMes(3)}}</th>
+									<td class="Tcenter" mat-cell *matCellDef="let p">$ {{p.PMonthN3 | number }}</td>
+									<td class="Tcenter" mat-footer-cell *matFooterCellDef>$ {{gettotalTerritorySummary('PMonthN3') | number}}</td>
+								</ng-container>
+
+								<!-- Cumes1 Column -->
+								<ng-container matColumnDef="CuMonthN1">
+									<th mat-header-cell *matHeaderCellDef>{{appService.obtenerMes(1)}}</th>
+									<td class="Tcenter" mat-cell *matCellDef="let p">{{p.CMonthN1 | number }}%</td>
+									<td class="Tcenter" mat-footer-cell *matFooterCellDef>
+										{{_Ctrl.getCumplim_(gettotalTerritorySummary('FMonthN1'),gettotalTerritorySummary('PMonthN1')) | number : '1.0-0'
+										}}%
+									</td>
+								</ng-container>
+
+								<!-- Cumes2 Column -->
+								<ng-container matColumnDef="CuMonthN2">
+									<th class="" mat-header-cell *matHeaderCellDef>{{appService.obtenerMes(2)}}</th>
+									<td class="Tcenter" mat-cell *matCellDef="let p">{{p.CMonthN2 | number }}%</td>
+									<td class="Tcenter" mat-footer-cell *matFooterCellDef>
+										{{_Ctrl.getCumplim_(gettotalTerritorySummary('FMonthN2'),gettotalTerritorySummary('PMonthN2')) | number : '1.0-0'
+										}}%
+									</td>
+								</ng-container>
+
+								<!-- Cumes3 Column -->
+								<ng-container matColumnDef="CuMonthN3">
+									<th class="Bright" mat-header-cell *matHeaderCellDef>{{appService.obtenerMes(3)}}</th>
+									<td class="Tcenter" mat-cell *matCellDef="let p">{{p.CMonthN3 | number }}%</td>
+									<td class="Tcenter" mat-footer-cell *matFooterCellDef>
+										{{_Ctrl.getCumplim_(gettotalTerritorySummary('FMonthN3'),gettotalTerritorySummary('PMonthN3')) | number :
+										'1.0-0'}}%
+									</td>
+								</ng-container>
+
+								<!-- Columnas  espacio -->
+								<ng-container matColumnDef="space1">
+									<th class="NoBbottom colornone" mat-header-cell *matHeaderCellDef></th>
+								</ng-container>
+
+								<!-- Items -->
+								<ng-container matColumnDef="Forecast_">
+									<th class="HeaderTop NoBbottom Btop Bright Bleft Tcenter Bdtop" mat-header-cell *matHeaderCellDef colspan="3">
+										Forecast $
+									</th>
+								</ng-container>
+								<ng-container matColumnDef="Presupuesto_">
+									<th class="HeaderTop NoBbottom Btop Bright Tcenter Bdtop" mat-header-cell *matHeaderCellDef colspan="3">Budget $</th>
+								</ng-container>
+								<ng-container matColumnDef="Compliance">
+									<th class="HeaderTop NoBbottom Btop Bright Tcenter Bdtop" mat-header-cell *matHeaderCellDef colspan="3">
+										Compliance %
+									</th>
+								</ng-container>
+
+								<tr mat-header-row *matHeaderRowDef="['space1','Forecast_','Presupuesto_','Compliance']"></tr>
+								<tr mat-header-row *matHeaderRowDef="displayedColumns;" class="Thcenter"></tr>
+								<tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+								<tr mat-footer-row *matFooterRowDef="displayedColumns;"></tr>
+							</table></div
+					></mat-tab>
+					<mat-tab label="Brand"
+						><div fxLayout="column" fxFlex="100%">
+							<table class="T3" mat-table [dataSource]="ListTerCompliance" multiTemplateDataRows>
+								<!-- Brand Column -->
+								<ng-container matColumnDef="territory">
+									<th class="Btop" mat-header-cell *matHeaderCellDef>
+										<span (click)="SysFiltering('Mc')"> Territory </span>
+									</th>
+									<td mat-cell *matCellDef="let element">{{element.Territory}}</td>
+									<td mat-footer-cell *matFooterCellDef>Totals</td>
+								</ng-container>
+
+								<!-- Fmes1 Column -->
+								<ng-container matColumnDef="FMonthN1">
+									<th class="Bleft" mat-header-cell *matHeaderCellDef>{{appService.obtenerMes(1)}}</th>
+									<td class="Tcenter" mat-cell *matCellDef="let p">$ {{p.FMonthN1 | number }}</td>
+									<td class="Tcenter" mat-footer-cell *matFooterCellDef>$ {{gettotalTerritorySummary('FMonthN1') | number}}</td>
+								</ng-container>
+
+								<!-- Fmes2 Column -->
+								<ng-container matColumnDef="FMonthN2">
+									<th mat-header-cell *matHeaderCellDef>{{appService.obtenerMes(2)}}</th>
+									<td class="Tcenter" mat-cell *matCellDef="let p">$ {{p.FMonthN2 | number }}</td>
+									<td class="Tcenter" mat-footer-cell *matFooterCellDef>$ {{gettotalTerritorySummary('FMonthN2') | number}}</td>
+								</ng-container>
+
+								<!-- Fmes3 Column -->
+								<ng-container matColumnDef="FMonthN3">
+									<th class="Bright" mat-header-cell *matHeaderCellDef>{{appService.obtenerMes(3)}}</th>
+									<td class="Tcenter" mat-cell *matCellDef="let p">$ {{p.FMonthN3 | number }}</td>
+									<td class="Tcenter" mat-footer-cell *matFooterCellDef>$ {{gettotalTerritorySummary('FMonthN3') | number}}</td>
+								</ng-container>
+
+								<!-- Pmes1 Column -->
+								<ng-container matColumnDef="PMonthN1">
+									<th mat-header-cell *matHeaderCellDef>{{appService.obtenerMes(1)}}</th>
+									<td class="Tcenter" mat-cell *matCellDef="let p">$ {{p.PMonthN1 | number }}</td>
+									<td class="Tcenter" mat-footer-cell *matFooterCellDef>$ {{gettotalTerritorySummary('PMonthN1') | number}}</td>
+								</ng-container>
+
+								<!-- Pmes2 Column -->
+								<ng-container matColumnDef="PMonthN2">
+									<th class="" mat-header-cell *matHeaderCellDef>{{appService.obtenerMes(2)}}</th>
+									<td class="Tcenter" mat-cell *matCellDef="let p">$ {{p.PMonthN2 | number }}</td>
+									<td class="Tcenter" mat-footer-cell *matFooterCellDef>$ {{gettotalTerritorySummary('PMonthN2') | number}}</td>
+								</ng-container>
+
+								<!-- Pmes3 Column -->
+								<ng-container matColumnDef="PMonthN3">
+									<th class="Bright" mat-header-cell *matHeaderCellDef>{{appService.obtenerMes(3)}}</th>
+									<td class="Tcenter" mat-cell *matCellDef="let p">$ {{p.PMonthN3 | number }}</td>
+									<td class="Tcenter" mat-footer-cell *matFooterCellDef>$ {{gettotalTerritorySummary('PMonthN3') | number}}</td>
+								</ng-container>
+
+								<!-- Cumes1 Column -->
+								<ng-container matColumnDef="CuMonthN1">
+									<th mat-header-cell *matHeaderCellDef>{{appService.obtenerMes(1)}}</th>
+									<td class="Tcenter" mat-cell *matCellDef="let p">{{p.CMonthN1 | number }}%</td>
+									<td class="Tcenter" mat-footer-cell *matFooterCellDef>
+										{{_Ctrl.getCumplim_(gettotalTerritorySummary('FMonthN1'),gettotalTerritorySummary('PMonthN1')) | number : '1.0-0'
+										}}%
+									</td>
+								</ng-container>
+
+								<!-- Cumes2 Column -->
+								<ng-container matColumnDef="CuMonthN2">
+									<th class="" mat-header-cell *matHeaderCellDef>{{appService.obtenerMes(2)}}</th>
+									<td class="Tcenter" mat-cell *matCellDef="let p">{{p.CMonthN2 | number }}%</td>
+									<td class="Tcenter" mat-footer-cell *matFooterCellDef>
+										{{_Ctrl.getCumplim_(gettotalTerritorySummary('FMonthN2'),gettotalTerritorySummary('PMonthN2')) | number : '1.0-0'
+										}}%
+									</td>
+								</ng-container>
+
+								<!-- Cumes3 Column -->
+								<ng-container matColumnDef="CuMonthN3">
+									<th class="Bright" mat-header-cell *matHeaderCellDef>{{appService.obtenerMes(3)}}</th>
+									<td class="Tcenter" mat-cell *matCellDef="let p">{{p.CMonthN3 | number }}%</td>
+									<td class="Tcenter" mat-footer-cell *matFooterCellDef>
+										{{_Ctrl.getCumplim_(gettotalTerritorySummary('FMonthN3'),gettotalTerritorySummary('PMonthN3')) | number :
+										'1.0-0'}}%
+									</td>
+								</ng-container>
+
+								<!-- Columnas  espacio -->
+								<ng-container matColumnDef="space1">
+									<th class="NoBbottom colornone" mat-header-cell *matHeaderCellDef></th>
+								</ng-container>
+
+								<!-- Items -->
+								<ng-container matColumnDef="Forecast_">
+									<th class="HeaderTop NoBbottom Btop Bright Bleft Tcenter Bdtop" mat-header-cell *matHeaderCellDef colspan="3">
+										Forecast $
+									</th>
+								</ng-container>
+								<ng-container matColumnDef="Presupuesto_">
+									<th class="HeaderTop NoBbottom Btop Bright Tcenter Bdtop" mat-header-cell *matHeaderCellDef colspan="3">Budget $</th>
+								</ng-container>
+								<ng-container matColumnDef="Compliance">
+									<th class="HeaderTop NoBbottom Btop Bright Tcenter Bdtop" mat-header-cell *matHeaderCellDef colspan="3">
+										Compliance %
+									</th>
+								</ng-container>
+
+								<tr mat-header-row *matHeaderRowDef="['space1','Forecast_','Presupuesto_','Compliance']"></tr>
+								<tr mat-header-row *matHeaderRowDef="displayedColumns;" class="Thcenter"></tr>
+								<tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+								<tr mat-footer-row *matFooterRowDef="displayedColumns;"></tr>
+							</table></div
+					></mat-tab>
+				</mat-tab-group>
 			</div>
 		</div>
 	</div>

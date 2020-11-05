@@ -77,8 +77,9 @@ export class AppService {
 	getAllDMForeCast_(Territory: string, Client: string) {
 		return this.httpclient.get<any[]>(this.urlBase.url + 'DMForeC_/' + Territory + '/' + Client);
 	}
-	getAllCompTotal(Company: string, Brand: string) {
+	getAllCompTotal(Territory: string, Company: string, Brand: string) {
 		var params = new HttpParams();
+		params = params.append('Territory', Territory);
 		params = params.append('Company', Company);
 		params = params.append('Brand', Brand);
 		return this.httpclient.get<any[]>(this.urlBase.url + 'TerCompliance', { params: params });

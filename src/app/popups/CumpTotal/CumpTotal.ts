@@ -29,14 +29,18 @@ export class CumpTotal_modal implements OnInit, AfterViewInit, OnDestroy {
 	private _portal: TemplatePortal;
 
 	Filtr = {
+		Territory: null,
 		Company: null,
 		Brand: null,
 	};
 	ListFiltrs = {
+		Territories: [],
 		Companies: [],
 		Brands: [],
 	};
 	ListTerCompliance: any;
+	ListCompCompliance: any;
+	ListBrandCompliance: any;
 	constructor(
 		private _overlay: Overlay,
 		private _viewContainerRef: ViewContainerRef,
@@ -78,9 +82,11 @@ export class CumpTotal_modal implements OnInit, AfterViewInit, OnDestroy {
 		});
 	}
 
-	getCumpTotal() {
-		this.appService.getAllCompTotal(this.Filtr.Company, this.Filtr.Brand).subscribe((data) => {
+	getCump() {
+		this.appService.getAllCompTotal(this.Filtr.Territory, this.Filtr.Company, this.Filtr.Brand).subscribe((data) => {
 			this.ListTerCompliance = data['ListTerCompliance'];
+			this.ListCompCompliance = data['ListCompaCompliance'];
+			this.ListBrandCompliance = data['ListBrandCompliance'];
 		});
 	}
 
@@ -93,12 +99,12 @@ export class CumpTotal_modal implements OnInit, AfterViewInit, OnDestroy {
 	}
 
 	applyFilter() {
-		this.getCumpTotal();
+		this.getCump();
 		this.getFiltros();
 	}
 	ngOnInit() {
 		this.getFiltros();
-		this.getCumpTotal();
+		this.getCump();
 	}
 
 	ngAfterViewInit() {

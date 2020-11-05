@@ -8,6 +8,7 @@ import {
 	ElementRef,
 	Output,
 	EventEmitter,
+	OnDestroy,
 } from '@angular/core';
 import { AppComponent } from '../app.component';
 import { AppService } from '../app.service';
@@ -46,7 +47,7 @@ declare function NSFunctionMostrarMenus(mostrar: boolean): any;
 		]),
 	],
 })
-export class ColaboracionVComponent implements OnInit, AfterViewInit {
+export class ColaboracionVComponent implements OnInit, AfterViewInit, OnDestroy {
 	mesActual = 0;
 	dataChartItem = {};
 	displayedColumns = [
@@ -764,4 +765,6 @@ export class ColaboracionVComponent implements OnInit, AfterViewInit {
 		// $(".T2 tbody").addClass('tb');
 		NSFunctionMostrarMenus(true);
 	}
+
+	ngOnDestroy() {}
 }

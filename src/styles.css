@@ -396,3 +396,7 @@ table td.bgYellow,
 	-webkit-filter: blur(4px);
 	filter: blur(4px);
 }
+
+.LayoutMarginCumTotal .mat-tab-body {
+	padding: 1rem;
+}
