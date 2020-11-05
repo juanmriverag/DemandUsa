@@ -73,6 +73,9 @@ app-usermanager.ng-star-inserted {
 app-root {
 	height: 100%;
 }
+.hfull {
+	height: 60vh;
+}
 /* [ Scroll bar ] */
 .js-pscroll {
 	position: relative;

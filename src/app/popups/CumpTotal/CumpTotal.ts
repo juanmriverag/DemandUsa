@@ -8,11 +8,13 @@ import {
 	OnDestroy,
 	ElementRef,
 	Input,
+	OnChanges,
 } from '@angular/core';
 import { Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { TemplatePortal } from '@angular/cdk/portal';
 import { ScriptLoaderService, GoogleChartPackagesHelper } from 'angular-google-charts';
 import { AppService } from '../../app.service';
+import { using } from 'rxjs';
 
 // import { ColaboracionVComponent } from '../../colaboracion-v/colaboracion-v.component';
 const type = GoogleChartPackagesHelper.getPackageForChartName('BarChart');
@@ -21,7 +23,7 @@ const type = GoogleChartPackagesHelper.getPackageForChartName('BarChart');
 	templateUrl: './CumpTotal.html',
 	styleUrls: ['../../colaboracion-v/colaboracion-v.component.css'],
 })
-export class CumpTotal_modal implements OnInit, AfterViewInit, OnDestroy {
+export class CumpTotal_modal implements OnInit, AfterViewInit, OnChanges, OnDestroy {
 	@Input('Ctrl') _Ctrl; // entrada
 
 	@ViewChild(TemplateRef, { static: false }) _dialogTemplate: TemplateRef<any>;
@@ -60,6 +62,8 @@ export class CumpTotal_modal implements OnInit, AfterViewInit, OnDestroy {
 		'CuMonthN2',
 		'CuMonthN3',
 	];
+	columnsHeader1 = ['space1', 'Forecast_', 'Presupuesto_', 'Compliance'];
+
 	//content
 	closeDialog() {
 		this._overlayRef.detach();
@@ -98,6 +102,22 @@ export class CumpTotal_modal implements OnInit, AfterViewInit, OnDestroy {
 		return 0;
 	}
 
+	gettotalCompanySummary(val: string) {
+		var copy = this.ListCompCompliance;
+		if (copy) {
+			return copy.map((t) => t[val]).reduce((acc, value) => acc + value, 0);
+		}
+		return 0;
+	}
+
+	gettotalBrandSummary(val: string) {
+		var copy = this.ListBrandCompliance;
+		if (copy) {
+			return copy.map((t) => t[val]).reduce((acc, value) => acc + value, 0);
+		}
+		return 0;
+	}
+
 	applyFilter() {
 		this.getCump();
 		this.getFiltros();
@@ -107,8 +127,15 @@ export class CumpTotal_modal implements OnInit, AfterViewInit, OnDestroy {
 		this.getCump();
 	}
 
+	ngOnChanges() {
+		$.getScript('../../../assets/vendor/perfect-scrollbar/perfect-scrollbar.min.js');
+		$.getScript('../../../assets/vendor/perfect-scrollbar/perfectEject.js');
+		console.log('cambios');
+	}
+
 	ngAfterViewInit() {
-		var originElement = $('.MainPadding').get()[0];
+		//localhost:4200/src/assets/vendor/perfect-scrollbar/perfect-scrollbar.css
+		http: var originElement = $('.MainPadding').get()[0];
 		this._portal = new TemplatePortal(this._dialogTemplate, this._viewContainerRef);
 		this._overlayRef = this._overlay.create({
 			positionStrategy: this._overlay
