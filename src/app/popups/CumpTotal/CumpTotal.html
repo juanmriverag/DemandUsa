@@ -251,11 +251,11 @@
 							</table></div
 					></mat-tab>
 					<mat-tab label="Brand"
-						><div fxLayout="column" fxFlex="100%" class="hfull">
+						><div fxLayout="column" fxFlex="100%" class="hfull mat-elevation-z8">
 							<table class="T3" mat-table [dataSource]="ListBrandCompliance">
 								<!-- Brand Column -->
 								<ng-container matColumnDef="territory">
-									<th class="Btop" mat-header-cell *matHeaderCellDef>
+									<th mat-header-cell *matHeaderCellDef class="Btop">
 										<span (click)="SysFiltering('Mc')"> Brand </span>
 									</th>
 									<td mat-cell *matCellDef="let element">{{element.Brand}}</td>
@@ -264,7 +264,7 @@
 
 								<!-- Fmes1 Column -->
 								<ng-container matColumnDef="FMonthN1">
-									<th class="Bleft" mat-header-cell *matHeaderCellDef>{{appService.obtenerMes(1)}}</th>
+									<th mat-header-cell *matHeaderCellDef class="Bleft">{{appService.obtenerMes(1)}}</th>
 									<td class="Tcenter" mat-cell *matCellDef="let p">$ {{p.FMonthN1 | number }}</td>
 									<td class="Tcenter" mat-footer-cell *matFooterCellDef>$ {{gettotalBrandSummary('FMonthN1') | number}}</td>
 								</ng-container>
@@ -278,7 +278,7 @@
 
 								<!-- Fmes3 Column -->
 								<ng-container matColumnDef="FMonthN3">
-									<th class="Bright" mat-header-cell *matHeaderCellDef>{{appService.obtenerMes(3)}}</th>
+									<th mat-header-cell *matHeaderCellDef class="Bright">{{appService.obtenerMes(3)}}</th>
 									<td class="Tcenter" mat-cell *matCellDef="let p">$ {{p.FMonthN3 | number }}</td>
 									<td class="Tcenter" mat-footer-cell *matFooterCellDef>$ {{gettotalBrandSummary('FMonthN3') | number}}</td>
 								</ng-container>
@@ -292,14 +292,14 @@
 
 								<!-- Pmes2 Column -->
 								<ng-container matColumnDef="PMonthN2">
-									<th class="" mat-header-cell *matHeaderCellDef>{{appService.obtenerMes(2)}}</th>
+									<th mat-header-cell *matHeaderCellDef>{{appService.obtenerMes(2)}}</th>
 									<td class="Tcenter" mat-cell *matCellDef="let p">$ {{p.PMonthN2 | number }}</td>
 									<td class="Tcenter" mat-footer-cell *matFooterCellDef>$ {{gettotalBrandSummary('PMonthN2') | number}}</td>
 								</ng-container>
 
 								<!-- Pmes3 Column -->
 								<ng-container matColumnDef="PMonthN3">
-									<th class="Bright" mat-header-cell *matHeaderCellDef>{{appService.obtenerMes(3)}}</th>
+									<th mat-header-cell *matHeaderCellDef class="Bright">{{appService.obtenerMes(3)}}</th>
 									<td class="Tcenter" mat-cell *matCellDef="let p">$ {{p.PMonthN3 | number }}</td>
 									<td class="Tcenter" mat-footer-cell *matFooterCellDef>$ {{gettotalBrandSummary('PMonthN3') | number}}</td>
 								</ng-container>
@@ -315,7 +315,7 @@
 
 								<!-- Cumes2 Column -->
 								<ng-container matColumnDef="CuMonthN2">
-									<th class="" mat-header-cell *matHeaderCellDef>{{appService.obtenerMes(2)}}</th>
+									<th mat-header-cell *matHeaderCellDef>{{appService.obtenerMes(2)}}</th>
 									<td class="Tcenter" mat-cell *matCellDef="let p">{{p.CMonthN2 | number }}%</td>
 									<td class="Tcenter" mat-footer-cell *matFooterCellDef>
 										{{_Ctrl.getCumplim_(gettotalBrandSummary('FMonthN2'),gettotalBrandSummary('PMonthN2')) | number : '1.0-0' }}%
@@ -324,7 +324,7 @@
 
 								<!-- Cumes3 Column -->
 								<ng-container matColumnDef="CuMonthN3">
-									<th class="Bright" mat-header-cell *matHeaderCellDef>{{appService.obtenerMes(3)}}</th>
+									<th mat-header-cell *matHeaderCellDef class="Bright">{{appService.obtenerMes(3)}}</th>
 									<td class="Tcenter" mat-cell *matCellDef="let p">{{p.CMonthN3 | number }}%</td>
 									<td class="Tcenter" mat-footer-cell *matFooterCellDef>
 										{{_Ctrl.getCumplim_(gettotalBrandSummary('FMonthN3'),gettotalBrandSummary('PMonthN3')) | number : '1.0-0'}}%
@@ -333,20 +333,20 @@
 
 								<!-- Columnas  espacio -->
 								<ng-container matColumnDef="space1">
-									<th class="NoBbottom colornone" mat-header-cell *matHeaderCellDef></th>
+									<th mat-header-cell *matHeaderCellDef class="NoBbottom colornone"></th>
 								</ng-container>
 
 								<!-- Items -->
 								<ng-container matColumnDef="Forecast_">
-									<th class="HeaderTop NoBbottom Btop Bright Bleft Tcenter Bdtop" mat-header-cell *matHeaderCellDef colspan="3">
+									<th mat-header-cell *matHeaderCellDef class="HeaderTop NoBbottom Btop Bright Bleft Tcenter Bdtop" colspan="3">
 										Forecast $
 									</th>
 								</ng-container>
 								<ng-container matColumnDef="Presupuesto_">
-									<th class="HeaderTop NoBbottom Btop Bright Tcenter Bdtop" mat-header-cell *matHeaderCellDef colspan="3">Budget $</th>
+									<th mat-header-cell *matHeaderCellDef class="HeaderTop NoBbottom Btop Bright Tcenter Bdtop" colspan="3">Budget $</th>
 								</ng-container>
 								<ng-container matColumnDef="Compliance">
-									<th class="HeaderTop NoBbottom Btop Bright Tcenter Bdtop" mat-header-cell *matHeaderCellDef colspan="3">
+									<th mat-header-cell *matHeaderCellDef class="HeaderTop NoBbottom Btop Bright Tcenter Bdtop" colspan="3">
 										Compliance %
 									</th>
 								</ng-container>

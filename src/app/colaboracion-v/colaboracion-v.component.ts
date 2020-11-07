@@ -47,7 +47,7 @@ declare function NSFunctionMostrarMenus(mostrar: boolean): any;
 		]),
 	],
 })
-export class ColaboracionVComponent implements OnInit, AfterViewInit, OnDestroy {
+export class ColaboracionVComponent implements OnInit, AfterViewInit {
 	mesActual = 0;
 	dataChartItem = {};
 	displayedColumns = [
@@ -64,6 +64,7 @@ export class ColaboracionVComponent implements OnInit, AfterViewInit, OnDestroy 
 		'monthN1',
 		'monthN2',
 		'monthN3',
+		'info',
 		'mape',
 		'price',
 		'notas',
@@ -538,6 +539,10 @@ export class ColaboracionVComponent implements OnInit, AfterViewInit, OnDestroy 
 
 		var index = this.ListDMForeCast.data.indexOf(_model);
 
+		var num = 0;
+
+		debugger;
+
 		if (keyEvent.which === 39 || keyEvent.which === 13) {
 			Id = Id + (IdInp + 1);
 			if (_model['MonthN' + numI] > _model.TopAverage && _model['MonthN' + numI] < _model.Average * 1.7 && !_model.Nov) {
@@ -548,15 +553,23 @@ export class ColaboracionVComponent implements OnInit, AfterViewInit, OnDestroy 
 
 			this.PostForeC(_model);
 			$(Id).focus();
+			num = numI == 1 || numI == 2 ? 0 : 1;
+			this.colorRow(this.ListDMForeCast.data[index + num]);
 		} else if (keyEvent.which === 37) {
 			Id = Id + (IdInp - 1);
 			$(Id).focus();
+			num = numI == 3 || numI == 2 ? 0 : 1;
+			this.colorRow(this.ListDMForeCast.data[index - num]);
 		} else if (keyEvent.which === 40) {
 			Id = Id + (IdInp + 3);
 			$(Id).focus();
+			num = 1;
+			this.colorRow(this.ListDMForeCast.data[index + num]);
 		} else if (keyEvent.which === 38) {
 			Id = Id + (IdInp - 3);
 			$(Id).focus();
+			num = 1;
+			this.colorRow(this.ListDMForeCast.data[index - num]);
 		} else if (keyEvent.which >= 65 && keyEvent.which <= 90 && keyEvent.which != 67 && keyEvent.which != 86) {
 			if (index != -1) {
 				if (numI == 1) {
@@ -743,6 +756,12 @@ export class ColaboracionVComponent implements OnInit, AfterViewInit, OnDestroy 
 		});
 	}
 
+	colorRow(_model) {
+		this.ListDMForeCast.data.forEach((element) => {
+			element.Select = element === _model ? true : false;
+		});
+	}
+
 	chartItem(_model) {
 		this.ItemSelect = _model;
 		this.openDitemChartP(_model);
@@ -765,6 +784,4 @@ export class ColaboracionVComponent implements OnInit, AfterViewInit, OnDestroy 
 		// $(".T2 tbody").addClass('tb');
 		NSFunctionMostrarMenus(true);
 	}
-
-	ngOnDestroy() {}
 }

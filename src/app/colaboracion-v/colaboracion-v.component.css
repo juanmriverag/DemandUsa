@@ -111,7 +111,7 @@ tr.table-detail-row {
 }
 
 tr.table-element-row:not(.table-expanded-row):hover td {
-	background-color: #b0c5d1 !important;
+	background-color: #232f341f !important;
 	color: #344955 !important;
 }
 
@@ -423,6 +423,11 @@ div.plMenuCSS {
 }
 .Nov td {
 	background-color: #ffdd54;
+	color: #344955;
+}
+
+.rowSelect td {
+	background-color: #edf1fc;
 	color: #344955;
 }
 .NS-checkbox-group .NS-checkbox {

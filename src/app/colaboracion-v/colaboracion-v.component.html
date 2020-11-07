@@ -375,6 +375,22 @@
 				</td>
 			</ng-container>
 
+			<!-- Info Column -->
+			<ng-container matColumnDef="info">
+				<th class="Tcenter" mat-header-cell *matHeaderCellDef><mat-icon matTooltip="Open Chart"> receipt</mat-icon></th>
+				<td class="Tend" mat-cell *matCellDef="let element">
+					<mat-icon
+						matTooltip="Sales last year (	{{ appService.obtenerMes(1) }} {{ element.MonthPrev1 | number }}/ {{
+							appService.obtenerMes(2)
+						}}	{{ element.MonthPrev2 | number }}/{{ appService.obtenerMes(3) }}	{{ element.MonthPrev3 | number }}) Cases"
+						matTooltipPosition="above"
+					>
+						info</mat-icon
+					>
+				</td>
+				<td class="Tend" mat-footer-cell *matFooterCellDef></td>
+			</ng-container>
+
 			<!-- Mape Column -->
 			<ng-container matColumnDef="mape">
 				<th class="Tcenter" mat-header-cell *matHeaderCellDef>MAPE {{ appService.obtenerMes(-1) }}</th>
@@ -436,7 +452,7 @@
 					Forecast
 				</th>
 			</ng-container>
-			<!-- Columnas  espacio -->
+			<!-- Columnas  espacio
 			<ng-container matColumnDef="expandedDetail1">
 				<td class="" mat-cell *matCellDef="let element" colspan="10">
 					<div class="table-element-detail Tend" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
@@ -457,33 +473,33 @@
 				</td>
 			</ng-container>
 
-			<!-- Columnas  espacio -->
+			<!- Columnas  espacio -->
 			<!-- Mes_Anterior_1  año anterior Column -->
-			<ng-container matColumnDef="expandedA1">
+			<!-- <ng-container matColumnDef="expandedA1">
 				<td mat-cell *matCellDef="let element">
 					<div class="table-element-detail Tcenter" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
 						{{ element.MonthPrev1 | number }}
 					</div>
 				</td>
-			</ng-container>
+			</ng-container> -->
 
 			<!-- Mes_Anterior_2  año anterior Column -->
-			<ng-container matColumnDef="expandedA2">
+			<!-- <ng-container matColumnDef="expandedA2">
 				<td class="Tcenter" mat-cell *matCellDef="let element">
 					<div class="table-element-detail Tcenter" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
 						{{ element.MonthPrev2 | number }}
 					</div>
 				</td>
-			</ng-container>
+			</ng-container> -->
 
 			<!-- Mes_Anterior_3 año anterior Column -->
-			<ng-container matColumnDef="expandedA3">
+			<!-- <ng-container matColumnDef="expandedA3">
 				<td class="Tcenter" mat-cell *matCellDef="let element">
 					<div class="table-element-detail Tcenter" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
 						{{ element.MonthPrev3 | number }}
 					</div>
 				</td>
-			</ng-container>
+			</ng-container>  -->
 
 			<tr mat-header-row *matHeaderRowDef="['space1', 'Haderventas', 'Haderpronostico', 'space2']; sticky: true"></tr>
 			<tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
@@ -492,14 +508,14 @@
 				*matRowDef="let element; columns: displayedColumns"
 				class="table-element-row js-pscroll"
 				[class.table-expanded-row]="expandedElement === element"
-				(click)="expandedElement = expandedElement === element ? null : element"
-				[ngClass]="{ Nov: element.Nov }"
+				(click)="colorRow(element)"
+				[ngClass]="{ Nov: element.Nov, rowSelect: element.Select }"
 			></tr>
-			<tr
+			<!-- <tr
 				mat-row
 				*matRowDef="let row; columns: ['expandedDetail1', 'expandedA1', 'expandedA2', 'expandedA3', 'expandedDetail2', 'space3']"
 				class="table-detail-row"
-			></tr>
+			></tr> -->
 			<tr mat-footer-row *matFooterRowDef="displayedColumns; sticky: true"></tr>
 		</table>
 		<!-- <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator> -->
