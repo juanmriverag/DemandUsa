@@ -377,7 +377,9 @@
 
 			<!-- Info Column -->
 			<ng-container matColumnDef="info">
-				<th class="Tcenter" mat-header-cell *matHeaderCellDef><mat-icon matTooltip="Open Chart" class="fIco20"> history</mat-icon></th>
+				<th class="Tcenter" mat-header-cell *matHeaderCellDef>
+					<mat-icon matTooltip="Sales last year" class="fIco20"> history</mat-icon>
+				</th>
 				<td class="Tend" mat-cell *matCellDef="let element">
 					<mat-icon
 						matTooltip="Sales last year (	{{ appService.obtenerMes(1) }} {{ element.MonthPrev1 | number }}/ {{
@@ -420,10 +422,10 @@
 					</button>
 				</th>
 				<td class="Tend" mat-cell *matCellDef="let element">
+					<mat-icon (click)="chartItem(element)" matTooltip="Open Chart"> insights</mat-icon>
 					<mat-icon class="Note fIco20" matTooltip="Note" [ngClass]="{ eNote: element.IdNote != null }" (click)="NewNote(element)">
 						edit</mat-icon
 					>
-					<mat-icon (click)="chartItem(element)" matTooltip="Open Chart"> insights</mat-icon>
 				</td>
 				<td class="Tend" mat-footer-cell *matFooterCellDef></td>
 			</ng-container>
