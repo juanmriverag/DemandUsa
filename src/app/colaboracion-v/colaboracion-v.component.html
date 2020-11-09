@@ -162,8 +162,8 @@
 					<th class="HeaderTop NoBbottom Btop Bright Tcenter Bdtop" mat-header-cell *matHeaderCellDef colspan="3">% Compliance</th>
 				</ng-container>
 
-				<tr mat-header-row *matHeaderRowDef="['space1', 'Forecast_', 'Presupuesto_', 'Compliance']"></tr>
-				<tr mat-header-row *matHeaderRowDef="displayedColumns2" class="Thcenter"></tr>
+				<tr mat-header-row *matHeaderRowDef="['space1', 'Forecast_', 'Presupuesto_', 'Compliance']" class="Tcenter header-row1"></tr>
+				<tr mat-header-row *matHeaderRowDef="displayedColumns2" class="Tcenter header-row2"></tr>
 				<tr
 					mat-row
 					*matRowDef="let row; columns: displayedColumns2"
@@ -508,7 +508,7 @@
 			</ng-container>  -->
 
 			<tr mat-header-row *matHeaderRowDef="['space1', 'Haderventas', 'Haderpronostico', 'space2']; sticky: true"></tr>
-			<tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+			<tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true" class="header-row2"></tr>
 			<tr
 				mat-row
 				*matRowDef="let element; columns: displayedColumns"

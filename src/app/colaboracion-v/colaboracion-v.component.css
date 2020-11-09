@@ -26,6 +26,9 @@ div .Cblue {
 .Tcenter {
 	text-align: center;
 }
+.Tcenter th {
+	text-align: center;
+}
 .pcontent {
 	height: 100%;
 }
@@ -36,9 +39,7 @@ div .Cblue {
 .Tend input {
 	text-align: end;
 }
-.Thcenter th {
-	text-align: center;
-}
+
 .Bleft {
 	border-left: solid 1px #a99075;
 }
@@ -84,9 +85,9 @@ td.paRight {
 	/* padding-right: 3px; */
 }
 
-.T1 tr.mat-header-row:not(.Thcenter),
-.T2 tr.mat-header-row:not(.Thcenter),
-.T3 tr.mat-header-row:not(.Thcenter) {
+.T1 tr.mat-header-row:not(.header-row2),
+.T2 tr.mat-header-row:not(.header-row2),
+.T3 tr.mat-header-row:not(.header-row2) {
 	height: 23px;
 }
 table tr th {
@@ -189,6 +190,11 @@ mat-form-field {
 	height: 30px;
 	font-size: 20px;
 }
+
+.T3 tr.mat-header-row.header-row2 th {
+	top: 23px !important;
+}
+
 .T2 tr.mat-row:not(.table-detail-row) {
 	height: 30px;
 	font-size: 11.5px;

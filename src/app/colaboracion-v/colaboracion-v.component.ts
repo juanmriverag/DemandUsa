@@ -34,11 +34,11 @@ declare function NSFunctionMostrarMenus(mostrar: boolean): any;
 	templateUrl: './colaboracion-v.component.html',
 	styleUrls: ['./colaboracion-v.component.css'],
 	animations: [
-		trigger('detailExpand', [
-			state('collapsed', style({ height: '0px', minHeight: '0', marginTop: '0', marginBottom: '0' })),
-			state('expanded', style({ height: '*', marginTop: '5px', marginBottom: '5px' })),
-			transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
-		]),
+		// trigger('detailExpand', [
+		// 	state('collapsed', style({ height: '0px', minHeight: '0', marginTop: '0', marginBottom: '0' })),
+		// 	state('expanded', style({ height: '*', marginTop: '5px', marginBottom: '5px' })),
+		// 	transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+		// ]),
 		trigger('detailExpand2', [
 			state('collapsed', style({ zIndex: '-10', position: 'absolute', opacity: '0' })),
 			state('expanded', style({ zIndex: 'auto', position: 'sticky', opacity: '1' })),

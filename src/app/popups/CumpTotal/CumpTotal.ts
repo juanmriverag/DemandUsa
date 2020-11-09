@@ -23,7 +23,7 @@ const type = GoogleChartPackagesHelper.getPackageForChartName('BarChart');
 	templateUrl: './CumpTotal.html',
 	styleUrls: ['../../colaboracion-v/colaboracion-v.component.css'],
 })
-export class CumpTotal_modal implements OnInit, AfterViewInit, OnChanges, OnDestroy {
+export class CumpTotal_modal implements OnInit, AfterViewInit, OnDestroy {
 	@Input('Ctrl') _Ctrl; // entrada
 
 	@ViewChild(TemplateRef, { static: false }) _dialogTemplate: TemplateRef<any>;
@@ -126,12 +126,6 @@ export class CumpTotal_modal implements OnInit, AfterViewInit, OnChanges, OnDest
 	ngOnInit() {
 		this.getFiltros();
 		this.getCump();
-	}
-
-	ngOnChanges() {
-		$.getScript('../../../assets/vendor/perfect-scrollbar/perfect-scrollbar.min.js');
-		$.getScript('../../../assets/vendor/perfect-scrollbar/perfectEject.js');
-		console.log('cambios');
 	}
 
 	ngAfterViewInit() {
