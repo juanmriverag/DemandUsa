@@ -5,6 +5,15 @@
 				<div fxLayout="column" fxFlex="50%" fxLayoutAlign="center start">
 					<mat-menu #appMenu="matMenu">
 						<div mat-menu-item class="plMenuCSS" (click)="$event.stopPropagation();">
+							<mat-label>Territory</mat-label>
+							<span class="custom-dropdown">
+								<mat-select [(ngModel)]="Filtr.Territory" (selectionChange)="applyFilter()">
+									<mat-option [value]="null">All</mat-option>
+									<mat-option *ngFor="let Territory of ListFiltrs.Territories" [value]="Territory"> {{Territory}} </mat-option>
+								</mat-select>
+							</span>
+						</div>
+						<div mat-menu-item class="plMenuCSS" (click)="$event.stopPropagation();">
 							<mat-label>Company</mat-label>
 							<span class="custom-dropdown">
 								<mat-select [(ngModel)]="Filtr.Company" (selectionChange)="applyFilter()">

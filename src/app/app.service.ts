@@ -140,11 +140,12 @@ export class AppService {
 		params = params.append('Brand', Brand);
 		return this.httpclient.get<any[]>(this.urlBase.url + 'FiltrDisp', { params: params });
 	}
-	getfiltr2(Company: string, Brand: string) {
+	getfiltr2(Territory: string, Company: string, Brand: string) {
 		// Initialize Params Object
 		let params = new HttpParams();
 
 		// Begin assigning parameters
+		params = params.append('Territory', Territory);
 		params = params.append('Company', Company);
 		params = params.append('Brand', Brand);
 		return this.httpclient.get<any[]>(this.urlBase.url + 'FiltrDisp2', { params: params });

@@ -110,10 +110,10 @@ tr.table-detail-row {
 	height: 0;
 }
 
-tr.table-element-row:not(.table-expanded-row):hover td {
+/* tr.table-element-row:not(.table-expanded-row):hover td {
 	background-color: #232f341f !important;
 	color: #344955 !important;
-}
+} */
 
 tr.table-element-row.table-expanded-row td {
 	background-color: #c4dae6 !important;

@@ -79,8 +79,9 @@ export class CumpTotal_modal implements OnInit, AfterViewInit, OnChanges, OnDest
 	}
 
 	getFiltros() {
-		this.appService.getfiltr2(this.Filtr.Company, this.Filtr.Brand).subscribe((data) => {
+		this.appService.getfiltr2(this.Filtr.Territory, this.Filtr.Company, this.Filtr.Brand).subscribe((data) => {
 			const _data = data['ListFiltr2'];
+			this.ListFiltrs.Territories = this.appService.ListUnique(_data, 'Territory');
 			this.ListFiltrs.Companies = this.appService.ListUnique(_data, 'Company');
 			this.ListFiltrs.Brands = this.appService.ListUnique(_data, 'Brand');
 		});

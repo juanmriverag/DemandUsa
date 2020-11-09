@@ -76,6 +76,13 @@ app-root {
 .hfull {
 	height: 60vh;
 }
+
+.mat-icon.fIco20 {
+	font-size: 21px;
+	height: 21px;
+	width: 21px;
+}
+
 /* [ Scroll bar ] */
 .js-pscroll {
 	position: relative;

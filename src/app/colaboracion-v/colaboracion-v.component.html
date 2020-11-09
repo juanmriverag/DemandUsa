@@ -377,15 +377,16 @@
 
 			<!-- Info Column -->
 			<ng-container matColumnDef="info">
-				<th class="Tcenter" mat-header-cell *matHeaderCellDef><mat-icon matTooltip="Open Chart"> receipt</mat-icon></th>
+				<th class="Tcenter" mat-header-cell *matHeaderCellDef><mat-icon matTooltip="Open Chart" class="fIco20"> receipt</mat-icon></th>
 				<td class="Tend" mat-cell *matCellDef="let element">
 					<mat-icon
 						matTooltip="Sales last year (	{{ appService.obtenerMes(1) }} {{ element.MonthPrev1 | number }}/ {{
 							appService.obtenerMes(2)
 						}}	{{ element.MonthPrev2 | number }}/{{ appService.obtenerMes(3) }}	{{ element.MonthPrev3 | number }}) Cases"
 						matTooltipPosition="above"
+						class="fIco20"
 					>
-						info</mat-icon
+						history</mat-icon
 					>
 				</td>
 				<td class="Tend" mat-footer-cell *matFooterCellDef></td>
@@ -415,10 +416,13 @@
 			<ng-container matColumnDef="notas">
 				<th class="Tend" mat-header-cell *matHeaderCellDef>
 					<button mat-icon-button matTooltip="Notes">
-						<mat-icon (click)="ListNotes()">forum</mat-icon>
+						<mat-icon (click)="ListNotes()" class="fIco20">forum</mat-icon>
 					</button>
 				</th>
 				<td class="Tend" mat-cell *matCellDef="let element">
+					<mat-icon class="Note fIco20" matTooltip="Note" [ngClass]="{ eNote: element.IdNote != null }" (click)="NewNote(element)">
+						comment</mat-icon
+					>
 					<mat-icon (click)="chartItem(element)" matTooltip="Open Chart"> insights</mat-icon>
 				</td>
 				<td class="Tend" mat-footer-cell *matFooterCellDef></td>
@@ -430,7 +434,7 @@
 			</ng-container>
 			<!-- Columnas  espacio2 -->
 			<ng-container matColumnDef="space2">
-				<th class="NoBbottom colornone" mat-header-cell *matHeaderCellDef colspan="3"></th>
+				<th class="NoBbottom colornone" mat-header-cell *matHeaderCellDef colspan="4"></th>
 			</ng-container>
 			<!-- Columnas  espacio3 -->
 			<ng-container matColumnDef="space3">
