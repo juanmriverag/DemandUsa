@@ -700,7 +700,7 @@ export class ColaboracionVComponent implements OnInit, AfterViewInit {
 	}
 
 	getNotes() {
-		this.appService.getNotes().subscribe((rest) => {
+		this.appService.getNotes(this.Bus.Territory).subscribe((rest) => {
 			this.Notes = rest['ListNotes'];
 			if (this.Notes.length > 0) {
 				this.InsertNotesList();

@@ -33,7 +33,12 @@
 			<table class="T1" mat-table [dataSource]="ListDMForeCast_" multiTemplateDataRows>
 				<!-- Category Column -->
 				<ng-container matColumnDef="category">
-					<th class="Btop" mat-header-cell *matHeaderCellDef>
+					<th
+						class="Btop"
+						mat-header-cell
+						*matHeaderCellDef
+						[ngClass]="{ FiltrElement: Bus2.Division != null && Bus2.Division != '' }"
+					>
 						<mat-icon class="icoN FloLeft" [ngClass]="{ UpIcon: Mcont }" (click)="Mcont = !Mcont"> keyboard_arrow_down </mat-icon>
 						<span *ngIf="!Ca" (click)="SysFiltering('Ca')"> Division </span>
 						<input
@@ -52,7 +57,7 @@
 
 				<!-- Company Column -->
 				<ng-container matColumnDef="company">
-					<th class="Btop" mat-header-cell *matHeaderCellDef>
+					<th class="Btop" mat-header-cell *matHeaderCellDef [ngClass]="{ FiltrElement: Bus2.Company != null && Bus2.Company != '' }">
 						<span *ngIf="!Mc" (click)="SysFiltering('Mc')"> Company </span>
 						<input
 							*ngIf="Mc"

@@ -191,8 +191,10 @@ export class AppService {
 	//Other methods with services
 
 	//Notes
-	getNotes() {
-		return this.httpclient.get<any[]>(this.urlBase.url + 'Notes');
+	getNotes(territory: string) {
+		let params = new HttpParams();
+		params = params.append('Territory', territory);
+		return this.httpclient.get<any[]>(this.urlBase.url + 'Notes', { params: params });
 	}
 	postNote(_Note, Option) {
 		let bodystr = new FormData();
