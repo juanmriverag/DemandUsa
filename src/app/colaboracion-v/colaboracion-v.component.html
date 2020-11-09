@@ -37,7 +37,7 @@
 						class="Btop"
 						mat-header-cell
 						*matHeaderCellDef
-						[ngClass]="{ FiltrElement: Bus2.Division != null && Bus2.Division != '' }"
+						[ngClass]="{ FiltrElement: Bus2.Category != null && Bus2.Category != '' }"
 					>
 						<mat-icon class="icoN FloLeft" [ngClass]="{ UpIcon: Mcont }" (click)="Mcont = !Mcont"> keyboard_arrow_down </mat-icon>
 						<span *ngIf="!Ca" (click)="SysFiltering('Ca')"> Division </span>
