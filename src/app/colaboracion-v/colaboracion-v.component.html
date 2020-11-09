@@ -377,7 +377,7 @@
 
 			<!-- Info Column -->
 			<ng-container matColumnDef="info">
-				<th class="Tcenter" mat-header-cell *matHeaderCellDef><mat-icon matTooltip="Open Chart" class="fIco20"> receipt</mat-icon></th>
+				<th class="Tcenter" mat-header-cell *matHeaderCellDef><mat-icon matTooltip="Open Chart" class="fIco20"> history</mat-icon></th>
 				<td class="Tend" mat-cell *matCellDef="let element">
 					<mat-icon
 						matTooltip="Sales last year (	{{ appService.obtenerMes(1) }} {{ element.MonthPrev1 | number }}/ {{
@@ -414,14 +414,14 @@
 
 			<!-- Notas Column -->
 			<ng-container matColumnDef="notas">
-				<th class="Tend" mat-header-cell *matHeaderCellDef>
+				<th mat-header-cell *matHeaderCellDef>
 					<button mat-icon-button matTooltip="Notes">
 						<mat-icon (click)="ListNotes()" class="fIco20">forum</mat-icon>
 					</button>
 				</th>
 				<td class="Tend" mat-cell *matCellDef="let element">
 					<mat-icon class="Note fIco20" matTooltip="Note" [ngClass]="{ eNote: element.IdNote != null }" (click)="NewNote(element)">
-						comment</mat-icon
+						edit</mat-icon
 					>
 					<mat-icon (click)="chartItem(element)" matTooltip="Open Chart"> insights</mat-icon>
 				</td>
@@ -436,16 +436,16 @@
 			<ng-container matColumnDef="space2">
 				<th class="NoBbottom colornone" mat-header-cell *matHeaderCellDef colspan="4"></th>
 			</ng-container>
-			<!-- Columnas  espacio3 -->
+			<!-- Columnas  espacio3
 			<ng-container matColumnDef="space3">
 				<td mat-cell *matCellDef="let element" colspan="3">
-					<div class="table-element-detail Tend closeIcon" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+					<div class="table-element-detail closeIcon" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
 						<mat-icon class="Note" matTooltip="Note" [ngClass]="{ eNote: element.IdNote != null }" (click)="NewNote(element)">
 							comment</mat-icon
 						>
 					</div>
 				</td>
-			</ng-container>
+			</ng-container> -->
 
 			<!-- Item Sales -->
 			<ng-container matColumnDef="Haderventas">

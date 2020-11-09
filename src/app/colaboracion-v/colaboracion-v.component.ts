@@ -65,9 +65,9 @@ export class ColaboracionVComponent implements OnInit, AfterViewInit {
 		'monthN2',
 		'monthN3',
 		'info',
+		'notas',
 		'mape',
 		'price',
-		'notas',
 	];
 	displayedColumns2 = [
 		'category',
