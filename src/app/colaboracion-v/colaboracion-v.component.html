@@ -219,7 +219,8 @@
 			<!-- Brand Column -->
 			<ng-container matColumnDef="brand">
 				<th mat-header-cell *matHeaderCellDef class="Btop" mat-sort-header>
-					<span> Brand </span>
+					<span *ngIf="!Bd" (click)="SysFiltering('Bd')"> Brand </span>
+					<input *ngIf="Bd" placeholder="Brand" matInput (keyup)="applyFilter()" [(ngModel)]="Bus.Brand" autofocus />
 				</th>
 				<td class=" " mat-cell *matCellDef="let element" (click)="SysFiltering('H')">{{ element.Brand }}</td>
 				<td mat-footer-cell *matFooterCellDef>{{ getSizeDMForeCast() }}</td>

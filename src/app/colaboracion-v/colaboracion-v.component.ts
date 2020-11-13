@@ -173,6 +173,7 @@ export class ColaboracionVComponent implements OnInit, AfterViewInit {
 	Notes = [];
 	// validador de inputs de filtros
 	Ca: boolean = false;
+	Bd: boolean = false;
 	Cl: boolean = false;
 	Cg: boolean = false;
 	Mc: boolean = false;
@@ -185,6 +186,7 @@ export class ColaboracionVComponent implements OnInit, AfterViewInit {
 		if (Input == 'Cl') {
 			this.Cl = true;
 			this.Ca = false;
+			this.Bd = false;
 			this.Cg = false;
 			this.Mc = false;
 			this.Sm = false;
@@ -193,6 +195,7 @@ export class ColaboracionVComponent implements OnInit, AfterViewInit {
 		} else if (Input == 'Ca') {
 			this.Cl = false;
 			this.Ca = true;
+			this.Bd = false;
 			this.Cg = false;
 			this.Mc = false;
 			this.Sm = false;
@@ -201,6 +204,7 @@ export class ColaboracionVComponent implements OnInit, AfterViewInit {
 		} else if (Input == 'Cg') {
 			this.Cl = false;
 			this.Ca = false;
+			this.Bd = false;
 			this.Cg = true;
 			this.Mc = false;
 			this.Sm = false;
@@ -209,6 +213,7 @@ export class ColaboracionVComponent implements OnInit, AfterViewInit {
 		} else if (Input == 'Mc') {
 			this.Cl = false;
 			this.Ca = false;
+			this.Bd = false;
 			this.Cg = false;
 			this.Mc = true;
 			this.Sm = false;
@@ -217,6 +222,7 @@ export class ColaboracionVComponent implements OnInit, AfterViewInit {
 		} else if (Input == 'Sm') {
 			this.Cl = false;
 			this.Ca = false;
+			this.Bd = false;
 			this.Cg = false;
 			this.Mc = false;
 			this.Sm = true;
@@ -225,6 +231,7 @@ export class ColaboracionVComponent implements OnInit, AfterViewInit {
 		} else if (Input == 'Mt') {
 			this.Cl = false;
 			this.Ca = false;
+			this.Bd = false;
 			this.Cg = false;
 			this.Mc = false;
 			this.Sm = false;
@@ -233,6 +240,7 @@ export class ColaboracionVComponent implements OnInit, AfterViewInit {
 		} else if (Input == 'Des') {
 			this.Cl = false;
 			this.Ca = false;
+			this.Bd = false;
 			this.Cg = false;
 			this.Mc = false;
 			this.Sm = false;
@@ -241,6 +249,16 @@ export class ColaboracionVComponent implements OnInit, AfterViewInit {
 		} else if (Input == 'MM') {
 			this.Cl = false;
 			this.Ca = false;
+			this.Bd = false;
+			this.Cg = false;
+			this.Mc = false;
+			this.Sm = false;
+			this.Mt = false;
+			this.Des = false;
+		} else if (Input == 'Bd') {
+			this.Cl = false;
+			this.Ca = false;
+			this.Bd = true;
 			this.Cg = false;
 			this.Mc = false;
 			this.Sm = false;
@@ -254,9 +272,11 @@ export class ColaboracionVComponent implements OnInit, AfterViewInit {
 				this.Mc == true ||
 				this.Sm == true ||
 				this.Mt == true ||
+				this.Bd == true ||
 				this.Des == true
 			) {
 				this.Cl = false;
+				this.Bd = false;
 				this.Ca = false;
 				this.Cg = false;
 				this.Mc = false;

@@ -32,7 +32,7 @@ export class AppService {
 	//lisUnique
 	ListUnique(List: [], Column: string) {
 		var Uniques = List.map((data) => data[Column]);
-		return Uniques.filter((x, i, a) => x && a.indexOf(x) === i);
+		return Uniques.filter((x, i, a) => x && a.indexOf(x) === i).sort();
 	}
 	//obtiene mes del day -1 cuantos dias de le suma o resta
 	obtenerMes(day: number) {
