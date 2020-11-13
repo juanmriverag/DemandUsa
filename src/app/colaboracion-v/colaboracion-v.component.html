@@ -2,11 +2,11 @@
 	<!-- //row -->
 	<div fxLayout="row" fxLayoutAlign="space-around stretch" class="LayoutMargin">
 		<div fxLayout="column" fxFlex="5%">
-			<button class="BTNAcum" color="accent" [matMenuTriggerFor]="menu" mat-mini-fab aria-label="Acumulados">
+			<button class="BTNAcum" color="accent" [matMenuTriggerFor]="menuAPP" mat-mini-fab aria-label="Acumulados">
 				<mat-icon>assessment</mat-icon>
 			</button>
 
-			<mat-menu #menu="matMenu">
+			<mat-menu #menuAPP="matMenu">
 				<button mat-menu-item (click)="openDGraficaVts()">
 					<mat-icon>show_chart</mat-icon>
 					<span>Sales-Forecast-Budget </span>
@@ -444,7 +444,7 @@
 							>more_vert</mat-icon
 						>
 
-						<mat-menu #menu="matMenu" *ngIf="element.Nov">
+						<mat-menu #menu="matMenu">
 							<button mat-menu-item (click)="NewNote(element)">
 								<mat-icon class="Note fIco20" matTooltip="Note"> edit</mat-icon>
 								<span>Note</span>
