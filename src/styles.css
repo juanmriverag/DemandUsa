@@ -410,3 +410,7 @@ table td.bgYellow,
 .LayoutMarginCumTotal .mat-tab-body {
 	padding: 1rem;
 }
+
+.mat-badge-small .mat-badge-content {
+	font-size: 9px;
+}

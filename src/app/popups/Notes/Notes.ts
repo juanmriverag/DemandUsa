@@ -25,11 +25,11 @@ export class Notes_modal implements OnInit, OnDestroy {
 	}
 	delete(Note: TypeNote) {
 		this.appService.postNote(Note, 3).subscribe((rest) => {
-			this.dialogRef.close(true);
+			this.List_Notes.splice(this.List_Notes.indexOf(Note), 1);
 		});
 	}
 	exit(): void {
-		this.dialogRef.close();
+		this.dialogRef.close(true);
 	}
 	ngOnInit(): void {
 		$(document).find('body app-root').toggleClass('blurclass');

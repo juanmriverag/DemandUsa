@@ -11,8 +11,16 @@
 			</div>
 			<div fxLayout="row" fxFlex="100%" fxLayoutAlign="center center" class="LayoutMargin12">
 				<div fxLayout="column" fxFlex="100%" style="cursor: pointer">
-					<!-- {{loading}} -->
-					<google-chart [title]="Hola" [type]="typechart" [data]="dataChart" [columnNames]="columnNames" [options]="options">
+					<div fxLayout="row" fxFlex="100%" fxLayoutAlign="center center"><mat-spinner *ngIf="loading"></mat-spinner></div>
+					<google-chart
+						(ready)="onReady($event)"
+						id="visualization"
+						[title]="Hola"
+						[type]="typechart"
+						[data]="dataChart"
+						[columnNames]="columnNames"
+						[options]="options"
+					>
 					</google-chart>
 				</div>
 			</div>

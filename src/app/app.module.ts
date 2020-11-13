@@ -53,6 +53,7 @@ import { CurrencyDecimalPipe } from './pipes/currencydecimal.pipe';
 import { FilterUniquePipe } from './pipes/FilterUnique.pipe';
 import { FormatNumberPipe } from './pipes/formatNumber.pipe';
 import { from } from 'rxjs';
+import { version } from 'process';
 
 //rutas
 const rutas: Routes = [
@@ -102,7 +103,7 @@ const rutas: Routes = [
 		HttpClientModule,
 		ResizableModule,
 		FontAwesomeModule,
-		GoogleChartsModule,
+		GoogleChartsModule.forRoot(null, '49'),
 	],
 	entryComponents: [
 		Bienvenido_modal,

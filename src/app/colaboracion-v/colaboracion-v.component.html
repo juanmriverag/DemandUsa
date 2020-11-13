@@ -423,14 +423,32 @@
 			<ng-container matColumnDef="notas">
 				<th mat-header-cell *matHeaderCellDef>
 					<button mat-icon-button matTooltip="Notes">
-						<mat-icon (click)="ListNotes()" class="fIco20">forum</mat-icon>
+						<mat-icon (click)="ListNotes()" class="fIco20" [matBadge]="Notes.length" matBadgeSize="small">speaker_notes</mat-icon>
 					</button>
 				</th>
 				<td class="Tend" mat-cell *matCellDef="let element">
-					<mat-icon (click)="chartItem(element)" matTooltip="Open Chart"> insights</mat-icon>
-					<mat-icon class="Note fIco20" matTooltip="Note" [ngClass]="{ eNote: element.IdNote != null }" (click)="NewNote(element)">
-						edit</mat-icon
-					>
+					<!-- <div fxLayout="row"> -->
+					<button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+						<mat-icon>more_vert</mat-icon>
+					</button>
+					<mat-menu #menu="matMenu">
+						<button mat-menu-item (click)="chartItem(element)">
+							<mat-icon matTooltip="Open Chart"> insights</mat-icon>
+							<span>Chart</span>
+						</button>
+						<button mat-menu-item (click)="NewNote(element)">
+							<mat-icon class="Note fIco20" matTooltip="Note" [ngClass]="{ eNote: element.IdNote != null }" (click)="NewNote(element)">
+								edit</mat-icon
+							>
+							<span>Note</span>
+						</button>
+						<button mat-menu-item>
+							<mat-icon>notifications_off</mat-icon>
+							<span>Delete</span>
+						</button>
+					</mat-menu>
+
+					<!-- </div> -->
 				</td>
 				<td class="Tend" mat-footer-cell *matFooterCellDef></td>
 			</ng-container>

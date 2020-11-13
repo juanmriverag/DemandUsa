@@ -24,7 +24,7 @@ import { ScriptLoaderService, GoogleChartPackagesHelper } from 'angular-google-c
 export class itemChartP_modal implements AfterViewInit, OnDestroy {
 	dataChartItem: any; // entrada
 	_modelItem: {};
-	loading: string = 'loading';
+	loading: boolean = true;
 
 	@ViewChild(TemplateRef, { static: false }) _dialogTemplate: TemplateRef<any>;
 	private _overlayRef: OverlayRef;
@@ -38,8 +38,8 @@ export class itemChartP_modal implements AfterViewInit, OnDestroy {
 		title: '',
 		legend: { position: 'in', textStyle: { fontSize: 10 } },
 
-		width: 650,
-		height: 350,
+		width: 450,
+		height: 300,
 		// curveType: 'function',
 		selectionMode: 'multiple',
 		tooltip: { trigger: 'selection', textStyle: { fontSize: 10 } },
@@ -75,7 +75,7 @@ export class itemChartP_modal implements AfterViewInit, OnDestroy {
 	}
 
 	openDialog(data, _model) {
-		this.loading = 'loadig';
+		this.loading = true;
 		this.dataChartItem = data;
 		this._modelItem = _model;
 		this._overlayRef.attach(this._portal);
@@ -93,7 +93,6 @@ export class itemChartP_modal implements AfterViewInit, OnDestroy {
 			this.dataChart.push([element.Date, element.Sale, element.ForeCast]);
 		});
 
-		this.loading = 'complete';
 		// this.data.listCharts.forEach((element) => {
 		// 	this.dataChart.push([element.Date, element.Sale, element.ForeCast]);
 		// });
@@ -106,6 +105,9 @@ export class itemChartP_modal implements AfterViewInit, OnDestroy {
 	// 		return val;
 	// 	}
 	// }
+	onReady(e) {
+		this.loading = false;
+	}
 
 	ngOnInit() {}
 	ngAfterViewInit() {

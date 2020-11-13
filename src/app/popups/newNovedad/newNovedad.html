@@ -10,15 +10,17 @@
 			<div fxLayout="row" fxFlex="100%" class="CampFormN">
 				<div fxLayout="column" fxFlex="50%">
 					<mat-label>Client</mat-label>
-					<span class="custom-input">
-						<input matInput [(ngModel)]="ModelNew.Client" autofocus required />
+					<span class="custom-dropdown">
+						<mat-select [(ngModel)]="ModelNew.Client" required>
+							<mat-option *ngFor="let Client  of ListFiltrs.Clients" [value]="Client"> {{Client }} </mat-option>
+						</mat-select>
 					</span>
 				</div>
 				<div fxLayout="column" fxFlex="50%">
 					<mat-label>Division</mat-label>
 					<span class="custom-dropdown">
 						<mat-select [(ngModel)]="ModelNew.Division" required>
-							<mat-option *ngFor="let Division  of ListFiltrs.Division" [value]="Division"> {{Division }} </mat-option>
+							<mat-option *ngFor="let Division  of ListFiltrs.Divisions" [value]="Division"> {{Division }} </mat-option>
 						</mat-select>
 					</span>
 				</div>
@@ -28,7 +30,7 @@
 					<mat-label>Brand</mat-label>
 					<span class="custom-dropdown">
 						<mat-select [(ngModel)]="ModelNew.Brand" required>
-							<mat-option *ngFor="let Brand  of ListFiltrs.Brand" [value]="Brand"> {{Brand }} </mat-option>
+							<mat-option *ngFor="let Brand  of ListFiltrs.Brands" [value]="Brand"> {{Brand }} </mat-option>
 						</mat-select>
 					</span>
 				</div>
@@ -36,7 +38,7 @@
 					<mat-label>Company</mat-label>
 					<span class="custom-dropdown">
 						<mat-select [(ngModel)]="ModelNew.Company">
-							<mat-option *ngFor="let Company  of ListFiltrs.Company" [value]="Company"> {{Company }} </mat-option>
+							<mat-option *ngFor="let Company  of ListFiltrs.Companies" [value]="Company"> {{Company }} </mat-option>
 						</mat-select>
 					</span>
 				</div>

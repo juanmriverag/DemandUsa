@@ -654,6 +654,7 @@ export class ColaboracionVComponent implements OnInit, AfterViewInit {
 	}
 	openDitemChartP(_model) {
 		this.getChartItemData(_model).add((data) => {
+			this._itemChartP_modal.closeDialog();
 			this._itemChartP_modal.openDialog(this.dataChartItem, _model);
 		});
 	}
@@ -684,10 +685,14 @@ export class ColaboracionVComponent implements OnInit, AfterViewInit {
 
 	InsertNotesList() {
 		this.ListDMForeCast.data.forEach((element) => {
+			var en = false;
 			this.Notes.forEach((note) => {
 				if (element.Territory == note.Territory && element.Item == note.Item) {
 					element.IdNote = note.IdNote;
 					note.Description = element.Description;
+					en = true;
+				} else if (!en) {
+					element.IdNote = null;
 				}
 			});
 		});

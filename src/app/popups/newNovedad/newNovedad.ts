@@ -21,9 +21,10 @@ export class newNovedad_modal implements OnInit, OnDestroy {
 	List_model: _model[] = [];
 	ListFiltrDispo: any = [];
 	ListFiltrs = {
-		Division: [],
-		Brand: [],
-		Company: [],
+		Clients: [],
+		Divisions: [],
+		Brands: [],
+		Companies: [],
 	};
 	ModelNew = {
 		Client: '',
@@ -65,9 +66,10 @@ export class newNovedad_modal implements OnInit, OnDestroy {
 	getFiltrDisp() {
 		this.appService.getAllFiltrDisp(this.data.Territory, '', '', '', '').subscribe((datas) => {
 			this.ListFiltrDispo = datas['ListFiltr'];
-			this.ListFiltrs.Division = this.appService.ListUnique(this.ListFiltrDispo, 'Category');
-			this.ListFiltrs.Brand = this.appService.ListUnique(this.ListFiltrDispo, 'Brand');
-			this.ListFiltrs.Company = this.appService.ListUnique(this.ListFiltrDispo, 'Company');
+			this.ListFiltrs.Clients = this.appService.ListUnique(this.ListFiltrDispo, 'Client');
+			this.ListFiltrs.Divisions = this.appService.ListUnique(this.ListFiltrDispo, 'Category');
+			this.ListFiltrs.Brands = this.appService.ListUnique(this.ListFiltrDispo, 'Brand');
+			this.ListFiltrs.Companies = this.appService.ListUnique(this.ListFiltrDispo, 'Company');
 		});
 	}
 
@@ -75,7 +77,7 @@ export class newNovedad_modal implements OnInit, OnDestroy {
 		this.List_model = [];
 		if (
 			this.ModelNew.Item != '' &&
-			this.ModelNew.Client.length > 0 &&
+			this.ModelNew.Client != '' &&
 			this.ModelNew.Description != '' &&
 			this.ModelNew.Division != '' &&
 			this.ModelNew.Company != ''

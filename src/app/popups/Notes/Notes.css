@@ -21,6 +21,15 @@ button {
 	left: -29px;
 }
 
+.Nonotes {
+	width: 100%;
+	height: 100%;
+	background-image: url(../../../media/notes2.svg);
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+
 .ContNnovedad .ContImgNov {
 	position: relative;
 	overflow: hidden;
