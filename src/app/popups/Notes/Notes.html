@@ -10,7 +10,7 @@
 			</div>
 			<div fxLayout="row" fxFlex="75%" class="notecontent">
 				<mat-list fxLayout="column" fxFlex="100%">
-					<div class="Nonotes"></div>
+					<div *ngIf="List_Notes.length == 0" class="Nonotes"></div>
 					<mat-list-item *ngFor="let note of List_Notes" fxLayout="column" fxFlex="100%" class="Note">
 						<mat-icon mat-list-icon>note</mat-icon>
 						<div mat-line>{{note.Title}}</div>

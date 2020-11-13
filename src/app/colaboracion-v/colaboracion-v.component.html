@@ -437,13 +437,11 @@
 							<span>Chart</span>
 						</button>
 						<button mat-menu-item (click)="NewNote(element)">
-							<mat-icon class="Note fIco20" matTooltip="Note" [ngClass]="{ eNote: element.IdNote != null }" (click)="NewNote(element)">
-								edit</mat-icon
-							>
+							<mat-icon class="Note fIco20" matTooltip="Note" [ngClass]="{ eNote: element.IdNote != null }"> edit</mat-icon>
 							<span>Note</span>
 						</button>
 						<button mat-menu-item>
-							<mat-icon>notifications_off</mat-icon>
+							<mat-icon>delete</mat-icon>
 							<span>Delete</span>
 						</button>
 					</mat-menu>
