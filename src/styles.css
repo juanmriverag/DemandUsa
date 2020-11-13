@@ -123,7 +123,10 @@ app-root {
 .f12 {
 	font-size: 12px;
 }
-
+.mat-menu-item span.InfoB {
+	font-size: 11px;
+	white-space: normal;
+}
 .LogoAB {
 	background-image: url(./media/LogoForeCastN.png);
 	background-position: center 60px;
