@@ -91,14 +91,19 @@
 					<mat-icon>home</mat-icon>
 					<span>Home</span>
 				</button>
-				<button mat-menu-item>
+				<!-- <button mat-menu-item>
 					<mat-icon>fullscreen</mat-icon>
 					<span>Full screen</span>
-				</button>
+				</button> -->
 
 				<button mat-menu-item routerLink="/login">
 					<mat-icon>directions_run</mat-icon>
 					<span>Sign Out</span>
+				</button>
+
+				<button mat-menu-item (click)="reload()">
+					<mat-icon>refresh</mat-icon>
+					<span>Refresh Page</span>
 				</button>
 			</mat-menu>
 		</div>

@@ -210,6 +210,10 @@ export class AppComponent implements OnInit {
 		this.cdRef.detectChanges();
 	}
 
+	reload() {
+		location.reload();
+	}
+
 	onResize(event) {
 		this.widthMax = screen.width;
 	}
