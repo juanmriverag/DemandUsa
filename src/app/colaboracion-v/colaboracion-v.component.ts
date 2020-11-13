@@ -26,6 +26,7 @@ import { Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { newNovedad_modal } from '../popups/newNovedad/newNovedad';
 import { ResizeEvent } from 'angular-resizable-element';
 import { faFilter } from '@fortawesome/free-solid-svg-icons';
+import { GuardsCheckStart } from '@angular/router';
 
 declare function NSFunctionMostrarMenus(mostrar: boolean): any;
 
@@ -541,8 +542,6 @@ export class ColaboracionVComponent implements OnInit, AfterViewInit {
 
 		var num = 0;
 
-		debugger;
-
 		if (keyEvent.which === 39 || keyEvent.which === 13) {
 			Id = Id + (IdInp + 1);
 			if (_model['MonthN' + numI] > _model.TopAverage && _model['MonthN' + numI] < _model.Average * 1.7 && !_model.Nov) {
@@ -552,21 +551,43 @@ export class ColaboracionVComponent implements OnInit, AfterViewInit {
 			}
 
 			this.PostForeC(_model);
+
 			$(Id).focus();
 			num = numI == 1 || numI == 2 ? 0 : 1;
 			this.colorRow(this.ListDMForeCast.data[index + num]);
 		} else if (keyEvent.which === 37) {
 			Id = Id + (IdInp - 1);
+			if (_model['MonthN' + numI] > _model.TopAverage && _model['MonthN' + numI] < _model.Average * 1.7 && !_model.Nov) {
+				this._appComponent.openSnackBar("You're forecasting above 30% of average sales. 🧐", '', 'Yellow');
+			} else if (_model['MonthN' + numI] > _model.Average * 1.7 && !_model.Nov) {
+				this._appComponent.openSnackBar("¡Attention!...You're forecasting above 70% of the average sales. 🤔", '', 'Red');
+			}
+
+			this.PostForeC(_model);
 			$(Id).focus();
 			num = numI == 3 || numI == 2 ? 0 : 1;
 			this.colorRow(this.ListDMForeCast.data[index - num]);
 		} else if (keyEvent.which === 40) {
 			Id = Id + (IdInp + 3);
+			if (_model['MonthN' + numI] > _model.TopAverage && _model['MonthN' + numI] < _model.Average * 1.7 && !_model.Nov) {
+				this._appComponent.openSnackBar("You're forecasting above 30% of average sales. 🧐", '', 'Yellow');
+			} else if (_model['MonthN' + numI] > _model.Average * 1.7 && !_model.Nov) {
+				this._appComponent.openSnackBar("¡Attention!...You're forecasting above 70% of the average sales. 🤔", '', 'Red');
+			}
+
+			this.PostForeC(_model);
 			$(Id).focus();
 			num = 1;
 			this.colorRow(this.ListDMForeCast.data[index + num]);
 		} else if (keyEvent.which === 38) {
 			Id = Id + (IdInp - 3);
+			if (_model['MonthN' + numI] > _model.TopAverage && _model['MonthN' + numI] < _model.Average * 1.7 && !_model.Nov) {
+				this._appComponent.openSnackBar("You're forecasting above 30% of average sales. 🧐", '', 'Yellow');
+			} else if (_model['MonthN' + numI] > _model.Average * 1.7 && !_model.Nov) {
+				this._appComponent.openSnackBar("¡Attention!...You're forecasting above 70% of the average sales. 🤔", '', 'Red');
+			}
+
+			this.PostForeC(_model);
 			$(Id).focus();
 			num = 1;
 			this.colorRow(this.ListDMForeCast.data[index - num]);

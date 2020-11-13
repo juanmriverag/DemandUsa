@@ -42,7 +42,7 @@ export class itemChartP_modal implements AfterViewInit, OnDestroy {
 		height: 300,
 		// curveType: 'function',
 		selectionMode: 'multiple',
-		tooltip: { trigger: 'selection', textStyle: { fontSize: 10 } },
+		tooltip: { trigger: 'selection', textStyle: { fontSize: 8 } },
 		aggregationTarget: 'series',
 		hAxis: { slantedText: true, slantedTextAngle: 90 },
 		// vAxis: { viewWindow: { min: 1 } },
