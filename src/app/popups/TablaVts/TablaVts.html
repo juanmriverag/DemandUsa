@@ -15,7 +15,17 @@
 								</div>
 							</div>
 						</div>
-
+						<div mat-menu-item class="plMenuCSS" (click)="$event.stopPropagation();">
+							<mat-label>Territory</mat-label>
+							<span class="custom-dropdown">
+								<mat-select [(ngModel)]="_Ctrl.Filtr.Territory" (selectionChange)="_Ctrl.applyFilter3()">
+									<mat-option [value]="''">All</mat-option>
+									<mat-option *ngFor="let Territory  of _Ctrl.ListFiltrs.Territories" [value]="Territory ">
+										{{Territory }}
+									</mat-option>
+								</mat-select>
+							</span>
+						</div>
 						<div mat-menu-item class="plMenuCSS" (click)="$event.stopPropagation();">
 							<mat-label>Division</mat-label>
 							<span class="custom-dropdown">

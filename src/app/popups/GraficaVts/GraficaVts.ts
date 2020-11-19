@@ -59,9 +59,16 @@ export class GraficaVts_modal implements AfterViewInit, OnDestroy {
 		height: 400,
 		seriesType: 'bars',
 		selectionMode: 'multiple',
+		displayAnnotations: true,
 		tooltip: { trigger: 'selection' },
 		series: {
-			0: { type: 'line', color: '#749AA8' },
+			0: {
+				type: 'line',
+				color: '#749AA8',
+				annotations: {
+					textStyle: { fontSize: 12, color: 'red' },
+				},
+			},
 			1: { color: '#2D4F5C' },
 			// 2: { color: '#A99075' },
 			// 3: { type: 'line', color: '#E8BC89' },

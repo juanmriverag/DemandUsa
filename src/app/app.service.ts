@@ -213,4 +213,12 @@ export class AppService {
 		params = params.append('Item', Item);
 		return this.httpclient.get<any[]>(this.urlBase.url + 'getItemChart', { params: params });
 	}
+
+	//repsar
+	postReplay(User: string, Territory: string) {
+		let bodystr = new FormData();
+		bodystr.append('Territory', Territory);
+		bodystr.append('User', User);
+		return this.httpclient.post(this.urlBase.url + 'replay', bodystr);
+	}
 }

@@ -23,10 +23,14 @@
 					<mat-icon>add_box</mat-icon>
 					<span>New Item</span>
 				</button>
+				<button mat-menu-item (click)="replay()" *ngIf="_appComponent.rol == 1">
+					<mat-icon>done_all</mat-icon>
+					<span>Replay</span>
+				</button>
 			</mat-menu>
 			<TablaVts [Ctrl]="Ctrl"></TablaVts>
 			<GraficaVts [Ctrl]="Ctrl"></GraficaVts>
-			<CumpTotal [Ctrl]="Ctrl"></CumpTotal>
+			<CumpTotal></CumpTotal>
 			<itemChartP></itemChartP>
 		</div>
 		<div fxLayout="column" fxFlex="95%">

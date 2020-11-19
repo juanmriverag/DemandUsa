@@ -24,8 +24,6 @@ const type = GoogleChartPackagesHelper.getPackageForChartName('BarChart');
 	styleUrls: ['../../colaboracion-v/colaboracion-v.component.css'],
 })
 export class CumpTotal_modal implements OnInit, AfterViewInit, OnDestroy {
-	@Input('Ctrl') _Ctrl; // entrada
-
 	@ViewChild(TemplateRef, { static: false }) _dialogTemplate: TemplateRef<any>;
 	private _overlayRef: OverlayRef;
 	private _portal: TemplatePortal;

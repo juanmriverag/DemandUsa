@@ -102,6 +102,7 @@ export class ColaboracionVComponent implements OnInit, AfterViewInit {
 	Mostrar;
 	Ctrl = this;
 	ListFiltrs = {
+		Territories: [],
 		Clients: [],
 		Categories: [],
 		Companies: [],
@@ -119,7 +120,7 @@ export class ColaboracionVComponent implements OnInit, AfterViewInit {
 
 	constructor(
 		private elRef: ElementRef,
-		private _appComponent: AppComponent,
+		public _appComponent: AppComponent,
 		public appService: AppService,
 		public dialog: MatDialog,
 		private _overlay: Overlay,
@@ -140,6 +141,25 @@ export class ColaboracionVComponent implements OnInit, AfterViewInit {
 			backdropClass: 'Transparent-class',
 			panelClass: 'Transparent-class2',
 			disableClose: true,
+		});
+	}
+
+	replay() {
+		const dialogRef = this.dialog.open(Alert_modal, {
+			width: '500px',
+			data: {
+				title: 'Alert!!!',
+				textContent: 'You are sure to re-tread the ' + this.Bus.Territory + ' territory?',
+				ok: 'Replay',
+				cancel: 'Cancel',
+			},
+		});
+		dialogRef.afterClosed().subscribe((result) => {
+			if (result) {
+				this.appService.postReplay(this._appComponent.Username, this.Bus.Territory).subscribe((resq) => {
+					this.getAll();
+				});
+			}
 		});
 	}
 
@@ -385,10 +405,12 @@ export class ColaboracionVComponent implements OnInit, AfterViewInit {
 	}
 
 	getBudget() {
+		debugger;
 		this.appService
-			.getAllBudget(this.Filtr.Client, this.Filtr.Category, this.Bus.Territory, this.Filtr.Company, this.Filtr.Brand)
+			.getAllBudget(this.Filtr.Client, this.Filtr.Category, this.Filtr.Territory, this.Filtr.Company, this.Filtr.Brand)
 			.subscribe((data) => {
 				this.ListBudgetOrig = data['ListBudget'];
+
 				this.manageBudget();
 				this.getFiltrDisp();
 				this.Finish.emit();
@@ -398,20 +420,30 @@ export class ColaboracionVComponent implements OnInit, AfterViewInit {
 
 	getFiltrDisp() {
 		this.appService
-			.getAllFiltrDisp(this.Bus.Territory, this.Filtr.Client, this.Filtr.Category, this.Filtr.Company, this.Filtr.Brand)
+			.getAllFiltrDisp(this.Filtr.Territory, this.Filtr.Client, this.Filtr.Category, this.Filtr.Company, this.Filtr.Brand)
 			.subscribe((data) => {
 				this.ListFiltrDispo = data['ListFiltr'];
+				this.ListFiltrs.Territories = this.appService.ListUnique(this.ListFiltrDispo, 'Territory');
 				this.ListFiltrs.Clients = this.appService.ListUnique(this.ListFiltrDispo, 'Client');
 				this.ListFiltrs.Categories = this.appService.ListUnique(this.ListFiltrDispo, 'Category');
 				this.ListFiltrs.Companies = this.appService.ListUnique(this.ListFiltrDispo, 'Company');
 				this.ListFiltrs.Brands = this.appService.ListUnique(this.ListFiltrDispo, 'Brand');
+				// this.Filtr.Category = this.forString(this.ListFiltrs.Categories);
 			});
 	}
 
-	// ListUnique(List, Column: string) {
-	// 	var Uniques = List.map((data) => data[Column]);
-	// 	return Uniques.filter((x, i, a) => x && a.indexOf(x) === i);
-	// }
+	forString(list) {
+		var st = '';
+		for (var i = 0; i < list.length; i++) {
+			if (0 == i) {
+				st += list[i];
+			} else {
+				st += ',' + list[i];
+			}
+		}
+
+		return st;
+	}
 
 	manageBudget() {
 		this.Headerdis1 = [];
@@ -441,6 +473,7 @@ export class ColaboracionVComponent implements OnInit, AfterViewInit {
 		this.ListBudget = new MatTableDataSource(this.ListBudgetOrig);
 		this.ListBudget.sort = this.sort;
 		this.ListBudget.filterPredicate = this.tableFilter3();
+
 		this.applyFilter4();
 	}
 
