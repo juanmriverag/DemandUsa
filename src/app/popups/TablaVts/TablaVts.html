@@ -86,7 +86,7 @@
 								*matCellDef="let element"
 								[ngClass]="{'colorBlue': element.Id == 2 , 'colorGreen' : element.Id == 4, 'SubrColumn' : ((_Ctrl.mesActual+4) > i && i > _Ctrl.mesActual)  }"
 							>
-								{{(element.Id < 3) ? '$' : ''}} {{ element[column] | number }} {{(element.Id > 2) ? '%' : ''}}
+								{{(element.Id < 3) ? '$' : ''}} {{ element[column] | number:'1.0-0' }} {{(element.Id > 2) ? '%' : ''}}
 							</td>
 						</ng-container>
 

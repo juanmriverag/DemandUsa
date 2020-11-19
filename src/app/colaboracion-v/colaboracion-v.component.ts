@@ -405,7 +405,6 @@ export class ColaboracionVComponent implements OnInit, AfterViewInit {
 	}
 
 	getBudget() {
-		debugger;
 		this.appService
 			.getAllBudget(this.Filtr.Client, this.Filtr.Category, this.Filtr.Territory, this.Filtr.Company, this.Filtr.Brand)
 			.subscribe((data) => {
