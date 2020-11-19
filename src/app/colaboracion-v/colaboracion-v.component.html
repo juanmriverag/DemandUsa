@@ -30,7 +30,7 @@
 			</mat-menu>
 			<TablaVts [Ctrl]="Ctrl"></TablaVts>
 			<GraficaVts [Ctrl]="Ctrl"></GraficaVts>
-			<CumpTotal></CumpTotal>
+			<CumpTotal [Ctrl]="Ctrl"></CumpTotal>
 			<itemChartP></itemChartP>
 		</div>
 		<div fxLayout="column" fxFlex="95%">
@@ -80,43 +80,43 @@
 				<!-- Fmes1 Column -->
 				<ng-container matColumnDef="FmonthN1">
 					<th class="Bleft" mat-header-cell *matHeaderCellDef>{{ appService.obtenerMes(1) }}</th>
-					<td class="Tend" mat-cell *matCellDef="let p">$ {{ p.FMonthN1 | number }}</td>
-					<td class="Tend" mat-footer-cell *matFooterCellDef>$ {{ getTotal('FMonthN1') | number }}</td>
+					<td class="Tend" mat-cell *matCellDef="let p">$ {{ p.FMonthN1 | number: '1.0-0' }}</td>
+					<td class="Tend" mat-footer-cell *matFooterCellDef>$ {{ getTotal('FMonthN1') | number: '1.0-0' }}</td>
 				</ng-container>
 
 				<!-- Fmes2 Column -->
 				<ng-container matColumnDef="FmonthN2">
 					<th mat-header-cell *matHeaderCellDef>{{ appService.obtenerMes(2) }}</th>
-					<td class="Tend" mat-cell *matCellDef="let p">$ {{ p.FMonthN2 | number }}</td>
-					<td class="Tend" mat-footer-cell *matFooterCellDef>$ {{ getTotal('FMonthN2') | number }}</td>
+					<td class="Tend" mat-cell *matCellDef="let p">$ {{ p.FMonthN2 | number: '1.0-0' }}</td>
+					<td class="Tend" mat-footer-cell *matFooterCellDef>$ {{ getTotal('FMonthN2') | number: '1.0-0' }}</td>
 				</ng-container>
 
 				<!-- Fmes3 Column -->
 				<ng-container matColumnDef="FmonthN3">
 					<th class="Bright" mat-header-cell *matHeaderCellDef>{{ appService.obtenerMes(3) }}</th>
-					<td class="Tend" mat-cell *matCellDef="let p">$ {{ p.FMonthN3 | number }}</td>
-					<td class="Tend" mat-footer-cell *matFooterCellDef>$ {{ getTotal('FMonthN3') | number }}</td>
+					<td class="Tend" mat-cell *matCellDef="let p">$ {{ p.FMonthN3 | number: '1.0-0' }}</td>
+					<td class="Tend" mat-footer-cell *matFooterCellDef>$ {{ getTotal('FMonthN3') | number: '1.0-0' }}</td>
 				</ng-container>
 
 				<!-- Pmes1 Column -->
 				<ng-container matColumnDef="PmonthN1">
 					<th mat-header-cell *matHeaderCellDef>{{ appService.obtenerMes(1) }}</th>
-					<td class="Tend" mat-cell *matCellDef="let p">$ {{ p.PMonthN1 | number }}</td>
-					<td class="Tend" mat-footer-cell *matFooterCellDef>$ {{ getTotal('PMonthN1') | number }}</td>
+					<td class="Tend" mat-cell *matCellDef="let p">$ {{ p.PMonthN1 | number: '1.0-0' }}</td>
+					<td class="Tend" mat-footer-cell *matFooterCellDef>$ {{ getTotal('PMonthN1') | number: '1.0-0' }}</td>
 				</ng-container>
 
 				<!-- Pmes2 Column -->
 				<ng-container matColumnDef="PmonthN2">
 					<th class="" mat-header-cell *matHeaderCellDef>{{ appService.obtenerMes(2) }}</th>
-					<td class="Tend" mat-cell *matCellDef="let p">$ {{ p.PMonthN2 | number }}</td>
-					<td class="Tend" mat-footer-cell *matFooterCellDef>$ {{ getTotal('PMonthN2') | number }}</td>
+					<td class="Tend" mat-cell *matCellDef="let p">$ {{ p.PMonthN2 | number: '1.0-0' }}</td>
+					<td class="Tend" mat-footer-cell *matFooterCellDef>$ {{ getTotal('PMonthN2') | number: '1.0-0' }}</td>
 				</ng-container>
 
 				<!-- Pmes3 Column -->
 				<ng-container matColumnDef="PmonthN3">
 					<th class="Bright" mat-header-cell *matHeaderCellDef>{{ appService.obtenerMes(3) }}</th>
-					<td class="Tend" mat-cell *matCellDef="let p">$ {{ p.PMonthN3 | number }}</td>
-					<td class="Tend" mat-footer-cell *matFooterCellDef>$ {{ getTotal('PMonthN3') | number }}</td>
+					<td class="Tend" mat-cell *matCellDef="let p">$ {{ p.PMonthN3 | number: '1.0-0' }}</td>
+					<td class="Tend" mat-footer-cell *matFooterCellDef>$ {{ getTotal('PMonthN3') | number: '1.0-0' }}</td>
 				</ng-container>
 
 				<!-- Cumes1 Column -->
