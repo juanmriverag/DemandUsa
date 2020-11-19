@@ -548,7 +548,12 @@
 				class="table-element-row js-pscroll"
 				[class.table-expanded-row]="expandedElement === element"
 				(click)="colorRow(element)"
-				[ngClass]="{ Nov: element.Nov, rowSelect: element.Select }"
+				[ngClass]="{
+					Nov: element.Nov && element.Price > 0,
+					Noprice: element.Price == 0 && !element.Nov,
+					nopNov: element.Price == 0 && element.Nov,
+					rowSelect: element.Select
+				}"
 			></tr>
 			<!-- <tr
 				mat-row

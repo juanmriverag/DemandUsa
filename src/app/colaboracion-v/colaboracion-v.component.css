@@ -431,7 +431,20 @@ div.plMenuCSS {
 	background-color: #ffdd54;
 	color: #344955;
 }
+.Noprice td {
+	background-color: #e16162;
+	color: #fff;
+}
+tr.nopNov {
+	background-color: #239250;
+	background-image: linear-gradient(to right, #ffdd54, #e16162);
+	color: #fff;
+}
+tr.nopNov td {
+	background-color: transparent;
 
+	color: rgba(0, 0, 0, 0.54);
+}
 .rowSelect td {
 	background-color: #edf1fc;
 	color: #344955;
