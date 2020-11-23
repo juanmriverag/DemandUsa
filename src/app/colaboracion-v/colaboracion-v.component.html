@@ -550,8 +550,8 @@
 				(click)="colorRow(element)"
 				[ngClass]="{
 					Nov: element.Nov && element.Price > 0,
-					Noprice: element.Price == 0 && !element.Nov,
-					nopNov: element.Price == 0 && element.Nov,
+					Noprice: element.Price == 0 && !element.Nov && element.MonthN1 + element.MonthN2 + element.MonthN3 > 0,
+					nopNov: element.Price == 0 && element.Nov && element.MonthN1 + element.MonthN2 + element.MonthN3 > 0,
 					rowSelect: element.Select
 				}"
 			></tr>
