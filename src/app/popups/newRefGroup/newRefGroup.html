@@ -1,0 +1,31 @@
+<div fxLayout="column" fxLayoutAlign="start center" mat-dialog-content style="height: 400px">
+	<div fxLayout="row" fxFlex="100%" class="ContNnovedad">
+		<div fxLayout="column" fxFlex="20%" class="ContImgNov">
+			<div class="ImgNnovedad"></div>
+		</div>
+		<div fxLayout="column" fxLayoutAlign="center center" fxFlex="80%" class="ContFormN">
+			<div fxLayout="row" fxFlex="30%" fxLayoutAlign="start start">
+				<h2>New Item</h2>
+			</div>
+			<div fxLayout="row" fxFlex="100%" class="CampFormN">
+				<div fxLayout="column" fxFlex="50%">
+					<mat-label>Item Parent</mat-label>
+					<span class="custom-input">
+						<input matInput [(ngModel)]="ModelNew.refParent" autofocus />
+					</span>
+				</div>
+				<div fxLayout="column" fxFlex="50%">
+					<mat-label>Item Child</mat-label>
+					<span class="custom-input">
+						<input matInput [(ngModel)]="ModelNew.refChild" autofocus />
+					</span>
+				</div>
+			</div>
+
+			<div fxLayout="row" fxFlex="30%" fxLayoutAlign="end end">
+				<button mat-raised-button (click)="cancel()" style="margin-right: 5px" color="warn">Decline</button>
+				<button mat-raised-button (click)="ok()" color="primary">Add</button>
+			</div>
+		</div>
+	</div>
+</div>

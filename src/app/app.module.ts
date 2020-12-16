@@ -12,6 +12,7 @@ import { HomeComponent } from './home/home.component';
 import { CargaSapComponent } from './configuracion/carga-sap/carga-sap.component';
 import { ColaboracionVComponent } from './colaboracion-v/colaboracion-v.component';
 import { UsermanagerComponent } from './configuracion/usermanager/usermanager.component';
+import { RefGroupComponent } from './configuracion/ref-group/ref-group.component';
 
 //Cookie
 import { CookieService } from 'ngx-cookie-service';
@@ -45,6 +46,7 @@ import { itemChartP_modal } from './popups/itemChartP/itemChartP';
 import { CumpTotal_modal } from './popups/CumpTotal/CumpTotal';
 import { Note_modal } from './popups/Note/Note';
 import { Notes_modal } from './popups/Notes/Notes';
+import { newRefGroup_modal } from './popups/newRefGroup/newRefGroup';
 
 import { ResizableModule } from 'angular-resizable-element';
 
@@ -61,6 +63,7 @@ const rutas: Routes = [
 	{ path: 'home', component: HomeComponent },
 	{ path: 'login', component: LoginComponent },
 	{ path: 'DemandForecast', component: ColaboracionVComponent },
+	{ path: 'setting/refGroup', component: RefGroupComponent },
 	// { path: 'configuracion/cargaSap', component: CargaSapComponent },
 	{ path: 'setting/Users', component: UsermanagerComponent },
 ];
@@ -81,7 +84,9 @@ const rutas: Routes = [
 		newNovedad_modal,
 		Note_modal,
 		Notes_modal,
+		newRefGroup_modal,
 		ColaboracionVComponent,
+		RefGroupComponent,
 		CurrencyDecimalPipe,
 		FilterUniquePipe,
 		FormatNumberPipe,
@@ -116,6 +121,7 @@ const rutas: Routes = [
 		newNovedad_modal,
 		Note_modal,
 		Notes_modal,
+		newRefGroup_modal,
 	],
 	providers: [AppService, BDUrl, CookieService],
 	bootstrap: [AppComponent],

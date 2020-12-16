@@ -221,4 +221,14 @@ export class AppService {
 		bodystr.append('User', User);
 		return this.httpclient.post(this.urlBase.url + 'replay', bodystr);
 	}
+
+	//refGroup
+	postrefGroup(refParent: number, refChild: number, op: number) {
+		let bodystr = new FormData();
+		bodystr.append('refParent', refParent.toString());
+		bodystr.append('refChild', refChild.toString());
+		bodystr.append('op', op.toString());
+
+		return this.httpclient.post(this.urlBase.url + 'refGroup', bodystr);
+	}
 }

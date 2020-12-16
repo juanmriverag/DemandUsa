@@ -50,7 +50,8 @@ app-login.ng-star-inserted {
 app-home.ng-star-inserted,
 app-colaboracion-v.ng-star-inserted,
 app-carga-sap.ng-star-inserted,
-app-usermanager.ng-star-inserted {
+app-usermanager.ng-star-inserted,
+app-ref-group.ng-star-inserted {
 	width: 100%;
 	height: 80vh;
 }
@@ -75,6 +76,10 @@ app-root {
 }
 .hfull {
 	height: 60vh;
+}
+
+.heightfull {
+	height: 100%;
 }
 
 .mat-icon.fIco20 {
