@@ -412,12 +412,16 @@
 				</td>
 				<td class="Tend" mat-footer-cell *matFooterCellDef></td>
 			</ng-container>
-
 			<!-- Price Column -->
 			<ng-container matColumnDef="price">
 				<th class="Tend" mat-header-cell *matHeaderCellDef>Price</th>
 				<td class="Tend" mat-cell *matCellDef="let element">
-					<input matInput [(ngModel)]="element.Price" (keyup)="PreKeyEvent($event, element)" />
+					<input
+						matInput
+						[(ngModel)]="element.Price"
+						(focusout)="PreKeyEventFocus($event, element)"
+						(keyup)="PreKeyEvent($event, element)"
+					/>
 				</td>
 				<td class="Tend" mat-footer-cell *matFooterCellDef>
 					{{ getTotal2('Price') | number }}

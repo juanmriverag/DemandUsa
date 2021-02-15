@@ -349,9 +349,11 @@ export class ColaboracionVComponent implements OnInit, AfterViewInit {
 				}
 			});
 
-			if (this.filtrClient == '') {
+			if (this.filtrClient != '' && this.ListClients.length > 0) {
 				this.filtrClient = this.ListClients[0].canal;
 				this.ListClients[0].checked = true;
+			} else {
+				alert('error');
 			}
 
 			this.getDMForeCast_();
@@ -577,14 +579,26 @@ export class ColaboracionVComponent implements OnInit, AfterViewInit {
 		});
 	}
 
+	// Funcion cuando dan enter en Precio
 	PreKeyEvent(keyEvent, _model) {
 		var index = this.ListDMForeCast.data.indexOf(_model);
 
 		if (keyEvent.which === 39 || keyEvent.which === 13) {
 			this.appService.putPrices(_model).subscribe((data) => {
 				this.getDMForeCast_();
+				console.log('Guardo con tecla');
 			});
 		}
+	}
+
+	// Funcion con FocusOut en Precio
+	PreKeyEventFocus(keyEvent, _model) {
+		console.log('Guardo con focus');
+		var index = this.ListDMForeCast.data.indexOf(_model);
+
+		this.appService.putPrices(_model).subscribe((data) => {
+			this.getDMForeCast_();
+		});
 	}
 
 	susKeyEvent(keyEvent, _model, IdInp, numI) {
